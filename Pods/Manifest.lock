@@ -1,0 +1,33 @@
+PODS:
+  - IHKeyboardAvoiding (4.6)
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - SlideMenuControllerSwift (4.0.0)
+
+DEPENDENCIES:
+  - IHKeyboardAvoiding
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - SlideMenuControllerSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - IHKeyboardAvoiding
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
+    - SlideMenuControllerSwift
+
+SPEC CHECKSUMS:
+  IHKeyboardAvoiding: 2a664fdb5f964359fa7ec8fc5c9aebb447583ff8
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
+
+PODFILE CHECKSUM: 9e7df863e8da4fc5a827c5e461c063cd651fb7c8
+
+COCOAPODS: 1.6.1
