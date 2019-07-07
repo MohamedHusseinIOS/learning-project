@@ -32,37 +32,43 @@ class SignInViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-        KeyboardAvoiding.avoidingView = self.view
+        KeyboardAvoiding.avoidingView = self.passwordTxt
+        
+        let registerBtnTitle = "ليس لديك حساب؟".attributedString(fontSize: 17, color: #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1))
+        let singupNow = "سجل الان".attributedString(fontSize: 17, color: #colorLiteral(red: 0.9215686275, green: 0.3333333333, blue: 0.3568627451, alpha: 1))
+        registerBtnTitle.append(singupNow)
+        
+        registerBtn.setAttributedTitle(registerBtnTitle, for: .normal)
         
         emailTxt.rx
             .text
             .orEmpty
             .bind(to: viewModel.email)
-            .disposed(by: viewModel.dispose)
+            .disposed(by: bag)
         
         passwordTxt.rx
             .text
             .orEmpty
             .bind(to: viewModel.password)
-            .disposed(by: viewModel.dispose)
+            .disposed(by: bag)
         
         signInBtn.rx
             .tap
             .subscribe { (_) in
-            
-            }.disposed(by: viewModel.dispose)
+                NavigationCoordinator.shared.sideMenuSetup()
+            }.disposed(by: bag)
         
         forgetPasswordBtn.rx
             .tap
             .subscribe { (_) in
-                
-            }.disposed(by: viewModel.dispose)
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .forgetPasswordViewController)
+            }.disposed(by: bag)
         
         registerBtn.rx
             .tap
             .subscribe { (_) in
                 NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
-            }.disposed(by: viewModel.dispose)
+            }.disposed(by: bag)
         
     }
 

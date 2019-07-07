@@ -9,21 +9,48 @@
 import Foundation
 import UIKit
 
-enum MenuElements: Int {
-    case home           = 0
+enum MenuElements: String {
     
+    case MOBILES_AND_TAPLETS
+    case CLOSES_AND_SHOSES_AND_ACCESSORYS
+    case HELTH_AND_SELF_CARE
+    case CUMPUTERS_AND_NETWORKS_AND_PROGRAMS
+    case GARDEN_SUPPLIES
+    case ELECTRONICS
+    case FURNITURE_AND_HOUSE_DECORATION
+    case KITCHEN_AND_HOUSE_SUPPLIES
+    case JEWELERY_AND_ACCESSORYES
+    case OFFICE_EQUIPMENTS
     
-    var icon: UIImage {
-        switch self {
-        case .home: return #imageLiteral(resourceName: "Home")
-       
+    static func element(row: Int) -> MenuElements{
+        switch row {
+        case 0:
+            return .MOBILES_AND_TAPLETS
+        case 1:
+            return .CLOSES_AND_SHOSES_AND_ACCESSORYS
+        case 2:
+            return .HELTH_AND_SELF_CARE
+        case 3:
+            return .CUMPUTERS_AND_NETWORKS_AND_PROGRAMS
+        case 4:
+            return .GARDEN_SUPPLIES
+        case 5:
+            return .ELECTRONICS
+        case 6:
+            return .FURNITURE_AND_HOUSE_DECORATION
+        case 7:
+            return .KITCHEN_AND_HOUSE_SUPPLIES
+        case 8:
+            return .JEWELERY_AND_ACCESSORYES
+        case 9:
+            return .OFFICE_EQUIPMENTS
+        default:
+            return .ELECTRONICS
         }
+        
     }
     
     var title: String {
-        switch self {
-        case .home: return "الرئيسية"
-            
-        }
+        return rawValue.localized()
     }
 }

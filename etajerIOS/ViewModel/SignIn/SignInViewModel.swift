@@ -13,15 +13,17 @@ class SignInViewModel: BaseViewModel {
     
     var email = PublishSubject<String>()
     var password = PublishSubject<String>()
-    var dispose = DisposeBag()
+    
     
     override init() {
+        super.init()
+        
         email.subscribe { (event) in
             print(event.element)
-        }.disposed(by: dispose)
+        }.disposed(by: bag)
         
         password.subscribe { (event) in
             print(event.element)
-        }.disposed(by: dispose)
+        }.disposed(by: bag)
     }
 }

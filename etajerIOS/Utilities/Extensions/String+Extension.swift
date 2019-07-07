@@ -15,11 +15,19 @@ extension String{
         return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
     }
     
-    func clickableString(gotolink link: String, color: UIColor = #colorLiteral(red: 0.7213609132, green: 0, blue: 0, alpha: 1)) -> NSMutableAttributedString {
-        let range = NSRange(location: 0, length: self.count - 1)
+    func clickableString(gotolink link: String, fontSize: CGFloat = 17) -> NSMutableAttributedString {
+        let range = NSRange(location: 0, length: self.count)
+        let attributedString = NSMutableAttributedString(string: self)
+        attributedString.addAttribute(.link, value: URL(string: link)!, range: range)
+        attributedString.addAttribute(.font, value: UIFont(name: Constants.font.rawValue, size: fontSize)!, range: range)
+        return attributedString
+    }
+    
+    func attributedString(fontSize: CGFloat = 17, color: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))->NSMutableAttributedString{
+        let range = NSRange(location: 0, length: self.count)
         let attributedString = NSMutableAttributedString(string: self)
         attributedString.addAttribute(.foregroundColor, value: color, range: range)
-        attributedString.addAttribute(.link, value: link, range: range)
+        attributedString.addAttribute(.font, value: UIFont(name: Constants.font.rawValue, size: fontSize)!, range: range)
         return attributedString
     }
 

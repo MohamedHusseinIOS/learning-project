@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol configrationContract {
     func configureUI()
@@ -15,6 +16,7 @@ protocol configrationContract {
 class BaseViewController: UIViewController, configrationContract, Instantiator {
     
     let tap = UITapGestureRecognizer()
+    let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,8 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
         tap.numberOfTouchesRequired = 1
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     @objc func endEditing(_ sender: UITapGestureRecognizer){

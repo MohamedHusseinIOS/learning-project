@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//MARK:- storyboards
 enum storyboards: String {
     case main = "Main"
     case menu = "Menu"
@@ -30,12 +31,13 @@ class MainNavigator{
 }
 
 extension MainNavigator: Navigator{
-    
+    //MARK:- Destination
     enum Destination {
         case homeViewController
         case sideMenuViewController
         case signInViewController
         case signUpViewController
+        case forgetPasswordViewController
     }
     
     func navigate(To destination: Destination) {
@@ -57,14 +59,20 @@ extension MainNavigator: Navigator{
 //            return vc
             return BaseViewController()
         case .sideMenuViewController:
-//            let vc = SlideMenuViewController.InstantiateFormStoryBoard(storyboards.menu.instanse, vc: SlideMenuViewController())
-//            return vc
-            return BaseViewController()
+            let vc = MenuViewController.InstantiateFormStoryBoard(storyboards.main.instanse,
+                                                                  vc: MenuViewController())
+            return vc
         case .signInViewController:
-            let vc = SignInViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: SignInViewController())
+            let vc = SignInViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse,
+                                                                    vc: SignInViewController())
             return vc
         case .signUpViewController:
-            let vc = SignUpViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: SignUpViewController())
+            let vc = SignUpViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse,
+                                                                    vc: SignUpViewController())
+            return vc
+        case .forgetPasswordViewController:
+            let vc = ForgetPasswordViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse,
+                                                                            vc: ForgetPasswordViewController())
             return vc
         }
     }

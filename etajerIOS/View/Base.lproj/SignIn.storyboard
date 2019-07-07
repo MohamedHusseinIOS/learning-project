@@ -38,7 +38,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تسجيل الدخول" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8r-QL-XG1">
                                                 <rect key="frame" x="155.5" y="230.5" width="103.5" height="28"/>
                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="19"/>
-                                                <color key="textColor" red="0.72136091319999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.27450980392156865" green="0.14901960784313725" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5JL-62-LuZ">
@@ -52,6 +52,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVG-UG-FcQ">
                                                                 <rect key="frame" x="250" y="0.0" width="50" height="50"/>
@@ -115,6 +118,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNa-Hz-55x">
                                                                 <rect key="frame" x="250" y="0.0" width="50" height="50"/>
@@ -293,29 +299,32 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-iR-uGu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDf-QS-aA9" customClass="KeyboardDismissingView" customModule="IHKeyboardAvoiding">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDf-QS-aA9">
                                         <rect key="frame" x="40" y="0.0" width="344" height="768"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تسجيل حساب جديد" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsD-vP-OgH">
-                                                <rect key="frame" x="102.5" y="60" width="139" height="28"/>
+                                                <rect key="frame" x="102.5" y="40" width="139" height="28"/>
                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="19"/>
-                                                <color key="textColor" red="0.72136091319999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.92156862745098034" green="0.33333333333333331" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FYc-yX-zmi">
-                                                <rect key="frame" x="20" y="118" width="304" height="350"/>
+                                                <rect key="frame" x="20" y="98" width="304" height="350"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVa-hW-V7X">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HfQ-E8-aml">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    بريدك الالكتروني" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O4T-ny-1mv">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -325,7 +334,7 @@
                                                             <constraint firstItem="HfQ-E8-aml" firstAttribute="centerY" secondItem="CVa-hW-V7X" secondAttribute="centerY" id="E2d-DA-TAv"/>
                                                             <constraint firstItem="HfQ-E8-aml" firstAttribute="top" secondItem="CVa-hW-V7X" secondAttribute="top" id="V8U-g2-HOC"/>
                                                             <constraint firstItem="HfQ-E8-aml" firstAttribute="leading" secondItem="CVa-hW-V7X" secondAttribute="leading" id="Vi3-7P-qj7"/>
-                                                            <constraint firstAttribute="trailing" secondItem="HfQ-E8-aml" secondAttribute="trailing" id="a6B-wI-Hfu"/>
+                                                            <constraint firstAttribute="trailing" secondItem="HfQ-E8-aml" secondAttribute="trailing" constant="20" id="a6B-wI-Hfu"/>
                                                             <constraint firstAttribute="height" constant="50" id="lvM-SN-NQM"/>
                                                             <constraint firstAttribute="bottom" secondItem="HfQ-E8-aml" secondAttribute="bottom" id="lxh-3Y-eq0"/>
                                                         </constraints>
@@ -347,23 +356,32 @@
                                                         <rect key="frame" x="0.0" y="60" width="304" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jhM-eR-JuQ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                <rect key="frame" x="10" y="0.0" width="274" height="50"/>
                                                                 <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+966" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNM-v3-ygb">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="50"/>
+                                                                        <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    رقم الجوال" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="syF-m4-hhz">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                        <rect key="frame" x="42" y="0.0" width="232" height="50"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="jhM-eR-JuQ" secondAttribute="trailing" id="4IR-TH-eXr"/>
                                                             <constraint firstAttribute="bottom" secondItem="jhM-eR-JuQ" secondAttribute="bottom" id="Fbg-Me-p3B"/>
-                                                            <constraint firstItem="jhM-eR-JuQ" firstAttribute="leading" secondItem="evy-6K-Qo0" secondAttribute="leading" id="Q17-Wf-LG1"/>
+                                                            <constraint firstAttribute="trailing" secondItem="jhM-eR-JuQ" secondAttribute="trailing" constant="20" id="VX3-fA-CyS"/>
                                                             <constraint firstAttribute="height" constant="50" id="XMg-EA-GgQ"/>
+                                                            <constraint firstItem="jhM-eR-JuQ" firstAttribute="leading" secondItem="evy-6K-Qo0" secondAttribute="leading" constant="10" id="dAZ-Ep-3bb"/>
                                                             <constraint firstItem="jhM-eR-JuQ" firstAttribute="top" secondItem="evy-6K-Qo0" secondAttribute="top" id="j9X-0X-WET"/>
                                                             <constraint firstItem="jhM-eR-JuQ" firstAttribute="centerY" secondItem="evy-6K-Qo0" secondAttribute="centerY" id="jWu-Kh-TBk"/>
                                                         </constraints>
@@ -385,13 +403,16 @@
                                                         <rect key="frame" x="0.0" y="120" width="304" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="W8s-ZA-9xF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    الاسم الاول" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJm-h9-IDX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -403,7 +424,7 @@
                                                             <constraint firstAttribute="height" constant="50" id="PH9-V1-6Qd"/>
                                                             <constraint firstItem="W8s-ZA-9xF" firstAttribute="top" secondItem="sf1-pl-2Jy" secondAttribute="top" id="SKt-Zt-cX7"/>
                                                             <constraint firstAttribute="bottom" secondItem="W8s-ZA-9xF" secondAttribute="bottom" id="j14-ZB-T3E"/>
-                                                            <constraint firstAttribute="trailing" secondItem="W8s-ZA-9xF" secondAttribute="trailing" id="ngg-Yk-05u"/>
+                                                            <constraint firstAttribute="trailing" secondItem="W8s-ZA-9xF" secondAttribute="trailing" constant="20" id="ngg-Yk-05u"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadow" value="YES"/>
@@ -423,13 +444,16 @@
                                                         <rect key="frame" x="0.0" y="180" width="304" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pct-Vu-02U">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    اسم العائلة" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nnV-pT-9N0">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -437,7 +461,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="pct-Vu-02U" firstAttribute="top" secondItem="rwW-Uc-ZWd" secondAttribute="top" id="0pr-FJ-qgG"/>
-                                                            <constraint firstAttribute="trailing" secondItem="pct-Vu-02U" secondAttribute="trailing" id="2Ae-EM-Wpm"/>
+                                                            <constraint firstAttribute="trailing" secondItem="pct-Vu-02U" secondAttribute="trailing" constant="20" id="2Ae-EM-Wpm"/>
                                                             <constraint firstItem="pct-Vu-02U" firstAttribute="leading" secondItem="rwW-Uc-ZWd" secondAttribute="leading" id="Bzp-XR-MPM"/>
                                                             <constraint firstAttribute="bottom" secondItem="pct-Vu-02U" secondAttribute="bottom" id="amU-Fc-1M9"/>
                                                             <constraint firstAttribute="height" constant="50" id="kWD-Pn-diF"/>
@@ -461,13 +485,16 @@
                                                         <rect key="frame" x="0.0" y="240" width="304" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="23g-Ao-wgo">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    كلمة المرور" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WM8-RQ-bPk">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -478,7 +505,7 @@
                                                             <constraint firstAttribute="height" constant="50" id="J7e-Ze-R8g"/>
                                                             <constraint firstItem="23g-Ao-wgo" firstAttribute="centerY" secondItem="fDa-Dt-trY" secondAttribute="centerY" id="VG3-ct-lck"/>
                                                             <constraint firstAttribute="bottom" secondItem="23g-Ao-wgo" secondAttribute="bottom" id="fhO-2D-2ou"/>
-                                                            <constraint firstAttribute="trailing" secondItem="23g-Ao-wgo" secondAttribute="trailing" id="gx6-T2-rRm"/>
+                                                            <constraint firstAttribute="trailing" secondItem="23g-Ao-wgo" secondAttribute="trailing" constant="20" id="gx6-T2-rRm"/>
                                                             <constraint firstItem="23g-Ao-wgo" firstAttribute="top" secondItem="fDa-Dt-trY" secondAttribute="top" id="z1a-N3-bO8"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
@@ -499,13 +526,16 @@
                                                         <rect key="frame" x="0.0" y="300" width="304" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5ws-Hn-9Yv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    تأكيد كلمة المرور" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQ5-uh-SSJ">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -517,7 +547,7 @@
                                                             <constraint firstItem="5ws-Hn-9Yv" firstAttribute="centerY" secondItem="smf-oJ-MY0" secondAttribute="centerY" id="JD2-T8-kla"/>
                                                             <constraint firstAttribute="bottom" secondItem="5ws-Hn-9Yv" secondAttribute="bottom" id="Pgk-E5-q81"/>
                                                             <constraint firstAttribute="height" constant="50" id="cXC-Ff-u5t"/>
-                                                            <constraint firstAttribute="trailing" secondItem="5ws-Hn-9Yv" secondAttribute="trailing" id="xCV-VI-PNw"/>
+                                                            <constraint firstAttribute="trailing" secondItem="5ws-Hn-9Yv" secondAttribute="trailing" constant="20" id="xCV-VI-PNw"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadow" value="YES"/>
@@ -536,7 +566,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpZ-bh-B4Q">
-                                                <rect key="frame" x="20" y="528" width="304" height="50"/>
+                                                <rect key="frame" x="20" y="508" width="304" height="50"/>
                                                 <color key="backgroundColor" red="0.27616125349999998" green="0.14815071229999999" blue="0.38973724840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Zne-eE-F0h"/>
@@ -552,20 +582,11 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LY3-z0-uAU">
-                                                <rect key="frame" x="10" y="588" width="324" height="60"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="xDR-7H-1Ln"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqd-gs-iy1">
-                                                <rect key="frame" x="20" y="658" width="304" height="50"/>
+                                                <rect key="frame" x="20" y="678" width="304" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Y6J-IX-t0E"/>
+                                                    <constraint firstAttribute="height" constant="50" id="oFn-hb-gCm"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="15"/>
                                                 <state key="normal" title="لديك حساب؟ سجل دخول">
@@ -584,24 +605,31 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="B7L-IR-aVe">
+                                                <rect key="frame" x="40" y="568" width="264" height="98"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="gsD-vP-OgH" firstAttribute="centerX" secondItem="zDf-QS-aA9" secondAttribute="centerX" id="11L-8V-Eyl"/>
                                             <constraint firstItem="FYc-yX-zmi" firstAttribute="centerX" secondItem="zDf-QS-aA9" secondAttribute="centerX" id="18G-aU-04G"/>
                                             <constraint firstItem="hpZ-bh-B4Q" firstAttribute="trailing" secondItem="FYc-yX-zmi" secondAttribute="trailing" id="1ZV-Ca-Bdr"/>
+                                            <constraint firstItem="B7L-IR-aVe" firstAttribute="top" secondItem="hpZ-bh-B4Q" secondAttribute="bottom" constant="10" id="HVB-Q8-nAH"/>
                                             <constraint firstAttribute="trailing" secondItem="FYc-yX-zmi" secondAttribute="trailing" constant="20" id="Iy3-BO-xCP"/>
                                             <constraint firstItem="pqd-gs-iy1" firstAttribute="trailing" secondItem="hpZ-bh-B4Q" secondAttribute="trailing" id="OJm-cy-04H"/>
                                             <constraint firstItem="hpZ-bh-B4Q" firstAttribute="leading" secondItem="FYc-yX-zmi" secondAttribute="leading" id="QHV-o7-TPM"/>
-                                            <constraint firstItem="LY3-z0-uAU" firstAttribute="trailing" secondItem="hpZ-bh-B4Q" secondAttribute="trailing" constant="10" id="VT6-2i-4K9"/>
-                                            <constraint firstItem="LY3-z0-uAU" firstAttribute="leading" secondItem="hpZ-bh-B4Q" secondAttribute="leading" constant="-10" id="Xqf-uz-gOE"/>
+                                            <constraint firstItem="B7L-IR-aVe" firstAttribute="trailing" secondItem="hpZ-bh-B4Q" secondAttribute="trailing" constant="-20" id="ahQ-jg-4Oi"/>
                                             <constraint firstItem="pqd-gs-iy1" firstAttribute="leading" secondItem="hpZ-bh-B4Q" secondAttribute="leading" id="asy-xr-6qT"/>
                                             <constraint firstItem="FYc-yX-zmi" firstAttribute="top" secondItem="gsD-vP-OgH" secondAttribute="bottom" constant="30" id="bPb-qM-Q9K"/>
                                             <constraint firstItem="hpZ-bh-B4Q" firstAttribute="top" secondItem="FYc-yX-zmi" secondAttribute="bottom" constant="60" id="bmy-s4-ShD"/>
-                                            <constraint firstAttribute="bottom" secondItem="pqd-gs-iy1" secondAttribute="bottom" constant="60" id="itC-bK-h0K"/>
-                                            <constraint firstItem="LY3-z0-uAU" firstAttribute="top" secondItem="hpZ-bh-B4Q" secondAttribute="bottom" constant="10" id="tdZ-g2-tt1"/>
-                                            <constraint firstItem="gsD-vP-OgH" firstAttribute="top" secondItem="zDf-QS-aA9" secondAttribute="top" constant="60" id="tpl-Ua-3gi"/>
-                                            <constraint firstItem="pqd-gs-iy1" firstAttribute="top" secondItem="LY3-z0-uAU" secondAttribute="bottom" constant="10" id="utf-F9-Pql"/>
+                                            <constraint firstAttribute="bottom" secondItem="pqd-gs-iy1" secondAttribute="bottom" constant="40" id="itC-bK-h0K"/>
+                                            <constraint firstItem="B7L-IR-aVe" firstAttribute="leading" secondItem="hpZ-bh-B4Q" secondAttribute="leading" constant="20" id="jVw-9L-N87"/>
+                                            <constraint firstAttribute="height" constant="768" id="njR-9o-Y5j"/>
+                                            <constraint firstItem="gsD-vP-OgH" firstAttribute="top" secondItem="zDf-QS-aA9" secondAttribute="top" constant="40" id="tpl-Ua-3gi"/>
+                                            <constraint firstItem="pqd-gs-iy1" firstAttribute="top" secondItem="B7L-IR-aVe" secondAttribute="bottom" constant="12" id="uaK-rB-1uf"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -626,24 +654,141 @@
                     </view>
                     <connections>
                         <outlet property="confirmPasswordTxt" destination="QQ5-uh-SSJ" id="eVK-8u-xs6"/>
+                        <outlet property="containerView" destination="zDf-QS-aA9" id="nQV-Kz-gik"/>
                         <outlet property="emailTxt" destination="O4T-ny-1mv" id="eUz-2Q-Xo4"/>
                         <outlet property="familyNameTxt" destination="nnV-pT-9N0" id="s1C-gI-bpO"/>
                         <outlet property="firstNameTxt" destination="UJm-h9-IDX" id="s2j-Si-BDy"/>
                         <outlet property="haveAccSignInBtn" destination="pqd-gs-iy1" id="0IL-we-qaK"/>
                         <outlet property="mobileTxt" destination="syF-m4-hhz" id="7mp-lS-DC4"/>
                         <outlet property="passwordTxt" destination="WM8-RQ-bPk" id="9pz-TO-yWP"/>
+                        <outlet property="scrollView" destination="OfG-iR-uGu" id="t4V-11-kKZ"/>
                         <outlet property="signUpBtn" destination="hpZ-bh-B4Q" id="IqX-ch-gQs"/>
-                        <outlet property="termsAndConditionsLbl" destination="LY3-z0-uAU" id="88g-cX-l9T"/>
+                        <outlet property="termsAndConditionsTxt" destination="B7L-IR-aVe" id="w6M-2W-fWv"/>
+                        <outlet property="txtViewsStackView" destination="FYc-yX-zmi" id="Lxk-dL-UzO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3g-h5-FpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2602.898550724638" y="-172.09821428571428"/>
         </scene>
+        <!--Forget Password View Controller-->
+        <scene sceneID="wrt-Ct-Vcf">
+            <objects>
+                <viewController storyboardIdentifier="ForgetPasswordViewController" id="7ZK-xH-NIZ" customClass="ForgetPasswordViewController" customModule="etajerIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4AQ-hD-UvZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forgetPassword" translatesAutoresizingMaskIntoConstraints="NO" id="WQu-fa-k48">
+                                <rect key="frame" x="87" y="94" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="2Gr-P5-Idq"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="هل نسيت كلمة المرور؟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxP-Gr-kS2">
+                                <rect key="frame" x="124.5" y="381" width="165" height="28"/>
+                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="19"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.33333333329999998" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الرجاء إدخال بريدك الالكتروني وسيتم إرسالر رابط إعادة تعيين كلمة المرور " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8V-E8-zCj">
+                                <rect key="frame" x="30" y="429" width="354" height="56"/>
+                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="19"/>
+                                <color key="textColor" red="0.37226764896373055" green="0.36621631611318739" blue="0.37075481575109476" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXL-23-tgU">
+                                <rect key="frame" x="50" y="515" width="314" height="50"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uI9-mc-8mx">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="50"/>
+                                        <subviews>
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="إكتب بريدك الالكتروني المسجل" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbf-uv-HuM">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="50"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="uI9-mc-8mx" firstAttribute="top" secondItem="EXL-23-tgU" secondAttribute="top" id="2aF-mc-fel"/>
+                                    <constraint firstAttribute="bottom" secondItem="uI9-mc-8mx" secondAttribute="bottom" id="FjE-RI-j07"/>
+                                    <constraint firstAttribute="trailing" secondItem="uI9-mc-8mx" secondAttribute="trailing" constant="20" id="HGC-Qd-3gG"/>
+                                    <constraint firstItem="uI9-mc-8mx" firstAttribute="leading" secondItem="EXL-23-tgU" secondAttribute="leading" id="HbF-WV-99H"/>
+                                    <constraint firstAttribute="height" constant="50" id="SQr-Ng-KCL"/>
+                                    <constraint firstItem="uI9-mc-8mx" firstAttribute="centerY" secondItem="EXL-23-tgU" secondAttribute="centerY" id="tO0-tx-lKf"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadow" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.74117647060000003" green="0.72549019609999998" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hW-ZZ-qFE">
+                                <rect key="frame" x="50" y="590" width="314" height="50"/>
+                                <color key="backgroundColor" red="0.27616125349999998" green="0.14815071229999999" blue="0.38973724840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="MGT-p5-Yd2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
+                                <state key="normal" title="إرسال">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="d8V-E8-zCj" firstAttribute="top" secondItem="KxP-Gr-kS2" secondAttribute="bottom" constant="20" id="5hN-kc-Wa2"/>
+                            <constraint firstItem="KxP-Gr-kS2" firstAttribute="centerX" secondItem="WQu-fa-k48" secondAttribute="centerX" id="BRf-oy-2pv"/>
+                            <constraint firstItem="EXL-23-tgU" firstAttribute="top" secondItem="d8V-E8-zCj" secondAttribute="bottom" constant="30" id="HGv-Si-1NQ"/>
+                            <constraint firstAttribute="trailing" secondItem="d8V-E8-zCj" secondAttribute="trailing" constant="30" id="KI3-38-ZgX"/>
+                            <constraint firstItem="WQu-fa-k48" firstAttribute="top" secondItem="38W-gc-tZp" secondAttribute="top" constant="50" id="Pib-Fo-rbt"/>
+                            <constraint firstItem="1hW-ZZ-qFE" firstAttribute="top" secondItem="EXL-23-tgU" secondAttribute="bottom" constant="25" id="Rkr-yC-uWa"/>
+                            <constraint firstItem="1hW-ZZ-qFE" firstAttribute="trailing" secondItem="EXL-23-tgU" secondAttribute="trailing" id="aqD-jH-blQ"/>
+                            <constraint firstItem="EXL-23-tgU" firstAttribute="centerX" secondItem="WQu-fa-k48" secondAttribute="centerX" id="avR-vF-KTR"/>
+                            <constraint firstItem="1hW-ZZ-qFE" firstAttribute="leading" secondItem="EXL-23-tgU" secondAttribute="leading" id="eRN-Aw-Yre"/>
+                            <constraint firstItem="KxP-Gr-kS2" firstAttribute="top" secondItem="WQu-fa-k48" secondAttribute="bottom" constant="47" id="f8b-hj-Tqm"/>
+                            <constraint firstItem="d8V-E8-zCj" firstAttribute="centerX" secondItem="WQu-fa-k48" secondAttribute="centerX" id="iHh-cY-eSZ"/>
+                            <constraint firstItem="38W-gc-tZp" firstAttribute="trailing" secondItem="WQu-fa-k48" secondAttribute="trailing" constant="87" id="jsu-rg-6OZ"/>
+                            <constraint firstItem="38W-gc-tZp" firstAttribute="trailing" secondItem="EXL-23-tgU" secondAttribute="trailing" constant="50" id="la5-xW-4gZ"/>
+                            <constraint firstItem="WQu-fa-k48" firstAttribute="leading" secondItem="38W-gc-tZp" secondAttribute="leading" constant="87" id="nkJ-em-zsE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="38W-gc-tZp"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTxt" destination="jbf-uv-HuM" id="N9V-bX-DQJ"/>
+                        <outlet property="sendBtn" destination="1hW-ZZ-qFE" id="Uus-3d-9fW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OBa-51-aJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3464" y="-172"/>
+        </scene>
     </scenes>
     <resources>
         <image name="close" width="16" height="16"/>
         <image name="email" width="100" height="100"/>
+        <image name="forgetPassword" width="416" height="393"/>
         <image name="logo4345" width="808" height="224"/>
         <image name="password" width="100" height="100"/>
     </resources>
