@@ -112,12 +112,12 @@ extension UIView{
         }
     }
     
-    func setBorder(width: CGFloat, color: UIColor = AppUtility.shared.primaryColor){
+    func setBorder(width: CGFloat, color: UIColor = Colors.PrimaryColor.value){
         self.borderColor = color
         self.borderWidth = width
     }
     
-    func setShadow(offset: CGSize, opecity: Float, radius: CGFloat, color: UIColor? = AppUtility.shared.primaryColor, path: CGPath?){
+    func setShadow(offset: CGSize, opecity: Float, radius: CGFloat, color: UIColor? = Colors.PrimaryColor.value, path: CGPath?){
         self.shadowOffset = offset
         self.shadowOpacity = opecity
         self.shadowRadius = radius

@@ -7,5 +7,44 @@
 */
 
 //MARK:- SignIn
-"signin" = "تسجيل دخول";
+"SIGNIN" = "تسجيل دخول";
+"EMAIL" = "البريد الالكتروني";
+"PASSWORD" = "كلمة المرور";
+"FORGET_PASSWORD" = "نسيت كلمة المرور...!";
+"DONT_HAVE_ACCOUNT" = "ليس لديك حساب؟";
+"SIGNUP_NOW" = "سجل الآن";
 
+//MARK:- SignUp
+"SIGNUP" = "تسجيل حساب جديد";
+"MOBILE_NUMBER" = "رقم الجوال";
+"FIRST_NAME" = "الاسم الاول";
+"FAMILY_NAME" = "اسم العائلة";
+"CONFIRM_PASSWORD" = "تأكيد كلمة المرور";
+"SIGN_UP" = "سجل";
+"PRIVACY_POLICY" = "سياسة الخصوصية";
+"T&C" = "الشروط والأحكام";
+"PRIVACY_TEXT" = "بالضغط على زر تسجيل حساب جديد فانك توافق على";
+"AND" = " و ";
+"HAVE_AN_ACCOUNT" = "لديك حساب؟";
+"SIGNIN_NOW" = "سجل الآن";
+
+//MARK:- Menu
+"MY_ACCOUNT" = "حسابي";
+"NOTIFICATION" = "التنبيهات";
+"FAVORITES" = "المفضلة";
+"CART" = "السلة";
+"CATEGORIES" = "الفئات";
+
+"MOBILES_AND_TAPLETS" = "الجوالات والاجهزة اللوحية";
+"CLOTHES_AND_SHOSES_AND_ACCESSORIES" = "احذية،ملابس واكسسواراتها";
+"HELTH_AND_SELF_CARE" = "الصحة والعناية الشخصية";
+"CUMPUTERS_AND_NETWORKS_AND_PROGRAMS" = "كمبيوتر وشبكات البرمجة";
+"GARDEN_SUPPLIES" = "مستلزمات الحدائق";
+"ELECTRONICS" = "الكترونيات";
+"FURNITURE_AND_HOUSE_DECORATION" = "الاثاث وديكورات المنازل";
+"KITCHEN_AND_HOUSE_SUPPLIES" = "المطبخ ومستلزمات المنزل";
+"JEWELERY_AND_ACCESSORIES" = "مجوهرات واكسسواراتها";
+"OFFICE_EQUIPMENTS" = "معدات وتجهيزات المكاتب";
+
+//MARK:- Home
+"CHANGE_LANG" = "English";

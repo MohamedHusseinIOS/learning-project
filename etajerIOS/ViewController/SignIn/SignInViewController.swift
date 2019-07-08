@@ -24,6 +24,7 @@ class SignInViewController: BaseViewController {
     var email: String?
     var password: String?
     
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +35,11 @@ class SignInViewController: BaseViewController {
         super.configureUI()
         KeyboardAvoiding.avoidingView = self.passwordTxt
         
-        let registerBtnTitle = "ليس لديك حساب؟".attributedString(fontSize: 17, color: #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1))
-        let singupNow = "سجل الان".attributedString(fontSize: 17, color: #colorLiteral(red: 0.9215686275, green: 0.3333333333, blue: 0.3568627451, alpha: 1))
+        emailTxt.placeholder = EMAIL.localized()
+        passwordTxt.placeholder = PASSWORD.localized()
+        
+        let registerBtnTitle = DONT_HAVE_ACCOUNT.localized().attributedString(fontSize: 17, color: #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1))
+        let singupNow = SIGNUP_NOW.localized().attributedString(fontSize: 17, color: #colorLiteral(red: 0.9215686275, green: 0.3333333333, blue: 0.3568627451, alpha: 1))
         registerBtnTitle.append(singupNow)
         
         registerBtn.setAttributedTitle(registerBtnTitle, for: .normal)
@@ -44,31 +48,31 @@ class SignInViewController: BaseViewController {
             .text
             .orEmpty
             .bind(to: viewModel.email)
-            .disposed(by: bag)
+            .disposed(by: disposeBag)
         
         passwordTxt.rx
             .text
             .orEmpty
             .bind(to: viewModel.password)
-            .disposed(by: bag)
+            .disposed(by: disposeBag)
         
         signInBtn.rx
             .tap
             .subscribe { (_) in
                 NavigationCoordinator.shared.sideMenuSetup()
-            }.disposed(by: bag)
+            }.disposed(by: disposeBag)
         
         forgetPasswordBtn.rx
             .tap
             .subscribe { (_) in
                 NavigationCoordinator.shared.mainNavigator.navigate(To: .forgetPasswordViewController)
-            }.disposed(by: bag)
+            }.disposed(by: disposeBag)
         
         registerBtn.rx
             .tap
             .subscribe { (_) in
                 NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
-            }.disposed(by: bag)
+            }.disposed(by: disposeBag)
         
     }
 

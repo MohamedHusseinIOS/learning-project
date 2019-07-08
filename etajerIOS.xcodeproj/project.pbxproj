@@ -33,6 +33,10 @@
 		D96873C522CE1BE80075C528 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96873C422CE1BE80075C528 /* SignInViewController.swift */; };
 		D96873CE22CE41E00075C528 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96873CD22CE41E00075C528 /* SignUpViewController.swift */; };
 		D96873D022CE42110075C528 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96873CF22CE42110075C528 /* SignUpViewModel.swift */; };
+		D9C3B0D122D321160010F45C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C3B0D022D321160010F45C /* HomeViewController.swift */; };
+		D9C3B0D422D3417D0010F45C /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C3B0D322D3417D0010F45C /* Bundle+Extension.swift */; };
+		D9C3B0D622D3428B0010F45C /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C3B0D522D3428B0010F45C /* LanguageManager.swift */; };
+		D9C3B0D822D36B070010F45C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C3B0D722D36B070010F45C /* UIButton+Extension.swift */; };
 		D9F8B43C22D1E96D00DCD15C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F8B43B22D1E96D00DCD15C /* Constants.swift */; };
 		D9F8B43E22D1F33F00DCD15C /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F8B43D22D1F33F00DCD15C /* UITextField+Extension.swift */; };
 		D9F8B44022D1F3E400DCD15C /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F8B43F22D1F3E400DCD15C /* UITextView+Extension.swift */; };
@@ -77,6 +81,10 @@
 		D96873CA22CE2B8C0075C528 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SignIn.strings; sourceTree = "<group>"; };
 		D96873CD22CE41E00075C528 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D96873CF22CE42110075C528 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		D9C3B0D022D321160010F45C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D9C3B0D322D3417D0010F45C /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		D9C3B0D522D3428B0010F45C /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		D9C3B0D722D36B070010F45C /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D9F8B43B22D1E96D00DCD15C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D9F8B43D22D1F33F00DCD15C /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		D9F8B43F22D1F3E400DCD15C /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
@@ -168,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				D91947DE22CDFF3F00302A75 /* BaseViewController.swift */,
+				D9C3B0D222D33E6B0010F45C /* Main */,
 				D929C0D622D227D70000B1A6 /* Menu */,
 				D96873C322CE1BCB0075C528 /* SignIn */,
 			);
@@ -202,6 +211,7 @@
 				D91947FA22CE038900302A75 /* Enums.swift */,
 				D91947FD22CE038900302A75 /* AppUtility.swift */,
 				D9F8B43B22D1E96D00DCD15C /* Constants.swift */,
+				D9C3B0D522D3428B0010F45C /* LanguageManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -214,6 +224,8 @@
 				D9F8B43D22D1F33F00DCD15C /* UITextField+Extension.swift */,
 				D9F8B43F22D1F3E400DCD15C /* UITextView+Extension.swift */,
 				D9F8B44B22D21D0300DCD15C /* UILabel+Extension.swift */,
+				D9C3B0D322D3417D0010F45C /* Bundle+Extension.swift */,
+				D9C3B0D722D36B070010F45C /* UIButton+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -270,6 +282,14 @@
 				D9F8B44122D20EC500DCD15C /* ForgetPasswordViewController.swift */,
 			);
 			path = SignIn;
+			sourceTree = "<group>";
+		};
+		D9C3B0D222D33E6B0010F45C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D9C3B0D022D321160010F45C /* HomeViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		FB8070F6307A935645D5385E /* Pods */ = {
@@ -417,6 +437,7 @@
 				D9F8B44C22D21D0300DCD15C /* UILabel+Extension.swift in Sources */,
 				D919480122CE038900302A75 /* Navigator.swift in Sources */,
 				D9F8B44222D20EC500DCD15C /* ForgetPasswordViewController.swift in Sources */,
+				D9C3B0D622D3428B0010F45C /* LanguageManager.swift in Sources */,
 				D929C0E022D232290000B1A6 /* MenuViewModel.swift in Sources */,
 				D96873BF22CE147E0075C528 /* String+Extension.swift in Sources */,
 				D91947FF22CE038900302A75 /* Instantiator.swift in Sources */,
@@ -428,12 +449,15 @@
 				D96873C522CE1BE80075C528 /* SignInViewController.swift in Sources */,
 				D919480322CE038900302A75 /* UIView+Extension.swift in Sources */,
 				D9F8B43C22D1E96D00DCD15C /* Constants.swift in Sources */,
+				D9C3B0D122D321160010F45C /* HomeViewController.swift in Sources */,
+				D9C3B0D422D3417D0010F45C /* Bundle+Extension.swift in Sources */,
 				D96873D022CE42110075C528 /* SignUpViewModel.swift in Sources */,
 				D91947DD22CDFF3F00302A75 /* AppDelegate.swift in Sources */,
 				D929C0DD22D228C30000B1A6 /* MenuCell.swift in Sources */,
 				D96873CE22CE41E00075C528 /* SignUpViewController.swift in Sources */,
 				D91947FE22CE038900302A75 /* MainNavigator.swift in Sources */,
 				D9F8B44422D20F0700DCD15C /* ForgetPasswordViewModel.swift in Sources */,
+				D9C3B0D822D36B070010F45C /* UIButton+Extension.swift in Sources */,
 				D96873C222CE1BA00075C528 /* SignInViewModel.swift in Sources */,
 				D919480022CE038900302A75 /* NavigationCoordinator.swift in Sources */,
 				D919480222CE038900302A75 /* Enums.swift in Sources */,

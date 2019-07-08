@@ -38,17 +38,20 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تسجيل الدخول" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8r-QL-XG1">
                                                 <rect key="frame" x="155.5" y="230.5" width="103.5" height="28"/>
                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="19"/>
-                                                <color key="textColor" red="0.27450980392156865" green="0.14901960784313725" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.92156862750000001" green="0.33333333329999998" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="LocalizedText" value="SIGNIN"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5JL-62-LuZ">
                                                 <rect key="frame" x="57" y="276" width="300" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1U4-U5-nSq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                        <rect key="frame" x="20" y="0.0" width="280" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="البريد الالكتروني" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wqa-fA-cNi">
-                                                                <rect key="frame" x="0.0" y="0.0" width="245" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="225" height="50"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -57,7 +60,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVG-UG-FcQ">
-                                                                <rect key="frame" x="250" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="230" y="0.0" width="50" height="50"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="FtS-cO-heA">
                                                                         <rect key="frame" x="5" y="5" width="40" height="40"/>
@@ -86,7 +89,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="5Q6-cg-avR"/>
-                                                    <constraint firstItem="1U4-U5-nSq" firstAttribute="leading" secondItem="5JL-62-LuZ" secondAttribute="leading" id="88t-S8-4BI"/>
+                                                    <constraint firstItem="1U4-U5-nSq" firstAttribute="leading" secondItem="5JL-62-LuZ" secondAttribute="leading" constant="20" id="88t-S8-4BI"/>
                                                     <constraint firstAttribute="bottom" secondItem="1U4-U5-nSq" secondAttribute="bottom" id="Ep0-0W-Ogg"/>
                                                     <constraint firstAttribute="trailing" secondItem="1U4-U5-nSq" secondAttribute="trailing" id="Qok-fF-drS"/>
                                                     <constraint firstItem="1U4-U5-nSq" firstAttribute="top" secondItem="5JL-62-LuZ" secondAttribute="top" id="UHN-q9-9sD"/>
@@ -111,10 +114,10 @@
                                                 <rect key="frame" x="57" y="346" width="300" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="86h-6y-Nwr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                        <rect key="frame" x="20" y="0.0" width="280" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="كلمة المرور" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7wI-3o-t5F">
-                                                                <rect key="frame" x="0.0" y="0.0" width="245" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="225" height="50"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -123,7 +126,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNa-Hz-55x">
-                                                                <rect key="frame" x="250" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="230" y="0.0" width="50" height="50"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="mq1-Rx-N6p">
                                                                         <rect key="frame" x="5" y="5" width="40" height="40"/>
@@ -154,7 +157,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="86h-6y-Nwr" secondAttribute="trailing" id="6IY-Bw-QjA"/>
                                                     <constraint firstAttribute="height" constant="50" id="CyH-F8-wjn"/>
                                                     <constraint firstItem="86h-6y-Nwr" firstAttribute="top" secondItem="J9i-Qj-fOS" secondAttribute="top" id="N33-Ma-DAN"/>
-                                                    <constraint firstItem="86h-6y-Nwr" firstAttribute="leading" secondItem="J9i-Qj-fOS" secondAttribute="leading" id="RNX-WM-9LG"/>
+                                                    <constraint firstItem="86h-6y-Nwr" firstAttribute="leading" secondItem="J9i-Qj-fOS" secondAttribute="leading" constant="20" id="RNX-WM-9LG"/>
                                                     <constraint firstAttribute="bottom" secondItem="86h-6y-Nwr" secondAttribute="bottom" id="TNE-fh-Zm9"/>
                                                     <constraint firstItem="86h-6y-Nwr" firstAttribute="centerY" secondItem="J9i-Qj-fOS" secondAttribute="centerY" id="X96-0R-zSS"/>
                                                 </constraints>
@@ -184,6 +187,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SIGNIN"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyP-Uz-RKy">
@@ -192,6 +196,9 @@
                                                 <state key="normal" title="نسيت كلمة المرور..!">
                                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="FORGET_PASSWORD"/>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V0-tv-sez">
                                                 <rect key="frame" x="73" y="560" width="268" height="50"/>
@@ -278,7 +285,7 @@
                         <outlet property="emailTxt" destination="wqa-fA-cNi" id="NOK-0v-SuJ"/>
                         <outlet property="forgetPasswordBtn" destination="vyP-Uz-RKy" id="Puc-Uo-1cd"/>
                         <outlet property="passwordTxt" destination="7wI-3o-t5F" id="gul-lz-afQ"/>
-                        <outlet property="registerBtn" destination="5V0-tv-sez" id="wKy-Io-mhs"/>
+                        <outlet property="registerBtn" destination="5V0-tv-sez" id="bb0-Jj-krL"/>
                         <outlet property="scrollView" destination="mac-TK-48V" id="aqB-7w-UZm"/>
                         <outlet property="signInBtn" destination="NaY-aL-PQt" id="vg4-x8-e2M"/>
                     </connections>
@@ -686,19 +693,19 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="هل نسيت كلمة المرور؟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxP-Gr-kS2">
-                                <rect key="frame" x="124.5" y="381" width="165" height="28"/>
+                                <rect key="frame" x="136.5" y="381" width="141" height="22.5"/>
                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="19"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.33333333329999998" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الرجاء إدخال بريدك الالكتروني وسيتم إرسالر رابط إعادة تعيين كلمة المرور " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8V-E8-zCj">
-                                <rect key="frame" x="30" y="429" width="354" height="56"/>
+                                <rect key="frame" x="30" y="423.5" width="354" height="44.5"/>
                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="19"/>
                                 <color key="textColor" red="0.37226764896373055" green="0.36621631611318739" blue="0.37075481575109476" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXL-23-tgU">
-                                <rect key="frame" x="50" y="515" width="314" height="50"/>
+                                <rect key="frame" x="50" y="498" width="314" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uI9-mc-8mx">
                                         <rect key="frame" x="0.0" y="0.0" width="294" height="50"/>
@@ -739,7 +746,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hW-ZZ-qFE">
-                                <rect key="frame" x="50" y="590" width="314" height="50"/>
+                                <rect key="frame" x="50" y="573" width="314" height="50"/>
                                 <color key="backgroundColor" red="0.27616125349999998" green="0.14815071229999999" blue="0.38973724840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MGT-p5-Yd2"/>

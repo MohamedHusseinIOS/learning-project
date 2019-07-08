@@ -37,9 +37,27 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
+    func openMenu(){
+        switch AppUtility.shared.currentLang{
+        case .en:
+            openLeft()
+        case .ar:
+            openRight()
+        }
+    }
+    
+    func closeMenu(){
+        switch AppUtility.shared.currentLang{
+        case .en:
+            closeLeft()
+        case .ar:
+            closeRight()
+        }
+    }
+    
     @objc func endEditing(_ sender: UITapGestureRecognizer){
         self.view.endEditing(true)
     }

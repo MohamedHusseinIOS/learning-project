@@ -55,9 +55,9 @@ extension MainNavigator: Navigator{
     func makeViewController(for destination: Destination)-> UIViewController? {
         switch destination {
         case .homeViewController:
-//            let vc = HomeViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: HomeViewController())
-//            return vc
-            return BaseViewController()
+            let vc = HomeViewController.InstantiateFormStoryBoard(storyboards.main.instanse,
+                                                                  vc: HomeViewController())
+            return vc
         case .sideMenuViewController:
             let vc = MenuViewController.InstantiateFormStoryBoard(storyboards.main.instanse,
                                                                   vc: MenuViewController())

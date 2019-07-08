@@ -8,4 +8,48 @@
 
 //MARK:- SignIn
 "SIGNIN" = "sign in";
+"EMAIL" = "email";
+"PASSWORD" = "password";
+"FORGET_PASSWORD" = "forget password...!";
+"DONT_HAVE_ACCOUNT" = " don't have account?";
+"SIGNUP_NOW" = "sign up now";
 
+//MARK:- Signup
+"SIGNUP" = "signup new account";
+"MOBILE_NUMBER" = "mobile number";
+"FIRST_NAME" = "first name";
+"FAMILY_NAME" = "family name";
+"CONFIRM_PASSWORD" = "confirm password";
+"SIGN_UP" = "sign up";
+"PRIVACY_POLICY" = "privacy policy";
+"T&C" = "Terms and Conditions";
+"PRIVACY_TEXT" = "By clicking on the Register New Account button you agree to";
+"AND" = " and ";
+"HAVE_AN_ACCOUNT" = "have an account?";
+"SIGNIN_NOW" = "signin now";
+
+//MARK:- ForgetPassword
+"ARE_Y_FORGET_PASS" = "are you forget password?";
+"ARE_Y_FORGET_PASS_Txt" = "please enter your email and redefine password like will be sent to you";
+"ENTER_YOUR_EMAIL" = "enter your saved email";
+
+//MARK:- Menu
+"MY_ACCOUNT" = "my account";
+"NOTIFICATION" = "notification";
+"FAVORITES" = "favorites";
+"CART" = "cart";
+"CATEGORIES" = "categories";
+
+"MOBILES_AND_TAPLETS" = "mobiles and tablets";
+"CLOTHES_AND_SHOSES_AND_ACCESSORIES" = "clothes and shoses";
+"HELTH_AND_SELF_CARE" = "helth and self care";
+"CUMPUTERS_AND_NETWORKS_AND_PROGRAMS" = "computers,networks and programs";
+"GARDEN_SUPPLIES" = "garden supplies";
+"ELECTRONICS" = "electronics";
+"FURNITURE_AND_HOUSE_DECORATION" = "furniture and house decoration";
+"KITCHEN_AND_HOUSE_SUPPLIES" = "kitchen and house supplies";
+"JEWELERY_AND_ACCESSORIES" = "jewelery and accessories";
+"OFFICE_EQUIPMENTS" = "office equipments";
+
+//MARK:- Home
+"CHANGE_LANG" = "عربي";

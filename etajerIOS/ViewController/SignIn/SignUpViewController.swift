@@ -41,15 +41,15 @@ class SignUpViewController: BaseViewController {
         termsAndConditionsTxt.textAlignment = .center
         termsAndConditionsTxt.linkTextAttributes = [NSAttributedString.Key.foregroundColor: Colors.Rose.value]
         
-        let haveAccSignInBtnTitle = "لديك حساب؟".attributedString(fontSize: 17, color: #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1))
-        let singupNow = "سجل دخول".attributedString(fontSize: 17, color: #colorLiteral(red: 0.9215686275, green: 0.3333333333, blue: 0.3568627451, alpha: 1))
+        let haveAccSignInBtnTitle = HAVE_AN_ACCOUNT.localized().attributedString(fontSize: 17, color: #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1))
+        let singupNow = SIGNIN_NOW.localized().attributedString(fontSize: 17, color: #colorLiteral(red: 0.9215686275, green: 0.3333333333, blue: 0.3568627451, alpha: 1))
         haveAccSignInBtnTitle.append(singupNow)
         haveAccSignInBtn.setAttributedTitle(haveAccSignInBtnTitle, for: .normal)
         
         passwordTxt.rx
             .controlEvent(.editingDidBegin)
             .asObservable()
-            .subscribe { (_) in
+            .subscribe {[unowned self] (_) in
             self.avoidKeyboard()
         }.disposed(by: bag)
         bindValuesToViewModel()
@@ -89,10 +89,10 @@ class SignUpViewController: BaseViewController {
     }
     
     func addLinkToText() -> NSMutableAttributedString{
-        let string = "بالضغط على زر تسجيل حساب جديد، فإنك توافق علي".attributedString()
-        let firstLink = " الشروط والاحكام ".clickableString(gotolink: "https://etajer.maxsys.sa/")
-        let and = " و ".attributedString()
-        let secondLink = " سياسةالخصوصية ".clickableString(gotolink: "https://etajer.maxsys.sa/")
+        let string = PRIVACY_TEXT.localized().attributedString()
+        let firstLink = T_C.localized().clickableString(gotolink: "https://etajer.maxsys.sa/")
+        let and = AND.localized().attributedString()
+        let secondLink = PRIVACY_POLICY.localized().clickableString(gotolink: "https://etajer.maxsys.sa/")
         
         string.append(firstLink)
         string.append(and)

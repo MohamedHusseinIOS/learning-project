@@ -15,9 +15,22 @@ class AppUtility {
     
     let interface = UIDevice.current.userInterfaceIdiom
     let orientation = UIDevice.current.orientation
-    let primaryColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
+    var currentLang: AppLanguages{
+        return LanguageManager.shared.currentAppleLanguage()
+    }
     
     private init() {}
     
+    func changeLanguage(){
+        switch LanguageManager.shared.currentAppleLanguage() {
+        case .en:
+            LanguageManager.shared.setAppleLAnguageTo(lang: .ar)
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        case .ar:
+            LanguageManager.shared.setAppleLAnguageTo(lang: .en)
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+        }
+        NavigationCoordinator.shared.reloadTheApp()
+    }
     
 }

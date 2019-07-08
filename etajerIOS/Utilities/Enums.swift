@@ -9,17 +9,21 @@
 import Foundation
 import UIKit
 
+enum AppLanguages: String{
+    case en, ar
+}
+
 enum MenuElements: String {
     
     case MOBILES_AND_TAPLETS
-    case CLOSES_AND_SHOSES_AND_ACCESSORYS
+    case CLOTHES_AND_SHOSES_AND_ACCESSORIES
     case HELTH_AND_SELF_CARE
     case CUMPUTERS_AND_NETWORKS_AND_PROGRAMS
     case GARDEN_SUPPLIES
     case ELECTRONICS
     case FURNITURE_AND_HOUSE_DECORATION
     case KITCHEN_AND_HOUSE_SUPPLIES
-    case JEWELERY_AND_ACCESSORYES
+    case JEWELERY_AND_ACCESSORIES
     case OFFICE_EQUIPMENTS
     
     static func element(row: Int) -> MenuElements{
@@ -27,7 +31,7 @@ enum MenuElements: String {
         case 0:
             return .MOBILES_AND_TAPLETS
         case 1:
-            return .CLOSES_AND_SHOSES_AND_ACCESSORYS
+            return .CLOTHES_AND_SHOSES_AND_ACCESSORIES
         case 2:
             return .HELTH_AND_SELF_CARE
         case 3:
@@ -41,7 +45,7 @@ enum MenuElements: String {
         case 7:
             return .KITCHEN_AND_HOUSE_SUPPLIES
         case 8:
-            return .JEWELERY_AND_ACCESSORYES
+            return .JEWELERY_AND_ACCESSORIES
         case 9:
             return .OFFICE_EQUIPMENTS
         default:

@@ -14,7 +14,7 @@ class NavigationCoordinator{
     
     static let shared = NavigationCoordinator()
     
-    private let nvc = UINavigationController()
+    private var nvc = UINavigationController()
     private var childNVC: UINavigationController!
     
     private let sharedAppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -37,15 +37,33 @@ class NavigationCoordinator{
     func sideMenuSetup(){
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.panGesturesEnabled = false
-        SlideMenuOptions.rightViewWidth = 95
+        //SlideMenuOptions.rightViewWidth = 95
         SlideMenuOptions.hideStatusBar = false
         
         guard let homeVC = mainNavigator.makeViewController(for: .homeViewController) else {return}
         guard let slideMenuVC = mainNavigator.makeViewController(for: .sideMenuViewController) else {return}
-        let slideMenuController = SlideMenuController(mainViewController: homeVC, rightMenuViewController: slideMenuVC)
-        
-        sharedAppDelegate.window?.rootViewController = slideMenuController
+        nvc.viewControllers.removeAll(keepingCapacity: true)
+        if AppUtility.shared.currentLang == .en{
+            let slideMenuController = SlideMenuController(mainViewController: homeVC,
+                                                      leftMenuViewController: slideMenuVC)
+            nvc.viewControllers.append(slideMenuController)
+        }else{
+            let slideMenuController = SlideMenuController(mainViewController: homeVC,
+                                                          rightMenuViewController: slideMenuVC)
+            nvc.viewControllers.append(slideMenuController)
+        }
+        sharedAppDelegate.window?.rootViewController = nvc
         sharedAppDelegate.window?.makeKeyAndVisible()
+    }
+    
+    func reloadTheApp(){
+        sideMenuSetup()
+        sharedAppDelegate.window?.backgroundColor = Colors.PrimaryColor.value
+        UIView.transition( with: (sharedAppDelegate.window)!, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
+            //code
+        }) { (finished) -> Void in
+            //code
+        }
     }
     
     func startApp(){

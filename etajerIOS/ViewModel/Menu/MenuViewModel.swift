@@ -14,11 +14,14 @@ class MenuViewModel: BaseViewModel {
     let menuElements = PublishSubject<[MenuElements]>()
     
     override init() {
+        super.init()
         
         menuElements.asObserver().subscribe { (event) in
-            //code
-        }
-        
+            //Code
+        }.disposed(by: bag)
+    }
+    
+    func sendMenuItems(){
         var arr = [MenuElements]()
         for i in 0...9{
             arr.append(MenuElements.element(row: i))
