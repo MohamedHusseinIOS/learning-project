@@ -26,6 +26,9 @@ class SignUpViewController: BaseViewController {
     @IBOutlet weak var termsAndConditionsTxt: UITextView!
     @IBOutlet weak var haveAccSignInBtn: UIButton!
     
+    @IBOutlet weak var mobileStackView: UIStackView!
+    
+    
     let viewModel = SignUpViewModel()
     
     override func viewDidLoad() {
@@ -37,6 +40,10 @@ class SignUpViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        if AppUtility.shared.currentLang == .ar{
+            mobileStackView.addArrangedSubview(mobileStackView.subviews[0])
+        }
         termsAndConditionsTxt.attributedText = addLinkToText()
         termsAndConditionsTxt.textAlignment = .center
         termsAndConditionsTxt.linkTextAttributes = [NSAttributedString.Key.foregroundColor: Colors.Rose.value]
@@ -46,6 +53,8 @@ class SignUpViewController: BaseViewController {
         haveAccSignInBtnTitle.append(singupNow)
         haveAccSignInBtn.setAttributedTitle(haveAccSignInBtnTitle, for: .normal)
         
+        placeHoldersAndBtns()
+        
         passwordTxt.rx
             .controlEvent(.editingDidBegin)
             .asObservable()
@@ -53,6 +62,22 @@ class SignUpViewController: BaseViewController {
             self.avoidKeyboard()
         }.disposed(by: bag)
         bindValuesToViewModel()
+        
+        haveAccSignInBtn.rx
+            .tap
+            .subscribe {[unowned self] (_) in
+            self.navigationController?.popViewController(animated: true)
+        }.disposed(by: bag)
+    }
+    
+    func placeHoldersAndBtns(){
+        emailTxt.placeholder = EMAIL.localized()
+        passwordTxt.placeholder = PASSWORD.localized()
+        mobileTxt.placeholder = MOBILE_NUMBER.localized()
+        firstNameTxt.placeholder = FIRST_NAME.localized()
+        familyNameTxt.placeholder = FAMILY_NAME.localized()
+        confirmPasswordTxt.placeholder = CONFIRM_PASSWORD.localized()
+        signUpBtn.setTitle(SIGN_UP.localized(), for: .normal)
     }
     
     func bindValuesToViewModel(){

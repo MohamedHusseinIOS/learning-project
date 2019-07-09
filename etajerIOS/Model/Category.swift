@@ -8,9 +8,16 @@
 
 import Foundation
 
-class Category: Codable{
+struct Category: Codable{
     
     var title: String?
-    var row: Int?
+    var items: Array<String>? = ["", "" , "" , ""]
     
+    init(title: String) {
+        self.title = title
+    }
+    
+    enum CodingKeys: String, CodingKey{
+        case title
+    }
 }

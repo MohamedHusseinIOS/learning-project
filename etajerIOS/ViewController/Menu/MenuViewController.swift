@@ -18,6 +18,8 @@ class MenuViewController: BaseViewController {
     @IBOutlet weak var cartBtn: UIButton!
     @IBOutlet weak var menuTableView: UITableView!
     
+    
+    
     let viewModel = MenuViewModel()
     
     

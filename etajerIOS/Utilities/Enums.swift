@@ -51,7 +51,6 @@ enum MenuElements: String {
         default:
             return .ELECTRONICS
         }
-        
     }
     
     var title: String {

@@ -32,6 +32,7 @@
 "ARE_Y_FORGET_PASS" = "are you forget password?";
 "ARE_Y_FORGET_PASS_Txt" = "please enter your email and redefine password like will be sent to you";
 "ENTER_YOUR_EMAIL" = "enter your saved email";
+"SEND" = "Send";
 
 //MARK:- Menu
 "MY_ACCOUNT" = "my account";
@@ -43,7 +44,7 @@
 "MOBILES_AND_TAPLETS" = "mobiles and tablets";
 "CLOTHES_AND_SHOSES_AND_ACCESSORIES" = "clothes and shoses";
 "HELTH_AND_SELF_CARE" = "helth and self care";
-"CUMPUTERS_AND_NETWORKS_AND_PROGRAMS" = "computers,networks and programs";
+"CUMPUTERS_AND_NETWORKS_AND_PROGRAMS" = "computers and networks";
 "GARDEN_SUPPLIES" = "garden supplies";
 "ELECTRONICS" = "electronics";
 "FURNITURE_AND_HOUSE_DECORATION" = "furniture and house decoration";

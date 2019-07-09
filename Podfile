@@ -11,5 +11,6 @@ target 'etajerIOS' do
   pod 'RxCocoa',    '~> 4.0'
 	pod 'SlideMenuControllerSwift'
 	pod 'IHKeyboardAvoiding'
+  pod 'Cosmos', '~> 19.0'
 	
 end

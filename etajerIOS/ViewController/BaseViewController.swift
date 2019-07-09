@@ -23,6 +23,11 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
         // Do any additional setup after loading the view.
         configureUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 
     override var preferredStatusBarStyle: UIStatusBarStyle{
         get{
@@ -36,8 +41,8 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
         tap.numberOfTouchesRequired = 1
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
+        navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9998916984, green: 1, blue: 0.9998809695, alpha: 1)
     }
 
     func openMenu(){

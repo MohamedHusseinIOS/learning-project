@@ -14,6 +14,9 @@ class ForgetPasswordViewController: BaseViewController {
 
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var forgetPasswordLbl: UILabel!
+    @IBOutlet weak var setEmailLbl: UILabel!
+    
     
     var viewModel = ForgetPasswordViewModel()
 
@@ -27,6 +30,9 @@ class ForgetPasswordViewController: BaseViewController {
         super.configureUI()
         
         KeyboardAvoiding.avoidingView = self.view
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        emailTxt.placeholder = ENTER_YOUR_EMAIL.localized()
         
         emailTxt.rx
             .text
