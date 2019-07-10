@@ -22,13 +22,53 @@ class HomeViewController: BaseViewController {
     
     
     let viewModel = HomeViewModel()
-    let banners = [#imageLiteral(resourceName: "baner1"),#imageLiteral(resourceName: "baner2"),#imageLiteral(resourceName: "baner3")]
+    var banners = [#imageLiteral(resourceName: "baner1"),#imageLiteral(resourceName: "baner2"),#imageLiteral(resourceName: "baner3")]
     
-    let categories: [Category] = [Category(title: "احدث المنتجات"),
-                                  Category(title: "المزادات"),
-                                  Category(title: "بانر"),
-                                  Category(title: "الصحة والجمال"),
-                                  Category(title: "الجولات والاجهزة اللوحية")]
+    let categories: [Category] = [Category(title: CATEGORY_TITLE_1.localized(),
+                                           items: [Item(name: "شاشة سامسونج",
+                                                        price: "3000 س.ر",
+                                                        image: #imageLiteral(resourceName: "screen"),
+                                                        rating: 3,
+                                                        overbid: ""),
+                                                   Item(name: "لكرس إى اس 350",
+                                                        price: "45000 س.ر",
+                                                        image: #imageLiteral(resourceName: "lexus"),
+                                                        rating: 5,
+                                                        overbid: "")]),
+                                  Category(title: CATEGORY_TITLE_2.localized(),
+                                           items:[Item(name: "سجادة سرات",
+                                                       price: "108888 س.ر",
+                                                       image: #imageLiteral(resourceName: "carpet"),
+                                                       rating: 4,
+                                                       overbid: "اخر مزايدة"),
+                                                  Item(name: "شاشة ال جي",
+                                                       price: "2000 س.ر",
+                                                       image: #imageLiteral(resourceName: "lgScreen"),
+                                                       rating: 4,
+                                                       overbid: "اخر مزايدة")]),
+                                  Category(title: "بانر", items: []),
+                                  Category(title: "HELTH_AND_SELF_CARE".localized(),
+                                           items: [Item(name: "شاشة سامسونج",
+                                                        price: "3000 س.ر",
+                                                        image: #imageLiteral(resourceName: "screen"),
+                                                        rating: 3,
+                                                        overbid: ""),
+                                                   Item(name: "لكرس إى اس 350",
+                                                        price: "45000 س.ر",
+                                                        image: #imageLiteral(resourceName: "lexus"),
+                                                        rating: 5,
+                                                        overbid: "")]),
+                                  Category(title: "MOBILES_AND_TAPLETS".localized(),
+                                           items: [Item(name: "شاشة سامسونج",
+                                                        price: "3000 س.ر",
+                                                        image: #imageLiteral(resourceName: "screen"),
+                                                        rating: 3,
+                                                        overbid: ""),
+                                                   Item(name: "لكرس إى اس 350",
+                                                        price: "45000 س.ر",
+                                                        image: #imageLiteral(resourceName: "lexus"),
+                                                        rating: 5,
+                                                        overbid: "")])]
     
     
     override func viewDidLoad() {
@@ -41,11 +81,14 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //setupScrollView()
     }
     
     func registerCell(){
         let nib = UINib(nibName: "CategoryCell", bundle: .main)
         homeTableView.register(nib, forCellReuseIdentifier: "CategoryCell")
+        let bannerCellNib = UINib(nibName: "BannerCell", bundle: .main)
+        homeTableView.register(bannerCellNib, forCellReuseIdentifier: "BannerCell")
     }
     
     override func configureUI() {
@@ -67,13 +110,12 @@ class HomeViewController: BaseViewController {
         
         configureTableView()
         didSelectRow()
-        setupScrollView()
-        
         sliderScrollView.rx
             .didEndDecelerating
             .subscribe {[unowned self] (_) in
                 if AppUtility.shared.currentLang == .ar {
                     let pageNumber = round(self.sliderScrollView.contentOffset.x / self.sliderScrollView.frame.width)
+                    //let isLastPage = (Int(pageNumber) == self.banners.count - 1)
                     self.sliderPageControl.currentPage = Int(pageNumber)
                 } else {
                     let pageNumber = round(self.sliderScrollView.contentOffset.x / self.sliderScrollView.frame.width)
@@ -98,11 +140,22 @@ class HomeViewController: BaseViewController {
     func configureTableView(){
         homeTableView.delegate = nil
         homeTableView.dataSource = nil
+        homeTableView.separatorStyle = .none
         viewModel.catrgories
             .bind(to: homeTableView.rx.items){ tableView, row, element in
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: IndexPath(row: row, section: 0)) as? CategoryCell else {return CategoryCell()}
+                let indexPath = IndexPath(row: row, section: 0)
+                guard row != 2 else{
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "BannerCell", for: indexPath) as? BannerCell else {return BannerCell()}
+                    cell.imageView?.contentMode = .scaleAspectFill
+                    cell.bannerImg.image = #imageLiteral(resourceName: "baner4")
+                    return cell
+                }
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell else {return CategoryCell()}
                 guard let items = element.items else {return cell}
-                cell.categoryItems = BehaviorSubject<[String]>(value: items)
+                cell.categoryNameLbl.text = element.title
+                cell.moreItemsLbl.text = MORE_ITEMS.localized()
+                cell.categoryItems.onNext(items)
                 return cell
         }.disposed(by: bag)
     }
@@ -117,23 +170,29 @@ class HomeViewController: BaseViewController {
         
         sliderScrollView.subviews.forEach({ $0.removeFromSuperview() })
         sliderPageControl.numberOfPages = banners.count
-        sliderScrollView.contentSize.width = (self.view.frame.width) * CGFloat(banners.count)
+        sliderScrollView.contentSize.width = (view.bounds.width) * CGFloat(banners.count)
+        sliderScrollView.contentSize.height = headerView.bounds.height
+        let childOfScrollView = UIView()
+        sliderScrollView.addSubview(childOfScrollView)
         sliderScrollView.isPagingEnabled = true
         sliderScrollView.bounces = false
+        var viewsArray = [UIView]()
         for item in banners.enumerated() {
             let containerView = UIView()
-            let scrollWidth = self.view.frame.width
-            let scrollSize = sliderScrollView.frame.size
-            let containerPoint = CGPoint(x: scrollWidth * CGFloat(item.offset), y: 0)
+            let scrollWidth = view.bounds.width
+            let scrollSize = sliderScrollView.bounds.size
+            let containerPoint = CGPoint(x: scrollWidth * CGFloat(item.offset),
+                                         y: 0)
             containerView.backgroundColor = UIColor.clear
             containerView.frame.origin = containerPoint
-            containerView.frame.size.width = self.view.frame.width
+            containerView.frame.size.width = view.bounds.width
             containerView.frame.size.height = scrollSize.height
+            containerView.tag = item.offset
             
-            let viewOrigin = CGPoint(x: 39 , y: 0)
-            let viewSize = CGSize(width: AppUtility.shared.screenWidth, height: sliderScrollView.frame.height)
-            
+            let viewOrigin = CGPoint(x: 0 , y: 0)
+            let viewSize = containerView.bounds.size//CGSize(width: AppUtility.shared.screenWidth, height: sliderScrollView.frame.height)
             let imageView = UIImageView()
+            
             imageView.contentMode = .scaleAspectFill
             imageView.frame = CGRect(origin: viewOrigin, size: viewSize)
             imageView.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
@@ -141,12 +200,75 @@ class HomeViewController: BaseViewController {
             imageView.image = item.element
             
             containerView.addSubview(imageView)
-            sliderScrollView.addSubview(containerView)
+            viewsArray.append(containerView)
+            childOfScrollView.addSubview(containerView)
         }
+        
+        addConstrainsOf(containers: viewsArray, to: childOfScrollView)
+        addConstraintsTo(scrollView: sliderScrollView, and: childOfScrollView)
+
         sliderScrollView.bringSubviewToFront(sliderPageControl)
         if AppUtility.shared.currentLang == .ar{
-            sliderPageControl.currentPage = banners.count - 1
+    
         }
+    }
+    
+    func addConstraintsTo(scrollView: UIScrollView, and parentOfContainers: UIView){
+        let leftConst = NSLayoutConstraint(item: parentOfContainers,
+                                           attribute: .left,
+                                           relatedBy: .equal,
+                                           toItem: scrollView,
+                                           attribute: .left,
+                                           multiplier: 1,
+                                           constant: 0)
+        let topConst = NSLayoutConstraint(item: parentOfContainers,
+                                          attribute: .top,
+                                          relatedBy: .equal,
+                                          toItem: scrollView,
+                                          attribute: .top,
+                                          multiplier: 1,
+                                          constant: 0)
+        let bottomConst = NSLayoutConstraint(item: parentOfContainers,
+                                             attribute: .bottom,
+                                             relatedBy: .equal,
+                                             toItem: scrollView,
+                                             attribute: .bottom,
+                                             multiplier: 1,
+                                             constant: 0)
+        let rightConst = NSLayoutConstraint(item: parentOfContainers,
+                                            attribute: .right,
+                                            relatedBy: .equal,
+                                            toItem: scrollView,
+                                            attribute: .right,
+                                            multiplier: 1,
+                                            constant: 0)
+        
+        scrollView.addConstraints([leftConst, topConst, bottomConst, rightConst])
+        scrollView.updateConstraints()
+        
+    }
+    
+    func addConstrainsOf(containers: [UIView], to parentView: UIView){
+        parentView.translatesAutoresizingMaskIntoConstraints = false
+        guard let firstView = containers.filter({$0.tag == 0}).first else { return }
+        let firstWidthConst = NSLayoutConstraint(item: firstView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: AppUtility.shared.screenWidth)
+        guard let secondView = containers.filter({$0.tag == 1}).first else { return }
+        let secondWidthConst = NSLayoutConstraint(item: secondView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: AppUtility.shared.screenWidth)
+        guard let theardView = containers.filter({$0.tag == 2}).first else { return }
+        let theardWidthConst = NSLayoutConstraint(item: theardView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: AppUtility.shared.screenWidth)
+        
+        let leftConstraintOfFirst = firstView.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: 0)
+        let rightConstraintOfFirst = firstView.rightAnchor.constraint(equalTo: secondView.leftAnchor, constant: 0)
+        let leftConstraintOfTheard = theardView.leftAnchor.constraint(equalTo: secondView.rightAnchor, constant: 0)
+        let rightconstraintOfTheard = theardView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0)
+        parentView.addConstraints([firstWidthConst,
+                                   secondWidthConst,
+                                   theardWidthConst,
+                                   leftConstraintOfFirst,
+                                   rightConstraintOfFirst,
+                                   leftConstraintOfTheard,
+                                   rightconstraintOfTheard])
+        parentView.updateConstraints()
     }
     
 }

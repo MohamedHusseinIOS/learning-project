@@ -23,7 +23,7 @@ class MenuViewModel: BaseViewModel {
     
     func sendMenuItems(){
         var arr = [MenuElements]()
-        for i in 0...9{
+        for i in 0...10{
             arr.append(MenuElements.element(row: i))
         }
         menuElements.onNext(arr)

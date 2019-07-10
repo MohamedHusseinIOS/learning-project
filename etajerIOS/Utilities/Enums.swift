@@ -25,6 +25,7 @@ enum MenuElements: String {
     case KITCHEN_AND_HOUSE_SUPPLIES
     case JEWELERY_AND_ACCESSORIES
     case OFFICE_EQUIPMENTS
+    case CHANGE_LANG
     
     static func element(row: Int) -> MenuElements{
         switch row {
@@ -48,6 +49,8 @@ enum MenuElements: String {
             return .JEWELERY_AND_ACCESSORIES
         case 9:
             return .OFFICE_EQUIPMENTS
+        case 10:
+            return .CHANGE_LANG
         default:
             return .ELECTRONICS
         }

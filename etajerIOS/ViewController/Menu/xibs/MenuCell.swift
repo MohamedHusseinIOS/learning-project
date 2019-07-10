@@ -15,6 +15,12 @@ class MenuCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        if AppUtility.shared.currentLang == .ar{
+            elementLbl.textAlignment = .right
+        }else{
+            elementLbl.textAlignment = .left
+        }
     }
 
     func bindOn(_ data: MenuElements){

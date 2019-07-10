@@ -16,12 +16,10 @@ class MenuViewController: BaseViewController {
     @IBOutlet weak var notificationBtn: UIButton!
     @IBOutlet weak var favoritesBtn: UIButton!
     @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var categoriesLbl: UILabel!
     @IBOutlet weak var menuTableView: UITableView!
     
-    
-    
     let viewModel = MenuViewModel()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +29,7 @@ class MenuViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-        makeButtonsImagesFit()
+        headerSetup()
         registerMenuCell()
         loadMenuTableView()
         viewModel.sendMenuItems()
@@ -41,11 +39,17 @@ class MenuViewController: BaseViewController {
         }.disposed(by: bag)
     }
     
-    func makeButtonsImagesFit(){
+    func headerSetup(){
         myAccountBtn.imageContentMode = .scaleAspectFit
         notificationBtn.imageContentMode = .scaleAspectFit
         favoritesBtn.imageContentMode = .scaleAspectFit
         cartBtn.imageContentMode = .scaleAspectFit
+        
+        if AppUtility.shared.currentLang == .ar{
+            categoriesLbl.textAlignment = .right
+        }else{
+            categoriesLbl.textAlignment = .left
+        }
     }
     
     func registerMenuCell(){
@@ -89,7 +93,9 @@ class MenuViewController: BaseViewController {
         case .JEWELERY_AND_ACCESSORIES: break
             
         case .OFFICE_EQUIPMENTS: break
-            
+        
+        case .CHANGE_LANG:
+            AppUtility.shared.changeLanguage()
         }
         closeMenu()
     }

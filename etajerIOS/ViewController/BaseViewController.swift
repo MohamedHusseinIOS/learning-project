@@ -66,5 +66,9 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
     @objc func endEditing(_ sender: UITapGestureRecognizer){
         self.view.endEditing(true)
     }
+    
+    @objc func backBtnTapped(_ sender: UIButton){
+        navigationController?.popViewController(animated: true)
+    }
 }
 

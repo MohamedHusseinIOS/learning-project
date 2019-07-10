@@ -12,6 +12,7 @@ import IHKeyboardAvoiding
 
 class ForgetPasswordViewController: BaseViewController {
 
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var forgetPasswordLbl: UILabel!
@@ -30,8 +31,12 @@ class ForgetPasswordViewController: BaseViewController {
         super.configureUI()
         
         KeyboardAvoiding.avoidingView = self.view
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        
+        backBtn.addTarget(self, action: #selector(backBtnTapped(_:)), for: .touchUpInside)
+        if AppUtility.shared.currentLang == .ar{
+            backBtn.setImage(#imageLiteral(resourceName: "back-en"), for: .normal)
+        } else {
+            backBtn.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
+        }
         emailTxt.placeholder = ENTER_YOUR_EMAIL.localized()
         
         emailTxt.rx

@@ -13,6 +13,7 @@ import RxSwift
 
 class SignUpViewController: BaseViewController {
 
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var emailTxt: UITextField!
@@ -39,10 +40,13 @@ class SignUpViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
+        backBtn.addTarget(self, action: #selector(backBtnTapped(_:)), for: .touchUpInside)
         
-        navigationController?.setNavigationBarHidden(false, animated: true)
         if AppUtility.shared.currentLang == .ar{
             mobileStackView.addArrangedSubview(mobileStackView.subviews[0])
+            backBtn.setImage(#imageLiteral(resourceName: "back-en"), for: .normal)
+        } else {
+            backBtn.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
         }
         termsAndConditionsTxt.attributedText = addLinkToText()
         termsAndConditionsTxt.textAlignment = .center

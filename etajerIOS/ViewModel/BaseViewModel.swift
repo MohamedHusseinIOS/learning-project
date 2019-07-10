@@ -12,5 +12,4 @@ import RxSwift
 class BaseViewModel {
     
     var bag = DisposeBag()
-    
 }

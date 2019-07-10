@@ -23,7 +23,12 @@ class ItemsCell: UICollectionViewCell {
         ratingView.settings.updateOnTouch = false
     }
     
-    func bindOn(){
-        
+    func bindOn(item: Item){
+        itemImg.contentMode = .scaleAspectFit
+        itemImg.image = item.image
+        itemNameLbl.text = item.name
+        lastOverbidLbl.text = item.overbid
+        priceLbl.text = item.price
+        ratingView.rating = Double(item.rating ?? 0)
     }
 }

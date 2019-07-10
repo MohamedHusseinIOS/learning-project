@@ -37,4 +37,11 @@ class AppUtility {
         NavigationCoordinator.shared.reloadTheApp()
     }
     
+    func changeLanguage(to lang: AppLanguages){
+        let isArabic = lang == .ar
+        LanguageManager.shared.setAppleLAnguageTo(lang: lang)
+        UIView.appearance().semanticContentAttribute = isArabic ? .forceRightToLeft : .forceLeftToRight
+        NavigationCoordinator.shared.reloadTheApp()
+    }
+    
 }

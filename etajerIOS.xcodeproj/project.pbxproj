@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C3F657A6C56807941500E5C /* Pods_etajerIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B1138F141D69112C054E04 /* Pods_etajerIOS.framework */; };
 		D91947DD22CDFF3F00302A75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91947DC22CDFF3F00302A75 /* AppDelegate.swift */; };
 		D91947DF22CDFF3F00302A75 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91947DE22CDFF3F00302A75 /* BaseViewController.swift */; };
 		D91947E222CDFF3F00302A75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91947E022CDFF3F00302A75 /* Main.storyboard */; };
@@ -120,7 +119,6 @@
 		D9F8B44822D2171200DCD15C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9F8B44922D2178000DCD15C /* LocalizationTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTitles.swift; sourceTree = "<group>"; };
 		D9F8B44B22D21D0300DCD15C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
-		E9B1138F141D69112C054E04 /* Pods_etajerIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_etajerIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C3F657A6C56807941500E5C /* Pods_etajerIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +135,6 @@
 		45B6C9532295B347A29DB4FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E9B1138F141D69112C054E04 /* Pods_etajerIOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
