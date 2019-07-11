@@ -44,18 +44,20 @@ class CategoryCell: UITableViewCell {
         categoryCollectionView.dataSource = nil
         
         let flowLayout = UICollectionViewFlowLayout()
-        let width = (categoryCollectionView.frame.size.width - CGFloat(10)) / CGFloat(2)
+        let width = (categoryCollectionView.frame.size.width - CGFloat(10)) / CGFloat(2.3)
         flowLayout.itemSize = CGSize(width: width, height: 266)
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 0
         categoryCollectionView.setCollectionViewLayout(flowLayout, animated: true)
-        
+        categoryCollectionView.scrollsToTop = true
         categoryItems.bind(to: categoryCollectionView.rx.items){ collectionView, item, element in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
             cell.bindOn(item: element)
+            cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             return cell
         }.disposed(by: bag)
         
+        categoryCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
     }
 
 }

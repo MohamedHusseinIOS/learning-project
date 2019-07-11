@@ -17,19 +17,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="290" id="J2L-Ez-L9C" customClass="CategoryCell" customModule="etajerIOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="330"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J2L-Ez-L9C" id="kDu-Ew-Lch">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="329.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="339.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qEh-Hk-2L8">
-                        <rect key="frame" x="0.0" y="43.5" width="414" height="286"/>
+                        <rect key="frame" x="0.0" y="43.5" width="414" height="296"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="286" id="rXK-Tq-JSR"/>
+                            <constraint firstAttribute="height" constant="296" id="rXK-Tq-JSR"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6Jb-UF-gZF">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="6Jb-UF-gZF">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -42,32 +42,32 @@
                         <color key="textColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OY-FI-db6">
+                        <rect key="frame" x="353.5" y="13.5" width="33.5" height="21"/>
+                        <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="14"/>
+                        <color key="textColor" red="0.71125859020000004" green="0.39651471379999997" blue="0.627440989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fY7-tx-v2s">
-                        <rect key="frame" x="364" y="18.5" width="20" height="20"/>
+                        <rect key="frame" x="389" y="18.5" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="aAC-ba-cQW"/>
-                            <constraint firstAttribute="width" constant="20" id="r60-S1-aMD"/>
+                            <constraint firstAttribute="height" constant="15" id="aAC-ba-cQW"/>
+                            <constraint firstAttribute="width" constant="15" id="r60-S1-aMD"/>
                         </constraints>
                         <color key="tintColor" red="0.71125859022140503" green="0.39651471376419067" blue="0.62744098901748657" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="back-ar"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OY-FI-db6">
-                        <rect key="frame" x="323.5" y="16.5" width="38.5" height="24"/>
-                        <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="16"/>
-                        <color key="textColor" red="0.71125859020000004" green="0.39651471379999997" blue="0.627440989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="fY7-tx-v2s" secondAttribute="trailing" constant="10" id="66T-5l-pkt"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="top" secondItem="bUL-C9-LMD" secondAttribute="bottom" constant="8" id="AIC-JV-IEe"/>
                     <constraint firstItem="bUL-C9-LMD" firstAttribute="top" secondItem="kDu-Ew-Lch" secondAttribute="top" constant="15" id="ALs-ts-TVD"/>
                     <constraint firstItem="bUL-C9-LMD" firstAttribute="leading" secondItem="kDu-Ew-Lch" secondAttribute="leading" constant="20" id="NXK-oK-gfR"/>
                     <constraint firstItem="fY7-tx-v2s" firstAttribute="leading" secondItem="5OY-FI-db6" secondAttribute="trailing" constant="2" id="QLd-pw-KKy"/>
-                    <constraint firstItem="fY7-tx-v2s" firstAttribute="centerY" secondItem="5OY-FI-db6" secondAttribute="centerY" id="RFp-bm-gyl"/>
+                    <constraint firstItem="fY7-tx-v2s" firstAttribute="centerY" secondItem="5OY-FI-db6" secondAttribute="centerY" constant="2" id="RFp-bm-gyl"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="leading" secondItem="kDu-Ew-Lch" secondAttribute="leading" id="WbJ-cF-WWG"/>
                     <constraint firstAttribute="bottom" secondItem="qEh-Hk-2L8" secondAttribute="bottom" id="XPn-8F-Kgk"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="fY7-tx-v2s" secondAttribute="trailing" constant="10" id="oce-aw-1Zy"/>
-                    <constraint firstItem="qEh-Hk-2L8" firstAttribute="top" secondItem="fY7-tx-v2s" secondAttribute="bottom" constant="5" id="ukC-Da-x14"/>
+                    <constraint firstItem="qEh-Hk-2L8" firstAttribute="top" secondItem="fY7-tx-v2s" secondAttribute="bottom" constant="10" id="ukC-Da-x14"/>
                     <constraint firstAttribute="trailing" secondItem="qEh-Hk-2L8" secondAttribute="trailing" id="yTU-ak-2eU"/>
                 </constraints>
             </tableViewCellContentView>
