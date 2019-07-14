@@ -88,33 +88,40 @@ class SignUpViewController: BaseViewController {
         emailTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.email)
+            .bind(to: viewModel.input.email)
             .disposed(by: bag)
         mobileTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.mobile)
+            .bind(to: viewModel.input.mobile)
             .disposed(by: bag)
         firstNameTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.firstName)
+            .bind(to: viewModel.input.firstName)
             .disposed(by: bag)
         familyNameTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.familyName)
+            .bind(to: viewModel.input.familyName)
             .disposed(by: bag)
         passwordTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.password)
+            .bind(to: viewModel.input.password)
             .disposed(by: bag)
         confirmPasswordTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.confirmPassword)
+            .bind(to: viewModel.input.confirmPassword)
             .disposed(by: bag)
+        viewModel.output
+            .passwordValidate
+            .subscribe { (event) in
+                guard let isValidPassword = event.element else { return }
+                
+            }.disposed(by: bag)
+        
     }
     
     func addLinkToText() -> NSMutableAttributedString{

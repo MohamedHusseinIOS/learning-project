@@ -18,7 +18,6 @@ class AppUtility {
     var currentLang: AppLanguages{
         return LanguageManager.shared.currentAppleLanguage()
     }
-    
     var bounds = UIScreen.main.bounds
     var screenWidth = UIScreen.main.bounds.size.width
     var screenHeight = UIScreen.main.bounds.size.height

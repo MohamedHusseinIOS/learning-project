@@ -37,6 +37,7 @@ class ForgetPasswordViewController: BaseViewController {
         } else {
             backBtn.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
         }
+        
         emailTxt.placeholder = ENTER_YOUR_EMAIL.localized()
         
         emailTxt.rx

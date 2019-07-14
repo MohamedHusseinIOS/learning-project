@@ -7,11 +7,6 @@
 //
 
 import Foundation
-import UIKit
-
-enum AppLanguages: String{
-    case en, ar
-}
 
 enum MenuElements: String {
     

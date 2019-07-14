@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Category: Codable{
+struct Category: Codable, Decoderable{
     
     var title: String?
     var items: Array<Item>?
@@ -24,7 +24,7 @@ struct Category: Codable{
     }
 }
 
-struct Item: Codable {
+struct Item: Codable, Decoderable {
     
     var name: String?
     var price: String?
@@ -32,16 +32,21 @@ struct Item: Codable {
     var rating: Int?
     var overbid: String?
     
-    init(name: String, price: String, image: UIImage, rating: Int, overbid: String) {
-        self.name = name
-        self.price = price
-        self.image = image
-        self.rating = rating
-        self.overbid = overbid
-    }
-    
     enum CodingKeys: String, CodingKey{
         case name
         case price
+        case image
+        case rating
+        case overbid
+    }
+}
+
+extension Item {
+    func encode(to encoder: Encoder) throws {
+
+    }
+
+    init(from decoder: Decoder) throws {
+
     }
 }

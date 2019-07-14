@@ -94,7 +94,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        viewModel.catrgories.onNext(categories)
+        viewModel.input.categories.onNext(categories)
         registerCell()
         
     }
@@ -150,7 +150,8 @@ class HomeViewController: BaseViewController {
         homeTableView.delegate = nil
         homeTableView.dataSource = nil
         homeTableView.separatorStyle = .none
-        viewModel.catrgories
+        viewModel.output
+            .categories
             .bind(to: homeTableView.rx.items){ tableView, row, element in
                 let indexPath = IndexPath(row: row, section: 0)
                 guard row != 2 else{
@@ -162,6 +163,7 @@ class HomeViewController: BaseViewController {
                 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell else {return CategoryCell()}
                 guard let items = element.items else {return cell}
+                cell.parent = self
                 cell.categoryNameLbl.text = element.title
                 cell.moreItemsLbl.text = MORE_ITEMS.localized()
                 cell.categoryItems.onNext(items)
@@ -170,7 +172,9 @@ class HomeViewController: BaseViewController {
     }
     
     func didSelectRow(){
-        homeTableView.rx.itemSelected.bind { (indexPath) in
+        homeTableView.rx
+            .itemSelected
+            .bind { (indexPath) in
             //code
         }.disposed(by: bag)
     }
@@ -215,7 +219,6 @@ class HomeViewController: BaseViewController {
             containerView.addSubview(imageView)
             viewsArray.append(containerView)
             childOfScrollView.addSubview(containerView)
-            
         }
         if AppUtility.shared.currentLang == .ar{
             sliderScrollView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)

@@ -47,14 +47,19 @@ class SignInViewController: BaseViewController {
         emailTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.email)
+            .bind(to: viewModel.input.email)
             .disposed(by: disposeBag)
         
         passwordTxt.rx
             .text
             .orEmpty
-            .bind(to: viewModel.password)
+            .bind(to: viewModel.input.password)
             .disposed(by: disposeBag)
+        
+        viewModel.output.success.subscribe { (event) in
+            guard let isSuccess = event.element else {return}
+            print(isSuccess)
+        }.disposed(by: disposeBag)
         
         signInBtn.rx
             .tap

@@ -38,6 +38,7 @@ extension MainNavigator: Navigator{
         case signInViewController
         case signUpViewController
         case forgetPasswordViewController
+        case categoryItemsViewController(_ items: [Item],_ categoryName: String)
     }
     
     func navigate(To destination: Destination) {
@@ -73,6 +74,12 @@ extension MainNavigator: Navigator{
         case .forgetPasswordViewController:
             let vc = ForgetPasswordViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse,
                                                                             vc: ForgetPasswordViewController())
+            return vc
+        case .categoryItemsViewController(let items, let title):
+            let vc = CategoryItemsViewController.InstantiateFormStoryBoard(storyboards.main.instanse,
+                                                                  vc: CategoryItemsViewController())
+            vc?.items = items
+            vc?.title = title
             return vc
         }
     }

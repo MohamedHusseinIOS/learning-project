@@ -14,6 +14,10 @@ enum Constants: String{
     case AppleLanguages
 }
 
+enum AppLanguages: String{
+    case en, ar
+}
+
 enum Colors{
     case Rose
     case PrimaryColor

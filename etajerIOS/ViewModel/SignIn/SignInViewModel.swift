@@ -8,22 +8,49 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
-class SignInViewModel: BaseViewModel {
+final class SignInViewModel: BaseViewModel, ViewModelType {
     
-    var email = PublishSubject<String>()
-    var password = PublishSubject<String>()
+    var input: Input
+    var output: Output
     
+    private let email = PublishSubject<String>()
+    private let password = PublishSubject<String>()
+    private let success = PublishSubject<Bool>()
+    
+    struct Input {
+        let email: AnyObserver<String>
+        let password: AnyObserver<String>
+        
+    }
+    
+    struct Output {
+        let success: Observable<Bool>
+    }
+    
+    //Not using for now
+    func transfrom(input: SignInViewModel.Input) -> SignInViewModel.Output {
+        return Output(success: success.asObservable())
+    }
     
     override init() {
-        super.init()
+        self.input = Input(email: email.asObserver(), password: password.asObserver())
+        self.output = Output(success: success.asObservable())
         
-        email.subscribe { (event) in
-            print(event.element)
+        super.init()
+        self.bindOn()
+    }
+    
+    func bindOn(){
+        email.asObserver().subscribe { (event) in
+            guard let email = event.element else{return}
+            print(email)
         }.disposed(by: bag)
         
-        password.subscribe { (event) in
-            print(event.element)
+        password.asObserver().subscribe { (event) in
+            guard let password = event.element else{return}
+            print(password)
         }.disposed(by: bag)
     }
 }

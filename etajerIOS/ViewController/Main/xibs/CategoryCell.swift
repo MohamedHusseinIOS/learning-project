@@ -18,6 +18,7 @@ class CategoryCell: UITableViewCell {
     @IBOutlet weak var moreBtn: UIButton!
     
     var categoryItems = BehaviorSubject<[Item]>(value: [])
+    var parent: HomeViewController?
     let bag = DisposeBag()
     
     override func awakeFromNib() {
@@ -32,6 +33,13 @@ class CategoryCell: UITableViewCell {
         } else {
             moreBtn.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
         }
+        moreBtn.rx
+            .tap
+            .subscribe {[unowned self] (_) in
+                guard let title = self.categoryNameLbl.text else { return }
+                guard let items = try? self.categoryItems.value() else { return }
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(items, title))
+        }.disposed(by: bag)
     }
     
     func registerCell(){

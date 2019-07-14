@@ -9,13 +9,24 @@
 import Foundation
 import RxSwift
 
-class HomeViewModel: BaseViewModel {
+class HomeViewModel: BaseViewModel, ViewModelType {
     
-    var catrgories = PublishSubject<[Category]>()
+    var input: Input
+    var output: Output
     
-    override init() {
-        
+    struct Input {
+        let categories: AnyObserver<[Category]>
     }
     
+    struct Output {
+        let categories: Observable<[Category]>
+    }
+    
+    private let categories = PublishSubject<[Category]>()
+    
+    override init() {
+        self.output = Output(categories: categories.asObservable())
+        self.input = Input(categories: categories.asObserver())
+    }
     
 }
