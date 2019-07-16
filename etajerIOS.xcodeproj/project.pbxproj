@@ -60,6 +60,12 @@
 		D9F8B44522D2170C00DCD15C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9F8B44722D2170C00DCD15C /* Localizable.strings */; };
 		D9F8B44A22D2178000DCD15C /* LocalizationTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F8B44922D2178000DCD15C /* LocalizationTitles.swift */; };
 		D9F8B44C22D21D0300DCD15C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F8B44B22D21D0300DCD15C /* UILabel+Extension.swift */; };
+		D9FDC71022DDE1750023B797 /* ItemDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FDC70F22DDE1740023B797 /* ItemDetailsViewModel.swift */; };
+		D9FDC71222DDE1E90023B797 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FDC71122DDE1E90023B797 /* ItemDetailsViewController.swift */; };
+		D9FDC71422DDE2090023B797 /* AuctionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FDC71322DDE2090023B797 /* AuctionDetailsViewController.swift */; };
+		D9FDC71622DDE2710023B797 /* AuctionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FDC71522DDE2710023B797 /* AuctionDetailsViewModel.swift */; };
+		D9FDC71822DDFA410023B797 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FDC71722DDFA410023B797 /* ImageCell.swift */; };
+		D9FDC71A22DDFA510023B797 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FDC71922DDFA510023B797 /* ImageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +131,12 @@
 		D9F8B44822D2171200DCD15C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9F8B44922D2178000DCD15C /* LocalizationTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTitles.swift; sourceTree = "<group>"; };
 		D9F8B44B22D21D0300DCD15C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		D9FDC70F22DDE1740023B797 /* ItemDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewModel.swift; sourceTree = "<group>"; };
+		D9FDC71122DDE1E90023B797 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
+		D9FDC71322DDE2090023B797 /* AuctionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionDetailsViewController.swift; sourceTree = "<group>"; };
+		D9FDC71522DDE2710023B797 /* AuctionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionDetailsViewModel.swift; sourceTree = "<group>"; };
+		D9FDC71722DDFA410023B797 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		D9FDC71922DDFA510023B797 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +335,8 @@
 				D9CED6F622D4865E00D8026E /* xibs */,
 				D9C3B0D022D321160010F45C /* HomeViewController.swift */,
 				D99A78AB22DB4DE800BCB6F1 /* CategoryItemsViewController.swift */,
+				D9FDC71122DDE1E90023B797 /* ItemDetailsViewController.swift */,
+				D9FDC71322DDE2090023B797 /* AuctionDetailsViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -332,6 +346,8 @@
 			children = (
 				D9CED6F322D483B800D8026E /* HomeViewModel.swift */,
 				D99A78AD22DB4E1300BCB6F1 /* CategoryItemsViewModel.swift */,
+				D9FDC70F22DDE1740023B797 /* ItemDetailsViewModel.swift */,
+				D9FDC71522DDE2710023B797 /* AuctionDetailsViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -345,6 +361,8 @@
 				D9CED6F922D486CA00D8026E /* ItemsCell.swift */,
 				D9CED70822D4C01C00D8026E /* BannerCell.xib */,
 				D9CED70A22D4C08900D8026E /* BannerCell.swift */,
+				D9FDC71922DDFA510023B797 /* ImageCell.xib */,
+				D9FDC71722DDFA410023B797 /* ImageCell.swift */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -433,6 +451,7 @@
 				D9CED70722D4BE8D00D8026E /* baner4.png in Resources */,
 				D9CED70622D4BE8D00D8026E /* baner1.png in Resources */,
 				D9CED6FC22D486EA00D8026E /* ItemsCell.xib in Resources */,
+				D9FDC71A22DDFA510023B797 /* ImageCell.xib in Resources */,
 				D9CED70922D4C01C00D8026E /* BannerCell.xib in Resources */,
 				D919480822CE07D400302A75 /* din-next-lt-w23-regular.ttf in Resources */,
 				D919480B22CE0AA700302A75 /* SignIn.storyboard in Resources */,
@@ -524,17 +543,21 @@
 				D91947DF22CDFF3F00302A75 /* BaseViewController.swift in Sources */,
 				D929C0E322D242A20000B1A6 /* Category.swift in Sources */,
 				D9CED6F822D486A800D8026E /* CategoryCell.swift in Sources */,
+				D9FDC71822DDFA410023B797 /* ImageCell.swift in Sources */,
 				D9F8B44022D1F3E400DCD15C /* UITextView+Extension.swift in Sources */,
 				D96873C522CE1BE80075C528 /* SignInViewController.swift in Sources */,
 				D919480322CE038900302A75 /* UIView+Extension.swift in Sources */,
+				D9FDC71222DDE1E90023B797 /* ItemDetailsViewController.swift in Sources */,
 				D99A78AA22DB102B00BCB6F1 /* ViewModelType.swift in Sources */,
 				D9F8B43C22D1E96D00DCD15C /* Constants.swift in Sources */,
 				D9CED70F22D4CE1900D8026E /* Data+Extension.swift in Sources */,
 				D9C3B0D122D321160010F45C /* HomeViewController.swift in Sources */,
 				D9CED70D22D4C37900D8026E /* Decoderable.swift in Sources */,
 				D99A78AC22DB4DE800BCB6F1 /* CategoryItemsViewController.swift in Sources */,
+				D9FDC71022DDE1750023B797 /* ItemDetailsViewModel.swift in Sources */,
 				D9C3B0D422D3417D0010F45C /* Bundle+Extension.swift in Sources */,
 				D96873D022CE42110075C528 /* SignUpViewModel.swift in Sources */,
+				D9FDC71622DDE2710023B797 /* AuctionDetailsViewModel.swift in Sources */,
 				D91947DD22CDFF3F00302A75 /* AppDelegate.swift in Sources */,
 				D929C0DD22D228C30000B1A6 /* MenuCell.swift in Sources */,
 				D96873CE22CE41E00075C528 /* SignUpViewController.swift in Sources */,
@@ -546,6 +569,7 @@
 				D99A78AE22DB4E1300BCB6F1 /* CategoryItemsViewModel.swift in Sources */,
 				D919480222CE038900302A75 /* Enums.swift in Sources */,
 				D91947F322CE034300302A75 /* BaseViewModel.swift in Sources */,
+				D9FDC71422DDE2090023B797 /* AuctionDetailsViewController.swift in Sources */,
 				D9CED6FA22D486CA00D8026E /* ItemsCell.swift in Sources */,
 				D9F8B43E22D1F33F00DCD15C /* UITextField+Extension.swift in Sources */,
 				D9CED6F422D483B800D8026E /* HomeViewModel.swift in Sources */,

@@ -50,7 +50,7 @@ class SignUpViewModel: BaseViewModel, ViewModelType {
                              passwordValidate: passwordValidate.asObservable())
         
         super.init()
-        email.asObserver().subscribe { (event) in
+        email.asObservable().subscribe { (event) in
             guard let value = event.element else{return}
         }.disposed(by: bag)
         mobile.asObserver().subscribe { (event) in

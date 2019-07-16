@@ -37,13 +37,13 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUL-C9-LMD">
-                        <rect key="frame" x="20" y="15" width="41" height="20.5"/>
+                        <rect key="frame" x="20" y="15" width="384" height="20.5"/>
                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
                         <color key="textColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OY-FI-db6">
-                        <rect key="frame" x="353.5" y="13.5" width="33.5" height="21"/>
+                        <rect key="frame" x="353.5" y="9" width="33.5" height="30"/>
                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="14"/>
                         <color key="textColor" red="0.71125859020000004" green="0.39651471379999997" blue="0.627440989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,9 +57,15 @@
                         <color key="tintColor" red="0.71125859022140503" green="0.39651471376419067" blue="0.62744098901748657" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="back-ar"/>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogf-yl-yh6">
+                        <rect key="frame" x="353.5" y="9" width="50.5" height="30"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="5OY-FI-db6" firstAttribute="bottom" secondItem="Ogf-yl-yh6" secondAttribute="bottom" id="3S3-pw-fDX"/>
                     <constraint firstAttribute="trailing" secondItem="fY7-tx-v2s" secondAttribute="trailing" constant="10" id="66T-5l-pkt"/>
+                    <constraint firstItem="5OY-FI-db6" firstAttribute="leading" secondItem="Ogf-yl-yh6" secondAttribute="leading" id="89d-Mk-VB1"/>
+                    <constraint firstItem="5OY-FI-db6" firstAttribute="top" secondItem="Ogf-yl-yh6" secondAttribute="top" id="ACd-C3-ItR"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="top" secondItem="bUL-C9-LMD" secondAttribute="bottom" constant="8" id="AIC-JV-IEe"/>
                     <constraint firstItem="bUL-C9-LMD" firstAttribute="top" secondItem="kDu-Ew-Lch" secondAttribute="top" constant="15" id="ALs-ts-TVD"/>
                     <constraint firstItem="bUL-C9-LMD" firstAttribute="leading" secondItem="kDu-Ew-Lch" secondAttribute="leading" constant="20" id="NXK-oK-gfR"/>
@@ -67,6 +73,8 @@
                     <constraint firstItem="fY7-tx-v2s" firstAttribute="centerY" secondItem="5OY-FI-db6" secondAttribute="centerY" constant="2" id="RFp-bm-gyl"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="leading" secondItem="kDu-Ew-Lch" secondAttribute="leading" id="WbJ-cF-WWG"/>
                     <constraint firstAttribute="bottom" secondItem="qEh-Hk-2L8" secondAttribute="bottom" id="XPn-8F-Kgk"/>
+                    <constraint firstItem="fY7-tx-v2s" firstAttribute="trailing" secondItem="Ogf-yl-yh6" secondAttribute="trailing" id="oZQ-KN-fza"/>
+                    <constraint firstItem="Ogf-yl-yh6" firstAttribute="trailing" secondItem="bUL-C9-LMD" secondAttribute="trailing" id="osO-bl-r7p"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="top" secondItem="fY7-tx-v2s" secondAttribute="bottom" constant="10" id="ukC-Da-x14"/>
                     <constraint firstAttribute="trailing" secondItem="qEh-Hk-2L8" secondAttribute="trailing" id="yTU-ak-2eU"/>
                 </constraints>
@@ -74,7 +82,8 @@
             <connections>
                 <outlet property="categoryCollectionView" destination="qEh-Hk-2L8" id="gKt-gH-9bw"/>
                 <outlet property="categoryNameLbl" destination="bUL-C9-LMD" id="duO-GJ-I8m"/>
-                <outlet property="moreBtn" destination="fY7-tx-v2s" id="Wd6-By-AHC"/>
+                <outlet property="moreBtn" destination="Ogf-yl-yh6" id="1ZD-Lg-TS6"/>
+                <outlet property="moreBtnImg" destination="fY7-tx-v2s" id="ojx-el-cDp"/>
                 <outlet property="moreItemsLbl" destination="5OY-FI-db6" id="8Er-5g-cmv"/>
             </connections>
             <point key="canvasLocation" x="305.79710144927537" y="148.66071428571428"/>

@@ -15,6 +15,7 @@ class CategoryCell: UITableViewCell {
     @IBOutlet weak var categoryNameLbl: UILabel!
     @IBOutlet weak var moreItemsLbl: UILabel!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
+    @IBOutlet weak var moreBtnImg: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
     
     var categoryItems = BehaviorSubject<[Item]>(value: [])
@@ -29,16 +30,15 @@ class CategoryCell: UITableViewCell {
         moreBtn.tintColor = #colorLiteral(red: 0.7112585902, green: 0.3965147138, blue: 0.627440989, alpha: 1)
         moreBtn.imageView?.contentMode = .scaleAspectFit
         if AppUtility.shared.currentLang == .ar{
-            moreBtn.setImage(#imageLiteral(resourceName: "back-en"), for: .normal)
+            moreBtnImg.setImage(#imageLiteral(resourceName: "back-en"), for: .normal)
         } else {
-            moreBtn.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
+            moreBtnImg.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
         }
         moreBtn.rx
             .tap
             .subscribe {[unowned self] (_) in
                 guard let title = self.categoryNameLbl.text else { return }
-                guard let items = try? self.categoryItems.value() else { return }
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(items, title))
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title))
         }.disposed(by: bag)
     }
     

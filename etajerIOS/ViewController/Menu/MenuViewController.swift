@@ -74,28 +74,23 @@ class MenuViewController: BaseViewController {
         let element = MenuElements.element(row: indexPath.row)
         switch element{
             
-        case .MOBILES_AND_TAPLETS: break
+        case .MOBILES_AND_TAPLETS,
+             .CLOTHES_AND_SHOSES_AND_ACCESSORIES,
+             .CUMPUTERS_AND_NETWORKS_AND_PROGRAMS,
+             .ELECTRONICS,
+             .FURNITURE_AND_HOUSE_DECORATION,
+             .GARDEN_SUPPLIES,
+             .HELTH_AND_SELF_CARE,
+             .JEWELERY_AND_ACCESSORIES,
+             .KITCHEN_AND_HOUSE_SUPPLIES,
+             .OFFICE_EQUIPMENTS:
             
-        case .CLOTHES_AND_SHOSES_AND_ACCESSORIES: break
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(element.title))
             
-        case .HELTH_AND_SELF_CARE: break
-            
-        case .CUMPUTERS_AND_NETWORKS_AND_PROGRAMS: break
-            
-        case .GARDEN_SUPPLIES: break
-            
-        case .ELECTRONICS: break
-            
-        case .FURNITURE_AND_HOUSE_DECORATION: break
-            
-        case .KITCHEN_AND_HOUSE_SUPPLIES: break
-            
-        case .JEWELERY_AND_ACCESSORIES: break
-            
-        case .OFFICE_EQUIPMENTS: break
-        
         case .CHANGE_LANG:
             AppUtility.shared.changeLanguage()
+        default:
+            break
         }
         closeMenu()
     }

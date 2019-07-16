@@ -57,3 +57,9 @@
 "CATEGORY_TITLE_1" = "Newest Products";
 "CATEGORY_TITLE_2" = "Auctions";
 "MORE_ITEMS" = "more items";
+
+//MARK:- Item Details
+"SELLER" = "Seller:";
+"DESCRIPTION" = "Short description:";
+"ADD_TO_CART" = "Add to cart";
+"S.R" = "S.R";

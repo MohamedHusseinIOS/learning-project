@@ -21,46 +21,55 @@ class CategoryItemsViewController: BaseViewController {
     var items2: [Item]? = [Item(name: "شاشة سامسونج",
                                price: "3000 ر.س",
                                image: #imageLiteral(resourceName: "screen"),
+                               images: nil,
                                rating: 3,
                                overbid: ""),
                           Item(name: "لكرس إى اس 350",
                                price: "45000 ر.س",
                                image: #imageLiteral(resourceName: "lexus"),
+                               images: nil,
                                rating: 5,
                                overbid: ""),
                           Item(name: "لكرس إى اس 350",
                                price: "45000 ر.س",
                                image: #imageLiteral(resourceName: "lexus"),
+                               images: nil,
                                rating: 5,
                                overbid: ""),
                           Item(name: "شاشة سامسونج",
                                price: "3000 ر.س",
                                image: #imageLiteral(resourceName: "screen"),
+                               images: nil,
                                rating: 3,
                                overbid: ""),
                           Item(name: "لكرس إى اس 350",
                                price: "45000 ر.س",
                                image: #imageLiteral(resourceName: "lexus"),
+                               images: nil,
                                rating: 5,
                                overbid: ""),
                           Item(name: "لكرس إى اس 350",
                                price: "45000 ر.س",
                                image: #imageLiteral(resourceName: "lexus"),
+                               images: nil,
                                rating: 5,
                                overbid: ""),
                           Item(name: "شاشة سامسونج",
                                price: "3000 ر.س",
                                image: #imageLiteral(resourceName: "screen"),
+                               images: nil,
                                rating: 3,
                                overbid: ""),
                           Item(name: "لكرس إى اس 350",
                                price: "45000 ر.س",
                                image: #imageLiteral(resourceName: "lexus"),
+                               images: nil,
                                rating: 5,
                                overbid: ""),
                           Item(name: "لكرس إى اس 350",
                                price: "45000 ر.س",
                                image: #imageLiteral(resourceName: "lexus"),
+                               images: nil,
                                rating: 5,
                                overbid: "")]
     
@@ -90,6 +99,11 @@ class CategoryItemsViewController: BaseViewController {
         viewModel.input
             .items
             .onNext(items2 ?? [])
+        
+        itemsCollectionView.rx.itemSelected.subscribe {[unowned self] (event) in
+            guard let indexPath = event.element else { return }
+            self.didSelectItemIn(indexPath: indexPath)
+        }
     }
     
     func registerCell(){
@@ -121,6 +135,10 @@ class CategoryItemsViewController: BaseViewController {
             }.disposed(by: bag)
         
         itemsCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+    }
+    
+    func didSelectItemIn(indexPath: IndexPath){
+        NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController)
     }
 
 }

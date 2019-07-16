@@ -29,6 +29,7 @@ struct Item: Codable, Decoderable {
     var name: String?
     var price: String?
     var image: UIImage?
+    var images: [UIImage]?
     var rating: Int?
     var overbid: String?
     
@@ -38,6 +39,7 @@ struct Item: Codable, Decoderable {
         case image
         case rating
         case overbid
+        case images
     }
 }
 
