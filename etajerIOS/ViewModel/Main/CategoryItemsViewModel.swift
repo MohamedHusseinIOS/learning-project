@@ -31,6 +31,7 @@ final class CategoryItemsViewModel: BaseViewModel, ViewModelType {
         
         items.subscribe { (event) in
             guard let items = event.element else { return }
+            print(items)
         }.disposed(by: bag)
     }
 }

@@ -35,6 +35,7 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
         }
     }
     
+    /// called in super viewDidLoad of (BaseViewController)
     func configureUI() {
         tap.addTarget(self, action: #selector(endEditing(_:)))
         tap.numberOfTapsRequired = 1

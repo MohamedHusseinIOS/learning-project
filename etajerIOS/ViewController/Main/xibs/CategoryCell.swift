@@ -38,7 +38,8 @@ class CategoryCell: UITableViewCell {
             .tap
             .subscribe {[unowned self] (_) in
                 guard let title = self.categoryNameLbl.text else { return }
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title))
+                let isAuction = title == CATEGORY_TITLE_2.localized()
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, isAuction))
         }.disposed(by: bag)
     }
     
@@ -66,6 +67,14 @@ class CategoryCell: UITableViewCell {
         }.disposed(by: bag)
         
         categoryCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        
+        categoryCollectionView.rx.itemSelected.subscribe { (event) in
+            if self.categoryNameLbl.text! == CATEGORY_TITLE_2.localized() {
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController)
+            }else{
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController)
+            }
+        }.disposed(by: bag)
     }
 
 }

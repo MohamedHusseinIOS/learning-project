@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum MenuElements: String {
     
@@ -53,5 +54,55 @@ enum MenuElements: String {
     
     var title: String {
         return rawValue.localized()
+    }
+}
+
+enum MyAccountElements: String{
+    
+    case MY_ORDERS
+    case NOTIFICATION
+    case ADDRESSES
+    case FAVORITES
+    case PAYMENT_INFO
+    case MY_INFO
+    
+    static func element(row: Int) -> MyAccountElements{
+        switch row {
+        case 0:
+            return .MY_ORDERS
+        case 1:
+            return .NOTIFICATION
+        case 2:
+            return .ADDRESSES
+        case 3:
+            return .FAVORITES
+        case 4:
+            return .PAYMENT_INFO
+        case 5:
+            return .MY_INFO
+        default:
+            return .MY_INFO
+        }
+    }
+    
+    var title: String {
+        return rawValue.localized()
+    }
+    
+    var icon: UIImage{
+        switch self {
+        case .MY_ORDERS:
+            return #imageLiteral(resourceName: "orders")
+        case .NOTIFICATION:
+            return #imageLiteral(resourceName: "notification1")
+        case .ADDRESSES:
+            return #imageLiteral(resourceName: "addresses")
+        case .FAVORITES:
+            return #imageLiteral(resourceName: "favoreites1")
+        case .PAYMENT_INFO:
+            return #imageLiteral(resourceName: "buyment-info")
+        case .MY_INFO:
+            return #imageLiteral(resourceName: "my info")
+        }
     }
 }

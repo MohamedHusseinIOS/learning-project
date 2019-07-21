@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="din-next-lt-w23-regular.ttf">
+            <string>DINNextLTW23-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyAccountCell" rowHeight="66" id="yvE-iA-rI0" customClass="MyAccountCell" customModule="etajerIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yvE-iA-rI0" id="chV-XV-wNA">
+                <rect key="frame" x="0.0" y="0.0" width="376" height="65.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HI9-Kb-cEW">
+                        <rect key="frame" x="20" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="9bY-dO-LbT"/>
+                            <constraint firstAttribute="width" constant="40" id="ufs-g8-8t9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39f-nz-Nbm">
+                        <rect key="frame" x="90" y="12" width="248" height="26.5"/>
+                        <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aA7-ux-nks">
+                        <rect key="frame" x="0.0" y="62.5" width="415" height="1"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3OA-kw-Amw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="aA7-ux-nks" secondAttribute="bottom" id="DmS-lJ-Xz2"/>
+                    <constraint firstItem="HI9-Kb-cEW" firstAttribute="leading" secondItem="chV-XV-wNA" secondAttribute="leading" constant="20" id="FcW-FG-Wo1"/>
+                    <constraint firstAttribute="trailing" secondItem="aA7-ux-nks" secondAttribute="trailing" constant="-39" id="HKy-D1-vXu"/>
+                    <constraint firstItem="39f-nz-Nbm" firstAttribute="centerY" secondItem="HI9-Kb-cEW" secondAttribute="centerY" constant="-5" id="Nd6-tv-ACG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="39f-nz-Nbm" secondAttribute="trailing" constant="30" id="RER-gJ-YmP"/>
+                    <constraint firstItem="aA7-ux-nks" firstAttribute="top" secondItem="HI9-Kb-cEW" secondAttribute="bottom" constant="12.5" id="mIG-iL-VNU"/>
+                    <constraint firstItem="aA7-ux-nks" firstAttribute="leading" secondItem="chV-XV-wNA" secondAttribute="leading" id="nbE-5S-vUQ"/>
+                    <constraint firstItem="HI9-Kb-cEW" firstAttribute="top" secondItem="chV-XV-wNA" secondAttribute="top" constant="10" id="v9t-Ih-OBK"/>
+                    <constraint firstItem="39f-nz-Nbm" firstAttribute="leading" secondItem="HI9-Kb-cEW" secondAttribute="trailing" constant="30" id="zWU-hf-QiM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iconImg" destination="HI9-Kb-cEW" id="vcR-HD-uPe"/>
+                <outlet property="titleLbl" destination="39f-nz-Nbm" id="xXB-Yg-p3e"/>
+            </connections>
+            <point key="canvasLocation" x="47.826086956521742" y="29.464285714285712"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -38,11 +38,10 @@ class SignInViewController: BaseViewController {
         emailTxt.placeholder = EMAIL.localized()
         passwordTxt.placeholder = PASSWORD.localized()
         
-        let registerBtnTitle = DONT_HAVE_ACCOUNT.localized().attributedString(fontSize: 17, color: #colorLiteral(red: 0.2745098039, green: 0.1490196078, blue: 0.3882352941, alpha: 1))
-        let singupNow = SIGNUP_NOW.localized().attributedString(fontSize: 17, color: #colorLiteral(red: 0.9215686275, green: 0.3333333333, blue: 0.3568627451, alpha: 1))
+        var registerBtnTitle = DONT_HAVE_ACCOUNT.localized()
+        let singupNow = SIGNUP_NOW.localized()
         registerBtnTitle.append(singupNow)
-        
-        registerBtn.setAttributedTitle(registerBtnTitle, for: .normal)
+        registerBtn.setTitle(registerBtnTitle, for: .normal)
         
         emailTxt.rx
             .text

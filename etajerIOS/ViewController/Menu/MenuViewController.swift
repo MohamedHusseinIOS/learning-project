@@ -12,10 +12,13 @@ import RxSwift
 
 class MenuViewController: BaseViewController {
 
+    @IBOutlet weak var userNameLbl: UILabel!
+    @IBOutlet weak var membershipNumberLbl: UILabel!
     @IBOutlet weak var myAccountBtn: UIButton!
     @IBOutlet weak var notificationBtn: UIButton!
     @IBOutlet weak var favoritesBtn: UIButton!
     @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var sellLbl: UILabel!
     @IBOutlet weak var categoriesLbl: UILabel!
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -23,7 +26,6 @@ class MenuViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -46,10 +48,26 @@ class MenuViewController: BaseViewController {
         cartBtn.imageContentMode = .scaleAspectFit
         
         if AppUtility.shared.currentLang == .ar{
+            sellLbl.textAlignment = .right
             categoriesLbl.textAlignment = .right
         }else{
+            sellLbl.textAlignment = .left
             categoriesLbl.textAlignment = .left
         }
+        
+        myAccountBtn.rx
+            .tap
+            .subscribe {[unowned self] (_) in
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .myAccountViewController)
+                self.closeMenu()
+        }.disposed(by: bag)
+        
+        favoritesBtn.rx
+            .tap
+            .subscribe {[unowned self] _ in
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .favoritesViewController)
+                self.closeMenu()
+        }.disposed(by: bag)
     }
     
     func registerMenuCell(){
@@ -85,13 +103,22 @@ class MenuViewController: BaseViewController {
              .KITCHEN_AND_HOUSE_SUPPLIES,
              .OFFICE_EQUIPMENTS:
             
-            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(element.title))
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(element.title, false))
             
         case .CHANGE_LANG:
             AppUtility.shared.changeLanguage()
-        default:
-            break
         }
+        flashCellAt(indexPath: indexPath)
         closeMenu()
+    }
+    
+    func flashCellAt(indexPath: IndexPath){
+        menuTableView.cellForRow(at: indexPath)?.backgroundColor = Colors.PrimaryColor.value
+        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+            UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                guard let self = self else { return }
+                self.menuTableView.cellForRow(at: indexPath)?.backgroundColor = .none
+            })
+        }
     }
 }

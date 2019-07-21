@@ -16,6 +16,7 @@ class CategoryItemsViewController: BaseViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     
+    var isAuction: Bool?
     let viewModel = CategoryItemsViewModel()
     var items: [Item]?
     var items2: [Item]? = [Item(name: "شاشة سامسونج",
@@ -75,13 +76,13 @@ class CategoryItemsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     override func configureUI() {
         super.configureUI()
         titleLbl.text = title
+        changeItemOverBid()
         registerCell()
         configureCategoryCollection()
         
@@ -96,6 +97,7 @@ class CategoryItemsViewController: BaseViewController {
             .subscribe {[unowned self] (_) in
                 self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
+        
         viewModel.input
             .items
             .onNext(items2 ?? [])
@@ -103,12 +105,22 @@ class CategoryItemsViewController: BaseViewController {
         itemsCollectionView.rx.itemSelected.subscribe {[unowned self] (event) in
             guard let indexPath = event.element else { return }
             self.didSelectItemIn(indexPath: indexPath)
-        }
+        }.disposed(by: bag)
     }
     
     func registerCell(){
         let nib = UINib(nibName: "ItemsCell", bundle: .main)
         itemsCollectionView.register(nib, forCellWithReuseIdentifier: "ItemsCell")
+    }
+    
+    func changeItemOverBid(){
+        items2?.enumerated().forEach({[unowned self] (element) in
+            if self.isAuction ?? false {
+                var item = element.element
+                item.overbid = LAST_OVERBID.localized()
+                self.items2?[element.offset] = item
+            }
+        })
     }
     
     func configureCategoryCollection(){
@@ -117,10 +129,12 @@ class CategoryItemsViewController: BaseViewController {
         itemsCollectionView.dataSource = nil
         
         let flowLayout = UICollectionViewFlowLayout()
-        let width = (itemsCollectionView.frame.size.width - CGFloat(10)) / CGFloat(2.0)
-        flowLayout.itemSize = CGSize(width: width, height: 266)
+        let width = (AppUtility.shared.screenWidth - CGFloat(10)) / CGFloat(2)
+        flowLayout.itemSize = CGSize(width: width, height: 286)
         flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 5
+        flowLayout.sectionInset.left = 5
+        flowLayout.sectionInset.right = 5
+        flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
         
         itemsCollectionView.setCollectionViewLayout(flowLayout, animated: true)
@@ -138,6 +152,10 @@ class CategoryItemsViewController: BaseViewController {
     }
     
     func didSelectItemIn(indexPath: IndexPath){
+        guard !(isAuction ?? false) else {
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController)
+            return
+        }
         NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController)
     }
 

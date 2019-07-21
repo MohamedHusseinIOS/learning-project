@@ -8,7 +8,7 @@
 
 //MARK:- SignIn
 "SIGNIN" = "sign in";
-"EMAIL" = "email";
+"EMAIL" = "your email or mobile number";
 "PASSWORD" = "password";
 "FORGET_PASSWORD" = "forget password...!";
 "DONT_HAVE_ACCOUNT" = " don't have account?";
@@ -30,15 +30,16 @@
 
 //MARK:- ForgetPassword
 "ARE_Y_FORGET_PASS" = "are you forget password?";
-"ARE_Y_FORGET_PASS_Txt" = "please enter your email and redefine password like will be sent to you";
+"ARE_Y_FORGET_PASS_Txt" = "please enter your email or mobile number and redefine password email will be sent to you";
 "ENTER_YOUR_EMAIL" = "enter your saved email";
 "SEND" = "Send";
 
 //MARK:- Menu
 "MY_ACCOUNT" = "my account";
-"NOTIFICATION" = "notification";
+"NOTIFICATION" = "notifications";
 "FAVORITES" = "favorites";
 "CART" = "cart";
+"SELL" = "sell";
 "CATEGORIES" = "categories";
 
 "MOBILES_AND_TAPLETS" = "mobiles and tablets";
@@ -59,7 +60,38 @@
 "MORE_ITEMS" = "more items";
 
 //MARK:- Item Details
+
+"LAST_OVERBID" = "last overbid";
+
 "SELLER" = "Seller:";
 "DESCRIPTION" = "Short description:";
 "ADD_TO_CART" = "Add to cart";
 "S.R" = "S.R";
+
+//MARK:- Auction Details
+"LAST_OVERBID" = "last overbid";
+"BID_NOW" = "bid now";
+"NUMBER_OF_BIDDING" = "number of bidding";
+"BUY_NOW_WITH_PRICE" = "buy now with a price";
+"SEND_OFFER" = "send offer";
+
+//MARK:- My Account
+"MY_ACCOUNT" = "my account";
+"HELLO" = "hello";
+"MEMBERSHIP" = "membership:";
+
+"MY_ORDERS" = "my orders";
+"ADDRESSES" = "addresses";
+"PAYMENT_INFO" = "payment info";
+"MY_INFO" = "my info";
+
+//MARK:- Favorites
+"FAVORITES" = "Favorites";
+"PRODUCTS" = "Products";
+"SHOPS" = "Shops";
+
+//MARK:- Notifications
+"ACCEPT" = "accept";
+"HAGGLING" = "haggling";
+"IGNORE" = "ignore";
+"DETAILS" = "details";

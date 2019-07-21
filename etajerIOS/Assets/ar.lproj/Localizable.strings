@@ -8,7 +8,7 @@
 
 //MARK:- SignIn
 "SIGNIN" = "تسجيل دخول";
-"EMAIL" = "البريد الالكتروني";
+"EMAIL" = "بريدك الالكتروني او رقم الجوال ";
 "PASSWORD" = "كلمة المرور";
 "FORGET_PASSWORD" = "نسيت كلمة المرور...!";
 "DONT_HAVE_ACCOUNT" = "ليس لديك حساب؟";
@@ -30,8 +30,8 @@
 
 //MARK:- ForgetPassword
 "ARE_Y_FORGET_PASS" = "هل نسيت كلمة المرور؟";
-"ARE_Y_FORGET_PASS_Txt" = "الرجاءادخال بريدك الالكتروني وسيتم ارسال رابط اعادة تعيين كلمة المرور";
-"ENTER_YOUR_EMAIL" = "ادخل بريدك الالكتروني المسجل";
+"ARE_Y_FORGET_PASS_Txt" = "الرجاء ادخال بريدك الالكتروني او رقم الجوال وسيتم ارسال رابط اعادة تعيين كلمة المرور لبريدك الالكتروني المسجل";
+"ENTER_YOUR_EMAIL" = "اكتب بريدك الالكتروني او رقم الجوال";
 "SEND" = "ارسال";
 
 //MARK:- Menu
@@ -39,6 +39,7 @@
 "NOTIFICATION" = "التنبيهات";
 "FAVORITES" = "المفضلة";
 "CART" = "السلة";
+"SELL" = "بيع";
 "CATEGORIES" = "الفئات";
 
 "MOBILES_AND_TAPLETS" = "الجوالات والاجهزة اللوحية";
@@ -59,7 +60,39 @@
 "MORE_ITEMS" = "المزيد من المنتجات";
 
 //MARK:- Item Details
-"SEALER" = "البائع:";
+
+"LAST_OVERBID" = "آخر مزايدة";
+
+"SELLER" = "البائع:";
 "DESCRIPTION" = "وصف مختصر:";
 "ADD_TO_CART" = "إضافة الى السلة";
 "S.R" = "ر.س";
+
+//MARK:- Auction Details
+"LAST_OVERBID" = "آخر مزايدة";
+"BID_NOW" = "زايد الآن";
+"NUMBER_OF_BIDDING" = " عددالمزايدات";
+"BUY_NOW_WITH_PRICE" = "الشراء الآن بسعر";
+
+"SEND_OFFER" = "تقديم عرض";
+
+//MARK:- My Account
+"MY_ACCOUNT" = "حسابي";
+"HELLO" = "مرحبا";
+"MEMBERSHIP" = "عضويتك:";
+
+"MY_ORDERS" = "الطلبات";
+"ADDRESSES" = "العنواين";
+"PAYMENT_INFO" = "معلومات الدفع";
+"MY_INFO" = "معلوماتي";
+
+//MARK:- Favorites
+"FAVORITES" = "مفضلتي";
+"PRODUCTS" = "المنتجات";
+"SHOPS" = "المتاجر";
+
+//MARK:- Notifications
+"ACCEPT" = "قبول";
+"HAGGLING" = "مساومة";
+"IGNORE" = "تجاهل";
+"DETAILS" = "التفاصيل";

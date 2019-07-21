@@ -43,3 +43,22 @@ let MORE_ITEMS = "MORE_ITEMS"
 //MARK:- Item Details
 
 let S_R = "S.R"
+let LAST_OVERBID = "LAST_OVERBID"
+
+//MARK:- Auction Details
+
+let BUY_NOW_WITH_PRICE = "BUY_NOW_WITH_PRICE"
+
+let MY_ORDERS = "MY_ORDERS"
+let ADDRESSES = "ADDRESSES"
+let PAYMENT_INFO = "PAYMENT_INFO"
+let MY_INFO = "MY_INFO"
+
+//MARK:- FAVORITES
+
+let FAVORITES = "FAVORITES"
+let PRODUCTS = "PRODUCTS"
+let SHOPS = "SHOPS"
+
+//MARK:- Notifications
+

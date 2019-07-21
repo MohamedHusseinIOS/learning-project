@@ -38,8 +38,12 @@ extension MainNavigator: Navigator{
         case signInViewController
         case signUpViewController
         case forgetPasswordViewController
-        case categoryItemsViewController(_ categoryName: String)
+        case categoryItemsViewController(_ categoryName: String, _ isAuction: Bool)
         case itemDetailsViewController
+        case auctionDetailsViewController
+        case myAccountViewController
+        case favoritesViewController
+        case notificationViewController
     }
     
     func navigate(To destination: Destination) {
@@ -57,33 +61,43 @@ extension MainNavigator: Navigator{
     func makeViewController(for destination: Destination)-> UIViewController? {
         switch destination {
         case .homeViewController:
-            let vc = HomeViewController.InstantiateFormStoryBoard(storyboards.main.instanse,
-                                                                  vc: HomeViewController())
+            let vc = HomeViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: HomeViewController())
             return vc
         case .sideMenuViewController:
-            let vc = MenuViewController.InstantiateFormStoryBoard(storyboards.main.instanse,
-                                                                  vc: MenuViewController())
+            let vc = MenuViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MenuViewController())
             return vc
         case .signInViewController:
-            let vc = SignInViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse,
-                                                                    vc: SignInViewController())
+            let vc = SignInViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: SignInViewController())
             return vc
         case .signUpViewController:
-            let vc = SignUpViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse,
-                                                                    vc: SignUpViewController())
+            let vc = SignUpViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: SignUpViewController())
             return vc
         case .forgetPasswordViewController:
-            let vc = ForgetPasswordViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse,
-                                                                            vc: ForgetPasswordViewController())
+            let vc = ForgetPasswordViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: ForgetPasswordViewController())
             return vc
-        case .categoryItemsViewController(let title):
-            let vc = CategoryItemsViewController.InstantiateFormStoryBoard(storyboards.main.instanse,
-                                                                  vc: CategoryItemsViewController())
+        case .categoryItemsViewController(let title, let isAuction):
+            let vc = CategoryItemsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CategoryItemsViewController())
             vc?.title = title
+            vc?.isAuction = isAuction
             return vc
         
         case .itemDetailsViewController:
             let vc = ItemDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: ItemDetailsViewController())
+            return vc
+            
+        case .auctionDetailsViewController:
+            let vc = AuctionDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AuctionDetailsViewController())
+            return vc
+        
+        case .myAccountViewController:
+            let vc = MyAccountViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MyAccountViewController())
+            return vc
+        
+        case .favoritesViewController:
+            let vc  = FavoritesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: FavoritesViewController())
+            return vc
+        case .notificationViewController:
+            let vc = NotificationsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: NotificationsViewController())
             return vc
         }
     }
