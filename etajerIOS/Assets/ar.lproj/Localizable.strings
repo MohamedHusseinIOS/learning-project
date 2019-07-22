@@ -96,3 +96,10 @@
 "HAGGLING" = "مساومة";
 "IGNORE" = "تجاهل";
 "DETAILS" = "التفاصيل";
+
+//MARK:- Addresses
+"ADDRESSES" = " عناويني";
+"ADDRESS" = "عنوان";
+"NAME" = "الاسم";
+"DELETE" = "حذف";
+"EDIT" = "تعديل";

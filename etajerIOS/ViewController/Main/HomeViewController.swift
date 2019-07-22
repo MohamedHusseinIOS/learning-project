@@ -13,7 +13,7 @@ import RxSwift
 class HomeViewController: BaseViewController {
 
     @IBOutlet weak var menuBtn: UIButton!
-    @IBOutlet weak var changeLang: UIButton!
+    @IBOutlet weak var cartBtn: UIButton!
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var homeTableView: UITableView!
@@ -132,10 +132,10 @@ class HomeViewController: BaseViewController {
                 self.openMenu()
         }.disposed(by: bag)
         
-        changeLang.rx
+        cartBtn.rx
             .tap
             .subscribe { (_) in
-                AppUtility.shared.changeLanguage()
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .cartViewController)
         }.disposed(by: bag)
         
         configureTableView()

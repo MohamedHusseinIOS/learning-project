@@ -63,7 +63,6 @@ class NotificationsViewController: BaseViewController {
                 cell.configureUI(buyOffer: true, notificationData: element)
                 cell.closeAction = { [weak self] in
                     guard let self = self else { return }
-                    print("[closeBtn]index:\(indexPath)")
                     self.closeBtnTapped(in: indexPath)
                 }
                 return cell

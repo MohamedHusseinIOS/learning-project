@@ -44,6 +44,8 @@ extension MainNavigator: Navigator{
         case myAccountViewController
         case favoritesViewController
         case notificationViewController
+        case addressesViewController
+        case cartViewController
     }
     
     func navigate(To destination: Destination) {
@@ -80,7 +82,6 @@ extension MainNavigator: Navigator{
             vc?.title = title
             vc?.isAuction = isAuction
             return vc
-        
         case .itemDetailsViewController:
             let vc = ItemDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: ItemDetailsViewController())
             return vc
@@ -88,16 +89,20 @@ extension MainNavigator: Navigator{
         case .auctionDetailsViewController:
             let vc = AuctionDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AuctionDetailsViewController())
             return vc
-        
         case .myAccountViewController:
             let vc = MyAccountViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MyAccountViewController())
             return vc
-        
         case .favoritesViewController:
             let vc  = FavoritesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: FavoritesViewController())
             return vc
         case .notificationViewController:
             let vc = NotificationsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: NotificationsViewController())
+            return vc
+        case .addressesViewController:
+            let vc = AddressesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AddressesViewController())
+            return vc
+        case .cartViewController:
+            let vc = CartViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartViewController())
             return vc
         }
     }

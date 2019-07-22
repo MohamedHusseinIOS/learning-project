@@ -95,3 +95,11 @@
 "HAGGLING" = "haggling";
 "IGNORE" = "ignore";
 "DETAILS" = "details";
+
+//MARK:- Addresses
+"ADDRESSES" = "Addresses";
+"ADDRESS" = "address";
+
+"NAME" = "name";
+"DELETE" = "delete";
+"EDIT" = "edit";

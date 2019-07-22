@@ -80,6 +80,8 @@ class MyAccountViewController: BaseViewController {
         switch myAccountElemant {
         case .NOTIFICATION:
             NavigationCoordinator.shared.mainNavigator.navigate(To: .notificationViewController)
+        case .ADDRESSES:
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .addressesViewController)
         default:
             break
         }

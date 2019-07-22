@@ -16,7 +16,7 @@ extension UIButton {
             self.imageView?.contentMode = newValue
         }
         get{
-            guard let contentMode = self.imageView?.contentMode else {return .redraw}
+            guard let contentMode = self.imageView?.contentMode else { return .redraw }
             return contentMode
         }
     }
