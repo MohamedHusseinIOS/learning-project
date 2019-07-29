@@ -12,7 +12,7 @@ import UIKit
 enum Constants: String{
     case font = "DINNextLTW23-Regular"
     case AppleLanguages
-    
+    case token
     
 }
 

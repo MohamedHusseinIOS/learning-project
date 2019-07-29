@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="din-next-lt-w23-regular.ttf">
+            <string>DINNextLTW23-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddAddressCell" rowHeight="71" id="Tpi-cC-8r7" customClass="AddAddressCell" customModule="etajerIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tpi-cC-8r7" id="feN-FW-zbm">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="70.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFe-7u-G8s">
+                        <rect key="frame" x="20" y="5" width="374" height="60.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" + اضافة عنوان جديد" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-fQ-5Zj">
+                                <rect key="frame" x="121.5" y="18" width="131.5" height="25"/>
+                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
+                                <color key="textColor" red="0.46781218050000001" green="0.46782374380000002" blue="0.46781754489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sv-rS-Gee">
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="60.5"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4d1-fQ-5Zj" firstAttribute="top" secondItem="uFe-7u-G8s" secondAttribute="top" constant="18" id="0gs-KQ-J1N"/>
+                            <constraint firstAttribute="bottom" secondItem="3sv-rS-Gee" secondAttribute="bottom" id="ROK-hM-GK2"/>
+                            <constraint firstAttribute="trailing" secondItem="3sv-rS-Gee" secondAttribute="trailing" id="dYB-Dw-8Am"/>
+                            <constraint firstItem="3sv-rS-Gee" firstAttribute="top" secondItem="uFe-7u-G8s" secondAttribute="top" id="dsr-7y-Yyq"/>
+                            <constraint firstAttribute="bottom" secondItem="4d1-fQ-5Zj" secondAttribute="bottom" constant="17.5" id="eyR-zo-18U"/>
+                            <constraint firstItem="4d1-fQ-5Zj" firstAttribute="centerX" secondItem="uFe-7u-G8s" secondAttribute="centerX" id="smH-2p-qJt"/>
+                            <constraint firstItem="3sv-rS-Gee" firstAttribute="leading" secondItem="uFe-7u-G8s" secondAttribute="leading" id="z93-8L-gTi"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.46781218050000001" green="0.46782374380000002" blue="0.46781754489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="uFe-7u-G8s" secondAttribute="trailing" constant="20" id="97Z-Ve-reh"/>
+                    <constraint firstItem="uFe-7u-G8s" firstAttribute="top" secondItem="feN-FW-zbm" secondAttribute="top" constant="5" id="Fpe-Xw-YQS"/>
+                    <constraint firstAttribute="bottom" secondItem="uFe-7u-G8s" secondAttribute="bottom" constant="5" id="G71-OH-C0k"/>
+                    <constraint firstItem="uFe-7u-G8s" firstAttribute="leading" secondItem="feN-FW-zbm" secondAttribute="leading" constant="20" id="Iuu-bR-WQp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addAdressBtn" destination="3sv-rS-Gee" id="Il8-FC-8Vf"/>
+            </connections>
+            <point key="canvasLocation" x="553.62318840579712" y="-29.129464285714285"/>
+        </tableViewCell>
+    </objects>
+</document>

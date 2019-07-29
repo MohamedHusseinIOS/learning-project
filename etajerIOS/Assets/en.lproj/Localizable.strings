@@ -103,3 +103,33 @@
 "NAME" = "name";
 "DELETE" = "delete";
 "EDIT" = "edit";
+
+//MARK:- Cart
+
+
+"CONTINUE" = "continue";
+"CONFIRM_THE_OREDER" = "confirm the order";
+
+"ENTER_CODE" = "enter code or cobon";
+"SUBMIT" = "submit";
+"CONTENUE" = "contenue";
+"BUY_NOW" = "Buy Now";
+"PAYMENT_METHOD" = "payment method";
+"ORDER_SUMMERY" = "order summery";
+"TRANSPOST_TO" = "delivery to";
+"YOUR_ORDER_ITEMS" = "your order items";
+"TRANSPORT" = "delivery";
+
+"CASH" = "cash";
+"CREDIT_CARD" = "credit card";
+
+"SUB_TOTAL" = "sub total";
+"DELIVERY" = "delivery";
+"CASH_ON_DELIVERY_FEES" = "cash on delivery fees";
+"TOTAL" = "total";
+"VAT_VALUE" = " vat value";
+
+"TOTAL_PLUS_VAT_VALUE" = "(total plus the vat value)";
+
+"ORDER_NUMBER" = "order number";
+"HOME" = "home";

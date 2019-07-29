@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CartCell" rowHeight="108" id="AL5-m1-WbU" customClass="CartCell" customModule="etajerIOS" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CartCell" rowHeight="108" id="AL5-m1-WbU" customClass="CartCell" customModule="etajerIOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AL5-m1-WbU" id="SBS-HL-4zJ">
@@ -161,6 +161,7 @@
                 <outlet property="increaseBtn" destination="tV5-pv-5ca" id="rUp-9G-gwT"/>
                 <outlet property="itemImg" destination="cMq-zp-Gm2" id="3At-zd-ALf"/>
                 <outlet property="itemNameLbl" destination="qCr-yO-PgL" id="sgr-HQ-AJE"/>
+                <outlet property="numberOfItemsContainer" destination="zoO-pb-fe2" id="ffU-35-tdS"/>
                 <outlet property="numberOfItemsLbl" destination="RII-Au-7Uu" id="mZ9-1P-IGO"/>
                 <outlet property="priceLbl" destination="Ivd-NE-2av" id="EvG-tx-Nai"/>
                 <outlet property="sealLbl" destination="hqY-fu-0wI" id="Kkd-lV-od4"/>

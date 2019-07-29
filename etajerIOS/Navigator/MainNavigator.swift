@@ -23,7 +23,7 @@ enum storyboards: String {
 class MainNavigator{
     
     private weak var navigationController: UINavigationController!
-    
+    var currentVC: Destination?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -46,18 +46,29 @@ extension MainNavigator: Navigator{
         case notificationViewController
         case addressesViewController
         case cartViewController
+        case cartPageViewController
+        case cartAddressViewController
+        case cartPaymentViewController
+        case cartFinishedViewController
     }
     
     func navigate(To destination: Destination) {
         guard let vc = makeViewController(for: destination) else{return}
+        currentVC = destination
         navigationController.pushViewController(vc, animated: true)
     }
     
     func present(_ destination: Destination, completion: @escaping (() -> Void)) {
         guard let vc = makeViewController(for: destination) else{return}
+        currentVC = destination
         navigationController.present(vc, animated: true) {
             completion()
         }
+    }
+    
+    func popViewController(to destination: Destination?){
+        currentVC = destination
+        navigationController.popViewController(animated: true)
     }
     
     func makeViewController(for destination: Destination)-> UIViewController? {
@@ -85,7 +96,6 @@ extension MainNavigator: Navigator{
         case .itemDetailsViewController:
             let vc = ItemDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: ItemDetailsViewController())
             return vc
-            
         case .auctionDetailsViewController:
             let vc = AuctionDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AuctionDetailsViewController())
             return vc
@@ -103,6 +113,18 @@ extension MainNavigator: Navigator{
             return vc
         case .cartViewController:
             let vc = CartViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartViewController())
+            return vc
+        case .cartPageViewController:
+            let vc = CartPageViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartPageViewController())
+            return vc
+        case .cartAddressViewController:
+            let vc = CartAddressesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartAddressesViewController())
+            return vc
+        case .cartPaymentViewController:
+            let vc  = CartPaymentViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartPaymentViewController())
+            return vc
+        case .cartFinishedViewController:
+            let vc  = CartFinishedViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartFinishedViewController())
             return vc
         }
     }

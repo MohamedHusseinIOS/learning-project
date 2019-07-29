@@ -10,7 +10,19 @@ import Foundation
 import UIKit
 
 extension UITextField{
-    @IBInspectable var doneAccessory: Bool{
+    
+    @IBInspectable
+    var localizedPlaceHolder: String {
+        get{
+            return self.localizedPlaceHolder
+        }
+        set{
+            placeholder = newValue.localized()
+        }
+    }
+    
+    @IBInspectable
+    var doneAccessory: Bool{
         get{
             return self.doneAccessory
         }
@@ -21,8 +33,7 @@ extension UITextField{
         }
     }
     
-    func addDoneButtonOnKeyboard()
-    {
+    func addDoneButtonOnKeyboard(){
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .default
         
@@ -36,8 +47,7 @@ extension UITextField{
         self.inputAccessoryView = doneToolbar
     }
     
-    @objc func doneButtonAction()
-    {
+    @objc func doneButtonAction(){
         self.resignFirstResponder()
     }
 }

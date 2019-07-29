@@ -15,20 +15,22 @@ class CartViewController: BaseViewController {
     @IBOutlet weak var backImg: UIImageView!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var itemsTableView: UITableView!
+    
+    @IBOutlet weak var headerView: CartHeaderView!
+    @IBOutlet weak var childNavigationView: UIView!
+    
+    @IBOutlet weak var continueView: UIView!
+    @IBOutlet weak var dayDateLbl: UILabel!
+    @IBOutlet weak var continueLbl: UILabel!
+    @IBOutlet weak var buyLbl: UILabel!
+    @IBOutlet weak var continueBtn: UIButton!
     
     let viewModel = CartViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let items = [Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                     Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                     Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                     Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil)]
-        
-        viewModel.input.items.onNext(items)
-        
+        headerView.checkPage(.cart)
+        continueBtn.isHidden = false
     }
     
     override func configureUI() {
@@ -40,55 +42,75 @@ class CartViewController: BaseViewController {
             backImg.image = #imageLiteral(resourceName: "white-back-en")
         }
         
-        registerCell()
-        configureTableView()
-        
         backBtn.rx.tap.bind { [unowned self](_) in
-            self.navigationController?.popViewController(animated: true)
+            self.backTapped()
         }.disposed(by: bag)
-    }
-    
-    func registerCell(){
-        let nib = UINib(nibName: "CartCell", bundle: .main)
-        itemsTableView.register(nib, forCellReuseIdentifier: "CartCell")
-    }
-    
-    func configureTableView(){
-        let headerView = CartHeaderView.instanceFromNib() as? CartHeaderView
-        itemsTableView.tableHeaderView = headerView
         
-        viewModel.output
-            .items
-            .bind(to: itemsTableView.rx.items){ tabelView, row, element in
-                let indexPath = IndexPath(row: row, section: 0)
-                guard let cell = tabelView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartCell else { return CartCell() }
-                cell.bindOnData(element)
-                cell.deleteAction = {[unowned self] in
-                    self.deleteBtnTapped(in: indexPath)
-                }
-                return cell
+        guard let childRootVC = NavigationCoordinator.shared.mainNavigator?.makeViewController(for: .cartPageViewController) else { return }
+        let childNVC = UINavigationController(rootViewController: childRootVC)
+        addChildNavigationController(navigation: childNVC, to: childNavigationView, in: self)
+        NavigationCoordinator.shared.addChildNVC(childNVC, parentViewController: self)
+        //this used just once here (any push after that Auto pass currentVC)
+        NavigationCoordinator.shared.childNavigator?.currentVC = .cartPageViewController
+        
+        continueLbl.isHidden = true
+        
+        continueBtn.rx
+            .tap
+            .bind {[unowned self] (_) in
+                self.continueTapped()
         }.disposed(by: bag)
     }
     
-    func deleteBtnTapped(in index: IndexPath){
-        if #available(iOS 11.0, *) {
-            itemsTableView.performBatchUpdates({ [unowned self] in
-                self.deleteRow(at: index)
-                }, completion: nil)
-        } else {
-            itemsTableView.beginUpdates()
-            deleteRow(at: index)
-            itemsTableView.endUpdates()
-        }
-        itemsTableView.reloadData()
+    func addChildNavigationController(navigation: UINavigationController, to containerView: UIView, in ViewController: UIViewController){
+        navigation.setNavigationBarHidden(true, animated: false)
+        navigation.willMove(toParent: ViewController)
+        navigation.view.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: containerView.frame.size)
+        containerView.addSubview(navigation.view)
+        addChild(navigation)
+        navigation.didMove(toParent: ViewController)
     }
     
-    func deleteRow(at index: IndexPath) {
-        viewModel.removeItem(at: index)
-        if AppUtility.shared.currentLang == .ar {
-            itemsTableView.deleteRows(at: [index], with: .right)
-        } else {
-            itemsTableView.deleteRows(at: [index], with: .left)
+    func backTapped(){
+        switch NavigationCoordinator.shared.childNavigator?.currentVC {
+        case .some(.cartPageViewController):
+            navigationController?.popViewController(animated: true)
+        case .some(.cartAddressViewController):
+            NavigationCoordinator.shared.childNavigator?.popViewController(to: .cartPageViewController)
+            headerView.checkPage(.cart)
+            continueLbl.isHidden = true
+            buyLbl.isHidden = false
+            dayDateLbl.isHidden = false
+        case .some(.cartPaymentViewController):
+            NavigationCoordinator.shared.childNavigator?.popViewController(to: .cartAddressViewController)
+            headerView.checkPage(.address)
+        case .some(.cartFinishedViewController):
+            NavigationCoordinator.shared.mainNavigator.popViewController(to: .homeViewController)
+        default:
+            break
+        }
+    }
+    
+    func continueTapped(){
+        switch NavigationCoordinator.shared.childNavigator?.currentVC {
+        case .some(.cartPageViewController):
+            NavigationCoordinator.shared.childNavigator?.navigate(To: .cartAddressViewController)
+            headerView.checkPage(.address)
+            continueLbl.text = CONTENUE.localized()
+            continueLbl.isHidden = false
+            buyLbl.isHidden = true
+            dayDateLbl.isHidden = true
+        case .some(.cartAddressViewController):
+            NavigationCoordinator.shared.childNavigator?.navigate(To: .cartPaymentViewController)
+            headerView.checkPage(.payment)
+            continueLbl.text = CONFIRM_THE_OREDER.localized()
+        case .some(.cartPaymentViewController):
+            NavigationCoordinator.shared.childNavigator?.navigate(To: .cartFinishedViewController)
+            headerView.checkPage(.done)
+            continueView.isHidden = true
+        
+        default:
+            break
         }
     }
 

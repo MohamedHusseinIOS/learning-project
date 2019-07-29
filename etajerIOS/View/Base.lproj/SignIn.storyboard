@@ -789,7 +789,7 @@
     </scenes>
     <resources>
         <image name="back-ar" width="128" height="128"/>
-        <image name="close" width="16" height="16"/>
+        <image name="close" width="128" height="128"/>
         <image name="forgetPassword" width="416" height="393"/>
         <image name="logo4345" width="808" height="224"/>
     </resources>

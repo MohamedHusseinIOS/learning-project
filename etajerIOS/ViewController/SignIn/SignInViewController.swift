@@ -62,8 +62,18 @@ class SignInViewController: BaseViewController {
         
         signInBtn.rx
             .tap
-            .subscribe { (_) in
-                NavigationCoordinator.shared.sideMenuSetup()
+            .subscribe {[unowned self] (_) in
+                self.signInBtn.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                self.signInBtn.borderColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
+                self.signInBtn.borderWidth = 1
+                DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+                    UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                        guard let self = self else { return }
+                        self.signInBtn.borderWidth = 0
+                        self.signInBtn.backgroundColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
+                        NavigationCoordinator.shared.sideMenuSetup()
+                    })
+                }
             }.disposed(by: disposeBag)
         
         forgetPasswordBtn.rx
@@ -75,7 +85,18 @@ class SignInViewController: BaseViewController {
         registerBtn.rx
             .tap
             .subscribe { (_) in
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
+                self.registerBtn.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                self.registerBtn.borderColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
+                self.registerBtn.borderWidth = 1
+                DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+                    UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                        guard let self = self else { return }
+                        self.registerBtn.borderWidth = 0
+                        self.registerBtn.backgroundColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
+                        NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
+                    })
+                }
+                
             }.disposed(by: disposeBag)
         
     }

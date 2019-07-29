@@ -15,28 +15,17 @@ class CartViewModel: BaseViewModel, ViewModelType {
     var output: CartViewModel.Output
     
     struct Input {
-        var items: AnyObserver<[Item]>
-    }
-    
-    struct Output {
-        var items: Observable<[Item]>
-    }
-    
-    private var items = PublishSubject<[Item]>()
-    private var dataArray = [Item]()
-    
-    override init() {
-        input = Input(items: items.asObserver())
-        output = Output(items: items.asObservable())
-        super.init()
-        items.bind {[unowned self] (items) in
-            self.dataArray = items
-        }.disposed(by: bag)
         
     }
     
-    func removeItem(at index: IndexPath) {
-        dataArray.remove(at: index.row)
-        items.onNext(dataArray)
+    struct Output {
+        
     }
+
+    override init() {
+        input = Input()
+        output = Output()
+        super.init()
+    }
+
 }

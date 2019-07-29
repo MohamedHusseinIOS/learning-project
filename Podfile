@@ -9,8 +9,21 @@ target 'etajerIOS' do
 
   pod 'RxSwift',    '~> 4.0'
   pod 'RxCocoa',    '~> 4.0'
-	pod 'SlideMenuControllerSwift'
-	pod 'IHKeyboardAvoiding'
+  pod 'RxDataSources', '~> 3.1.0'
+  pod 'SlideMenuControllerSwift'
+  pod 'IHKeyboardAvoiding'
   pod 'Cosmos', '~> 19.0'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Alamofire'
+  
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if 'SlideMenuControllerSwift'.include? target.name
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.0'
+        end
+      end
+    end
+  end
 	
 end

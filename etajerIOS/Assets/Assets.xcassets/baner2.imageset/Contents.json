@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "baner2.png"
+      "filename" : "baner2.png",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

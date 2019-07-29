@@ -103,3 +103,35 @@
 "NAME" = "الاسم";
 "DELETE" = "حذف";
 "EDIT" = "تعديل";
+
+//MARK:- Cart
+
+"CONTINUE" = "استمر";
+"CONFIRM_THE_OREDER" = "تاكيد الطلبية";
+
+
+"ENTER_CODE" = "أدخل الكود او الكوبون";
+"SUBMIT" = "تطبيق";
+"CONTENUE" = "متابعة";
+"BUY_NOW" = "الشراء الآن";
+"PAYMENT_METHOD" = "طريقة الدفع";
+"ORDER_SUMMERY" = "ملخص الطلبية";
+"TRANSPOST_TO" = "الشحن الي";
+"YOUR_ORDER_ITEMS" = "مراجعة طلبيتك";
+"TRANSPORT" = "شحن";
+
+"CASH" = "الدفع نقدا";
+"CREDIT_CARD" = "الدفع باستخدام البطاقة";
+
+"SUB_TOTAL" = "المجموع الفرعي";
+"DELIVERY" = "الشحن";
+"CASH_ON_DELIVERY_FEES" = "رسوم الدفع نقدا عند الاستلام";
+"TOTAL" = "المجموع";
+"VAT_VALUE" = "قيمة ال vat المقدرة";
+
+"TOTAL_PLUS_VAT_VALUE" = "(المجموع بالاضافة لقيمة الvat)";
+
+"ORDER_NUMBER" = "رقم الطلبية";
+"HOME" = "الرئيسية";
+
+
