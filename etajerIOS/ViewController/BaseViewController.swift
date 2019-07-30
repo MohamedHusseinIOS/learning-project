@@ -21,6 +21,7 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        configureData()
         configureUI()
     }
     
@@ -44,6 +45,10 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
         self.view.addGestureRecognizer(tap)
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
         navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9998916984, green: 1, blue: 0.9998809695, alpha: 1)
+    }
+    
+    func configureData(){
+        
     }
 
     func openMenu(){

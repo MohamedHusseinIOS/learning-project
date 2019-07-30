@@ -10,6 +10,6 @@ import Foundation
 
 class DataManager {
     
-    let shared = DataManager()
+    static let shared = DataManager()
     private init(){}
 }

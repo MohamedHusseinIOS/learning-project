@@ -9,12 +9,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "etajerIOS/ViewController/SignIn/SignInViewController.swift"
-            timestampString = "586019199.071191"
+            filePath = "etajerIOS/ViewController/Menu/MenuViewController.swift"
+            timestampString = "586191497.09534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "configureUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "etajerIOS/ViewController/Main/CategoryItemsViewController.swift"
+            timestampString = "586191533.547508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "configureUI()"
             landmarkType = "7">
          </BreakpointContent>

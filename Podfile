@@ -11,10 +11,11 @@ target 'etajerIOS' do
   pod 'RxCocoa',    '~> 4.0'
   pod 'RxDataSources', '~> 3.1.0'
   pod 'SlideMenuControllerSwift'
-  pod 'IHKeyboardAvoiding'
   pod 'Cosmos', '~> 19.0'
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire'
+  pod 'SkeletonView'
+  pod 'SVProgressHUD'
   
   post_install do |installer|
     installer.pods_project.targets.each do |target|

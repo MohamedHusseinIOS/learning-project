@@ -26,7 +26,6 @@ class SignUpViewController: BaseViewController {
     @IBOutlet weak var txtViewsStackView: UIStackView!
     @IBOutlet weak var termsAndConditionsTxt: UITextView!
     @IBOutlet weak var haveAccSignInBtn: UIButton!
-    
     @IBOutlet weak var mobileStackView: UIStackView!
     
     
@@ -72,6 +71,58 @@ class SignUpViewController: BaseViewController {
             .subscribe {[unowned self] (_) in
             self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
+        
+        signUpBtn.rx
+            .tap
+            .bind {[unowned self] (_) in
+                self.signup()
+        }.disposed(by: bag)
+    }
+    
+    override func configureData(){
+        viewModel.output.successMsg.bind {[unowned self] (msg) in
+            self.alert(title: "", message: msg, completion: {
+                NavigationCoordinator.shared.mainNavigator.popViewController(to: .signInViewController)
+            })
+        }.disposed(by: bag)
+        
+        viewModel.output.failer.bind { (errorArr) in
+            let error = errorArr.first
+            guard let msg = error?.message else { return }
+            self.alert(title: "", message: msg, completion: {
+                //code
+            })
+        }.disposed(by: bag)
+    }
+    
+    func signup(){
+        guard let emailText = emailTxt.text?.trimmingCharacters(in: .whitespaces), emailText.count != 0 , emailText.isValidEmail() else {
+            self.alert(title: "email", message: "please, enter valid email", completion: nil)
+            return
+        }
+        guard let firstNameText = firstNameTxt.text?.trimmingCharacters(in: .whitespaces), firstNameText.count != 0 else {
+            self.alert(title: "first name", message: "first Name feild cant be empty", completion: nil)
+            return
+        }
+        guard let mobileText = mobileTxt.text?.trimmingCharacters(in: .whitespaces), mobileText.count != 0, mobileText.count == 9 else {
+            self.alert(title: "mobile", message: "mobile must be 9 digits", completion: nil)
+            return
+        }
+        guard let passwordText = passwordTxt.text?.trimmingCharacters(in: .whitespaces), passwordText.count != 0 else {
+            self.alert(title: "password", message: "password feild cant be empty", completion: nil)
+            return
+        }
+        guard let confirmPasswordText = confirmPasswordTxt.text?.trimmingCharacters(in: .whitespaces), confirmPasswordText.count != 0, confirmPasswordText == passwordText else {
+            self.alert(title: "password", message: "confirmPassword and password must be same", completion: nil)
+            return
+        }
+        guard let lastName = familyNameTxt.text else { return }
+        
+        viewModel.signup(email: emailText,
+                         password: passwordText,
+                         firstName: firstNameText,
+                         lastName: lastName,
+                         mobile: mobileText)
     }
     
     func placeHoldersAndBtns(){

@@ -24,8 +24,10 @@ class SignUpViewModel: BaseViewModel, ViewModelType {
     }
     
     struct Output {
-        let success: Observable<Bool>
+        let successMsg: Observable<String>
+        let failer: Observable<[ErrorModel]>
         let passwordValidate: Observable<Bool>
+        
     }
     
     private let email = PublishSubject<String>()
@@ -35,7 +37,8 @@ class SignUpViewModel: BaseViewModel, ViewModelType {
     private let password = PublishSubject<String>()
     private let confirmPassword = PublishSubject<String>()
     private let passwordValidate = PublishSubject<Bool>()
-    private let success = PublishSubject<Bool>()
+    private let success = PublishSubject<String>()
+    private let failer = PublishSubject<[ErrorModel]>()
     
     override init() {
         self.input = Input(email: email.asObserver(),
@@ -46,32 +49,31 @@ class SignUpViewModel: BaseViewModel, ViewModelType {
                            confirmPassword: confirmPassword.asObserver())
         
         
-        self.output = Output(success: success.asObservable(),
+        self.output = Output(successMsg: success.asObservable(),
+                             failer: failer.asObservable(),
                              passwordValidate: passwordValidate.asObservable())
         
         super.init()
-        email.asObservable().subscribe { (event) in
-            guard let value = event.element else{return}
-        }.disposed(by: bag)
-        mobile.asObserver().subscribe { (event) in
-            guard let value = event.element else{return}
-        }.disposed(by: bag)
-        firstName.asObserver().subscribe { (event) in
-            guard let value = event.element else{return}
-        }.disposed(by: bag)
-        familyName.asObserver().subscribe { (event) in
-            guard let value = event.element else{return}
-        }.disposed(by: bag)
-        var passwordTxt = ""
-        password.asObserver().subscribe { (event) in
-            guard let value = event.element else{return}
-            passwordTxt = value
-        }.disposed(by: bag)
-        confirmPassword.asObserver().subscribe {[unowned self] (event) in
-            guard let value = event.element else{return}
-            self.passwordValidate.onNext(value == passwordTxt)
-        }.disposed(by: bag)
-        
     }
+    
+    
+    func signup(email: String, password: String, firstName: String, lastName: String, mobile: String){
+        
+        DataManager.shared.signup(email: email, password: password, firstName: firstName, lastName: lastName, mobile: mobile) { (response) in
+            switch response {
+            case .success(let value):
+                guard let response = value as? SignInUpResponse else { return }
+                guard let token = response.accessToken else { return }
+                AppUtility.shared.saveToken(token)
+                guard let user = response.identity else { return }
+                AppUtility.shared.saveCurrentUser(user)
+                guard let msg = response.message else { return }
+                self.success.onNext(msg)
+            case .failure( _, let data):
+                self.handelApiError(data: data, failer: self.failer)
+            }
+        }
+    }
+    
     
 }

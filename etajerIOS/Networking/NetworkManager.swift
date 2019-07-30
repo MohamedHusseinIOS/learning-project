@@ -10,12 +10,13 @@ import Foundation
 import Alamofire
 
 enum ResponseEnum {
-    case failure(error: ApiError?)
-    case success(value: Any?)
+    case failure(_ error: ApiError?, _ data: Any?)
+    case success(_ value: Any?)
 }
 
 enum ApiError: Int {
     case BadRequest = 400
+    case DataValidationFailed = 422
     case ServerError = 500
     case ClientSideError = 0
     
@@ -27,17 +28,20 @@ enum ApiError: Int {
             return "Internal Server Error"
         case .ClientSideError:
             return "ClientSide Error"
+        case .DataValidationFailed:
+            return "Data Validation Failed"
+        }
     }
 }
 
 class NetworkManager {
     
-    let shared = NetworkManager()
+    static let shared = NetworkManager()
     private init(){}
     typealias responseCallback = ((ResponseEnum) -> Void)
     
     private var headers: HTTPHeaders {
-        guard let token = UserDefaults.standard.value(forKey: Constants.token.rawValue) as? String else { return [:] }
+        guard let token = UserDefaults.standard.value(forKey: Constants.accessToken.rawValue) as? String else { return [:] }
         let headerDict = [
             "Authorization":"Bearer\(token)",
             "Accept-Language": AppUtility.shared.currentLang.rawValue
@@ -49,17 +53,8 @@ class NetworkManager {
     func get(url: String, paramters: Parameters? = nil, completion: @escaping responseCallback){
         
         Alamofire.request(url, method: .get, parameters: paramters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            
-            guard let code = response.response?.statusCode else {
-                completion(.failure(error: ApiError.ClientSideError))
-                return
-            }
-            
-            if code < 400, let res = response.value as? Parameters{
-                completion(.success(value: res))
-            } else {
-                completion(.failure(error: ApiError(rawValue: code)))
-            }
+            response.interceptResuest(url, paramters)
+            self.handleResponse(response, completion: completion)
         }
     }
     
@@ -67,15 +62,27 @@ class NetworkManager {
         
         Alamofire.request(url, method: .post, parameters: paramters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             
-            let code = response.response?.statusCode
-            
-            if code < 400, let res = response.value as? Parameters{
-                completion(.success(value: res))
-            } else {
-                completion(.failure(error: ApiError(rawValue: code)))
-            }
+            response.interceptResuest(url, paramters)
+            self.handleResponse(response, completion: completion)
         }
     }
     
+    private func handleResponse(_ response: DataResponse<Any>, completion: @escaping responseCallback) {
+        guard let code = response.response?.statusCode else {
+            completion(.failure(ApiError.ClientSideError, nil))
+            return
+        }
+        
+        if code < 400, let res = response.value as? Parameters {
+            completion(.success(res))
+        } else if let res = response.value {
+            self.errorHandling(res, code: code, completion: completion)
+        }
+    }
     
+    func errorHandling(_ res: Any, code: Int,completion: @escaping responseCallback){
+        let error = ApiError(rawValue: code)
+        let errorModel = ErrorModel().decodeJSON(res, To: ErrorModel(), format: .convertFromSnakeCase)
+        completion(.failure(error, errorModel))
+    }
 }

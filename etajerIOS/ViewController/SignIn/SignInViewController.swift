@@ -9,7 +9,6 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import IHKeyboardAvoiding
 
 class SignInViewController: BaseViewController {
 
@@ -33,7 +32,6 @@ class SignInViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-        KeyboardAvoiding.avoidingView = self.passwordTxt
         
         emailTxt.placeholder = EMAIL.localized()
         passwordTxt.placeholder = PASSWORD.localized()
@@ -63,17 +61,7 @@ class SignInViewController: BaseViewController {
         signInBtn.rx
             .tap
             .subscribe {[unowned self] (_) in
-                self.signInBtn.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                self.signInBtn.borderColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
-                self.signInBtn.borderWidth = 1
-                DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
-                    UIView.animate(withDuration: 0.5, animations: { [weak self] in
-                        guard let self = self else { return }
-                        self.signInBtn.borderWidth = 0
-                        self.signInBtn.backgroundColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
-                        NavigationCoordinator.shared.sideMenuSetup()
-                    })
-                }
+                self.login()
             }.disposed(by: disposeBag)
         
         forgetPasswordBtn.rx
@@ -88,17 +76,34 @@ class SignInViewController: BaseViewController {
                 self.registerBtn.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 self.registerBtn.borderColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
                 self.registerBtn.borderWidth = 1
-                DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
-                    UIView.animate(withDuration: 0.5, animations: { [weak self] in
-                        guard let self = self else { return }
-                        self.registerBtn.borderWidth = 0
-                        self.registerBtn.backgroundColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
-                        NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
-                    })
-                }
-                
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
             }.disposed(by: disposeBag)
+    }
+    
+    override func configureData() {
+        super.configureData()
         
+        viewModel.output.success.bind { (success) in
+            NavigationCoordinator.shared.sideMenuSetup()
+        }.disposed(by: bag)
+        
+        viewModel.output.failer.bind { (errorArr) in
+            let error = errorArr.first
+            guard let msg = error?.message else { return }
+            self.alert(title: "", message: msg, completion: nil)
+        }.disposed(by: bag)
+    }
+    
+    func login(){
+        guard let emailText = emailTxt.text?.trimmingCharacters(in: .whitespaces), emailText.count != 0 , emailText.isValidEmail() else {
+            self.alert(title: "email", message: "please, enter valid email", completion: nil)
+            return
+        }
+        guard let passwordText = passwordTxt.text?.trimmingCharacters(in: .whitespaces), passwordText.count != 0 else {
+            self.alert(title: "password", message: "please, enter password", completion: nil)
+            return
+        }
+        viewModel.signIn(email: emailText, password: passwordText)
     }
 
 }

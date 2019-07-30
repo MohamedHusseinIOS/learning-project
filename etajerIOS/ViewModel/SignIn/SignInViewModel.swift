@@ -18,39 +18,39 @@ final class SignInViewModel: BaseViewModel, ViewModelType {
     private let email = PublishSubject<String>()
     private let password = PublishSubject<String>()
     private let success = PublishSubject<Bool>()
+    private let failer = PublishSubject<[ErrorModel]>()
     
     struct Input {
         let email: AnyObserver<String>
         let password: AnyObserver<String>
-        
     }
     
     struct Output {
         let success: Observable<Bool>
-    }
-    
-    //Not using for now
-    func transfrom(input: SignInViewModel.Input) -> SignInViewModel.Output {
-        return Output(success: success.asObservable())
+        let failer: Observable<[ErrorModel]>
     }
     
     override init() {
-        self.input = Input(email: email.asObserver(), password: password.asObserver())
-        self.output = Output(success: success.asObservable())
-        
+        self.input = Input(email: email.asObserver(),
+                           password: password.asObserver())
+        self.output = Output(success: success.asObservable(),
+                             failer: failer.asObservable())
         super.init()
-        self.bindOn()
     }
     
-    func bindOn(){
-        email.asObserver().subscribe { (event) in
-            guard let email = event.element else{return}
-            print(email)
-        }.disposed(by: bag)
-        
-        password.asObserver().subscribe { (event) in
-            guard let password = event.element else{return}
-            print(password)
-        }.disposed(by: bag)
+    func signIn(email: String, password: String){
+        DataManager.shared.login(email: email, password: password) { (response) in
+            switch response {
+            case .success(let value):
+                guard let response = value as? SignInUpResponse else { return }
+                guard let token = response.accessToken else { return }
+                AppUtility.shared.saveToken(token)
+                guard let user = response.identity else { return }
+                AppUtility.shared.saveCurrentUser(user)
+                self.success.onNext(true)
+            case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.failer)
+            }
+        }
     }
 }

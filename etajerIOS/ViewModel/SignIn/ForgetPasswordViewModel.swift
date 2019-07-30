@@ -12,11 +12,23 @@ import RxSwift
 class ForgetPasswordViewModel: BaseViewModel{
     
     let email = PublishSubject<String>()
+    let failer = PublishSubject<[ErrorModel]>()
+    let successMsg = PublishSubject<String>()
     
     override init() {
         super.init()
-        email.asObserver().subscribe { (event) in
-            guard let value = event.element else{return}
-        }.disposed(by: bag)
+    }
+    
+    func requestResetPassword(email: String){
+        DataManager.shared.requestResetPassword(email: email) { (response) in
+            switch response {
+            case .success(let value):
+                guard let response = value as? SignInUpResponse else { return }
+                guard let msg = response.message else { return }
+                self.successMsg.onNext(msg)
+            case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.failer)
+            }
+        }
     }
 }

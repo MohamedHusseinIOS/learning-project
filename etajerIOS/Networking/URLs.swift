@@ -10,9 +10,12 @@ import Foundation
 
 enum URLs: String {
     
-    case login = "/api/v1/user/login"
+    case login                      = "/api/v1/user/login"
+    case signup                     = "/api/v1/user/signup"
+    case requestResetPassword       = "/api/v1/user/request-reset-password"
+    case logout                     = "/api/v1/user/logout"
     
     var URL: String{
-        return "http://etajer.maxsys.sa" + self.rawValue
+        return AppUtility.shared.currentEnviroment + self.rawValue
     }
 }

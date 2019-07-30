@@ -51,7 +51,6 @@ class ItemDetailsViewController: BaseViewController {
 
     override func configureUI() {
         super.configureUI()
-        configureData()
         
         registerCell()
         configureCollectionView()
@@ -106,7 +105,7 @@ class ItemDetailsViewController: BaseViewController {
         }.disposed(by: bag)
     }
     
-    func configureData(){
+    override func configureData(){
         viewModel.output
             .item
             .subscribe {[unowned self] (event) in

@@ -10,26 +10,25 @@ import Foundation
 
 
 protocol Decoderable {
-    func decodeJSON<T:Codable>(_ json: [String: Any], To model: T, format: JSONDecoder.KeyDecodingStrategy, isObject: Bool) -> Any?
+    func decodeJSON<T:Codable>(_ res: Any, To model: T, format: JSONDecoder.KeyDecodingStrategy) -> Any?
 }
 
 extension Decoderable {
     
-    func decodeJSON<T:Codable>(_ json: [String: Any], To model: T, format: JSONDecoder.KeyDecodingStrategy, isObject: Bool) -> Any?{
+    func decodeJSON<T:Codable>(_ res: Any, To model: T, format: JSONDecoder.KeyDecodingStrategy) -> Any?{
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = format
         do {
-            guard let jsonData = Data.convertToData(json) else{
+            guard let jsonData = Data.convertToData(res) else{
                 debugPrint("[Decoderable] decodeJSON func fails to convert json to data.")
                 return nil
             }
-            let jsonDecoder = JSONDecoder()
             var result: Any?
-            if isObject {
-                let object = try jsonDecoder.decode(T.self, from: jsonData)
+            if let _ = res as? [String: Any] {
+                let object = try decoder.decode(T.self, from: jsonData)
                 result = object
             } else {
-                let list = try jsonDecoder.decode([T].self, from: jsonData)
+                let list = try decoder.decode([T].self, from: jsonData)
                 result = list
             }
             return result

@@ -48,9 +48,32 @@ class ForgetPasswordViewController: BaseViewController {
         
         sendBtn.rx
             .tap
-            .subscribe { (_) in
-                //Code
+            .subscribe {[unowned self] (_) in
+                self.requestResetPassword()
         }.disposed(by: bag)
+    }
+    
+    override func configureData() {
+        viewModel.successMsg.bind {[unowned self] (successMsg) in
+            self.alert(title: "", message: successMsg, completion: {
+                NavigationCoordinator.shared.mainNavigator.popViewController(to: .signInViewController)
+            })
+        }.disposed(by: bag)
+        
+        viewModel.failer.bind { (errorArr) in
+            let error = errorArr.first
+            guard let msg = error?.message else { return }
+            self.alert(title: "", message: msg, completion: nil)
+        }.disposed(by: bag)
+    }
+    
+    func requestResetPassword(){
+        
+        guard let emailText = emailTxt.text?.trimmingCharacters(in: .whitespaces), emailText.count != 0 , emailText.isValidEmail() else {
+            self.alert(title: "email", message: "please, enter valid email", completion: nil)
+            return
+        }
+        viewModel.requestResetPassword(email: emailText)
     }
 
 }
