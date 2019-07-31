@@ -18,7 +18,7 @@ class CategoryCell: UITableViewCell {
     @IBOutlet weak var moreBtnImg: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
     
-    var categoryItems = BehaviorSubject<[Item]>(value: [])
+    var categoryItems = BehaviorSubject<[Product]>(value: [])
     var parent: HomeViewController?
     let bag = DisposeBag()
     

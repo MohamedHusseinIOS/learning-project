@@ -67,8 +67,13 @@ class NavigationCoordinator{
     }
     
     func startApp(){
-        mainNavigator.navigate(To: .signInViewController)
+        if AppUtility.shared.currentAccessToken != nil {
+            sideMenuSetup()
+        } else {
+            mainNavigator.navigate(To: .signInViewController)
+        }
         sharedAppDelegate.window?.rootViewController = nvc
         sharedAppDelegate.window?.makeKeyAndVisible()
+        
     }
 }

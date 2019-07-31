@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ErrorModel: Codable, Decoderable{
+struct ErrorModel: BaseModel{
     
     var name: String?
     var field: String?

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SignInUpResponse: Codable, Decoderable {
+struct SignInUpResponse: BaseModel {
     
     var accessToken: String?
     var message: String?

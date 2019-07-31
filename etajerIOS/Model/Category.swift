@@ -9,18 +9,37 @@
 import Foundation
 import UIKit
 
-struct Category: Codable, Decoderable{
+struct Categories: BaseModel {
     
-    var title: String?
-    var items: Array<Item>?
-    
-    init(title: String, items: [Item]) {
-        self.title = title
-        self.items = items
-    }
+    var categories: [Category]?
     
     enum CodingKeys: String, CodingKey{
-        case title
+        case categories
+    }
+}
+
+struct Category: BaseModel{
+    
+    var id: Int?
+    var name: String?
+    var isShipAble: Bool?
+    var acceptAuction: Bool?
+    var theIcon: String?
+    var theBanner: String?
+    var childs: [Category]?
+    var products: [Product]?
+    
+    
+    
+    enum CodingKeys: String, CodingKey{
+        case id
+        case name
+        case isShipAble
+        case acceptAuction
+        case theIcon = "theIcon"
+        case theBanner = "theBanner"
+        case childs
+        case products
     }
 }
 
@@ -36,19 +55,10 @@ struct Item: Codable, Decoderable {
     enum CodingKeys: String, CodingKey{
         case name
         case price
-        case image
+//        case image
+//        case images
         case rating
         case overbid
-        case images
     }
 }
 
-extension Item {
-    func encode(to encoder: Encoder) throws {
-
-    }
-
-    init(from decoder: Decoder) throws {
-
-    }
-}

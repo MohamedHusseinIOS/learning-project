@@ -24,89 +24,9 @@ class HomeViewController: BaseViewController {
     let viewModel = HomeViewModel()
     var banners = [#imageLiteral(resourceName: "baner1"),#imageLiteral(resourceName: "baner2"),#imageLiteral(resourceName: "baner3")]
     
-    let categories: [Category] = [Category(title: CATEGORY_TITLE_1.localized(),
-                                           items: [Item(name: "شاشة سامسونج",
-                                                        price: "3000 ر.س",
-                                                        image: #imageLiteral(resourceName: "screen"),
-                                                        images: nil,
-                                                        rating: 3,
-                                                        overbid: ""),
-                                                   Item(name: "لكرس إى اس 350",
-                                                        price: "45000 ر.س",
-                                                        image: #imageLiteral(resourceName: "lexus"),
-                                                        images: nil,
-                                                        rating: 5,
-                                                        overbid: ""),
-                                                   Item(name: "لكرس إى اس 350",
-                                                        price: "45000 ر.س",
-                                                        image: #imageLiteral(resourceName: "lexus"),
-                                                        images: nil,
-                                                        rating: 5,
-                                                        overbid: "")]),
-                                  Category(title: CATEGORY_TITLE_2.localized(),
-                                           items:[Item(name: "سجادة سرات",
-                                                       price: "108888 ر.س",
-                                                       image: #imageLiteral(resourceName: "carpet"),
-                                                       images: nil,
-                                                       rating: 4,
-                                                       overbid: LAST_OVERBID.localized()),
-                                                  Item(name: "شاشة ال جي",
-                                                       price: "2000 ر.س",
-                                                       image: #imageLiteral(resourceName: "lgScreen"),
-                                                       images: nil,
-                                                       rating: 4,
-                                                       overbid: LAST_OVERBID.localized()),
-                                                  Item(name: "لكرس إى اس 350",
-                                                       price: "45000 ر.س",
-                                                       image: #imageLiteral(resourceName: "lexus"),
-                                                       images: nil,
-                                                       rating: 5,
-                                                       overbid: LAST_OVERBID.localized())]),
-                                  Category(title: "بانر", items: []),
-                                  Category(title: "HELTH_AND_SELF_CARE".localized(),
-                                           items: [Item(name: "شاشة سامسونج",
-                                                        price: "3000 ر.س",
-                                                        image: #imageLiteral(resourceName: "screen"),
-                                                        images: nil,
-                                                        rating: 3,
-                                                        overbid: ""),
-                                                   Item(name: "لكرس إى اس 350",
-                                                        price: "45000 ر.س",
-                                                        image: #imageLiteral(resourceName: "lexus"),
-                                                        images: nil,
-                                                        rating: 5,
-                                                        overbid: ""),
-                                                   Item(name: "لكرس إى اس 350",
-                                                        price: "45000 ر.س",
-                                                        image: #imageLiteral(resourceName: "lexus"),
-                                                        images: nil,
-                                                        rating: 5,
-                                                        overbid: "")]),
-                                  Category(title: "MOBILES_AND_TAPLETS".localized(),
-                                           items: [Item(name: "شاشة سامسونج",
-                                                        price: "3000 ر.س",
-                                                        image: #imageLiteral(resourceName: "screen"),
-                                                        images: nil,
-                                                        rating: 3,
-                                                        overbid: ""),
-                                                   Item(name: "لكرس إى اس 350",
-                                                        price: "45000 ر.س",
-                                                        image: #imageLiteral(resourceName: "lexus"),
-                                                        images: nil,
-                                                        rating: 5,
-                                                        overbid: ""),
-                                                   Item(name: "لكرس إى اس 350",
-                                                        price: "45000 ر.س",
-                                                        image: #imageLiteral(resourceName: "lexus"),
-                                                        images: nil,
-                                                        rating: 5,
-                                                        overbid: "")])]
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        viewModel.input.categories.onNext(categories)
         registerCell()
         
     }
@@ -163,24 +83,30 @@ class HomeViewController: BaseViewController {
         homeTableView.dataSource = nil
         homeTableView.separatorStyle = .none
         viewModel.output
-            .categories
+            .homeData
             .bind(to: homeTableView.rx.items){ tableView, row, element in
                 let indexPath = IndexPath(row: row, section: 0)
-                guard row != 2 else{
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "BannerCell", for: indexPath) as? BannerCell else {return BannerCell()}
-                    cell.imageView?.contentMode = .scaleAspectFill
-                    cell.bannerImg.image = #imageLiteral(resourceName: "baner4")
-                    return cell
-                }
-                
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell else {return CategoryCell()}
-                guard let items = element.items else {return cell}
-                cell.parent = self
-                cell.categoryNameLbl.text = element.title
-                cell.moreItemsLbl.text = MORE_ITEMS.localized()
-                cell.categoryItems.onNext(items)
+                let cell = self.makeCellin(indexPath: indexPath, byTableView: tableView, element: element)
                 return cell
         }.disposed(by: bag)
+    }
+    
+    func makeCellin(indexPath: IndexPath, byTableView tableView: UITableView, element: HomeViewModel.HomeData) -> UITableViewCell {
+        
+        guard indexPath.row != 2 else{
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BannerCell", for: indexPath) as? BannerCell else {return BannerCell()}
+            cell.imageView?.contentMode = .scaleAspectFill
+            
+            return cell
+        }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell else {return CategoryCell()}
+        guard let items = element.data as? [Product]  else { return cell }
+        cell.parent = self
+        cell.categoryNameLbl.text = element.title?.rawValue
+        cell.moreItemsLbl.text = MORE_ITEMS.localized()
+        cell.categoryItems.onNext(items)
+        return cell
     }
     
     func didSelectRow(){

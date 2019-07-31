@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Codable, Decoderable {
+struct User: BaseModel{
     
     var id: Int?
     var avatar: String?

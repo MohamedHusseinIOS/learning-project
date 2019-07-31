@@ -143,7 +143,7 @@ class CategoryItemsViewController: BaseViewController {
             .items
             .bind(to: itemsCollectionView.rx.items){ collectionView, item, element in
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
-                cell.bindOn(item: element)
+                //cell.bindOn(item: element)
                 cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                 return cell
             }.disposed(by: bag)
