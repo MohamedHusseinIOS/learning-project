@@ -15,18 +15,18 @@ struct Product: BaseModel{
     let auctionMinPrice : String?
     let auctionPrice : String?
     let auctionSellPrice : String?
-    let boldTitle : Bool?
+    let boldTitle : Int?
     let categoryId : Int?
     let createdAt : Int?
     let desc : String?
-    let freeInternational : Bool?
-    let freeShipping : Bool?
-    let galleryPlus : Bool?
+    let freeInternational : Int?
+    let freeShipping : Int?
+    let galleryPlus : Int?
     let id : Int?
     let imgBaseUrl : String?
     let imgPath : String?
-    let isShipAble : Bool?
-    let pickupAddress : String?
+    let isShipAble : Int?
+    let pickupAddress : Int?
     let priceType : Int?
     let productStatus : Int?
     let returnPolicy : Int?
@@ -46,15 +46,15 @@ struct Product: BaseModel{
     let unshipEmail : String?
     let unshipMobile : String?
     let unshipName : String?
-    let unshipViewInfo : String?
+    let unshipViewInfo : Int?
     let upc : String?
     let updatedAt : Int?
     let useSubtitle : Int?
-    let usedStatus : Int?
+    let usedStatus : String?
     let userId : Int?
     let viewAt : String?
     let viewDuration : Int?
-    let weight : Double?
+    let weight : String?
     let weightUnit : Double?
     
     enum CodingKeys: String, CodingKey {

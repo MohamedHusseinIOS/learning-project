@@ -22,14 +22,12 @@ struct Category: BaseModel{
     
     var id: Int?
     var name: String?
-    var isShipAble: Bool?
-    var acceptAuction: Bool?
+    var isShipAble: Int?
+    var acceptAuction: Int?
     var theIcon: String?
     var theBanner: String?
     var childs: [Category]?
-    var products: [Product]?
-    
-    
+    var products: Product?
     
     enum CodingKeys: String, CodingKey{
         case id

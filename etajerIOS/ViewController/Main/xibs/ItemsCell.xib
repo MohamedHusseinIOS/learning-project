@@ -32,24 +32,36 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="uRD-xa-Hww"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-61-2J3">
-                                <rect key="frame" x="5" y="180" width="34" height="21"/>
-                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqx-7n-fo5">
-                                <rect key="frame" x="5" y="226" width="29" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-61-2J3">
+                                <rect key="frame" x="5" y="180" width="173" height="50"/>
                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuA-xR-gEL">
-                                <rect key="frame" x="5" y="245" width="34" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqx-7n-fo5">
+                                <rect key="frame" x="5" y="231" width="29" height="18"/>
+                                <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuA-xR-gEL">
+                                <rect key="frame" x="5" y="250" width="34" height="21"/>
                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="14"/>
                                 <color key="textColor" red="0.062745098039215685" green="0.43529411764705883" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0A-L3-Lpa" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="119" y="251" width="59" height="15"/>
@@ -85,21 +97,24 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="textSize">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uuA-xR-gEL" firstAttribute="top" secondItem="dqx-7n-fo5" secondAttribute="bottom" constant="1" id="0Jh-cQ-PaY"/>
+                            <constraint firstItem="dqx-7n-fo5" firstAttribute="top" secondItem="G7h-61-2J3" secondAttribute="bottom" constant="1" id="6oy-Km-5lf"/>
                             <constraint firstItem="F0A-L3-Lpa" firstAttribute="trailing" secondItem="maM-uX-IoW" secondAttribute="trailing" id="Dmk-O9-cR5"/>
                             <constraint firstAttribute="bottom" secondItem="F0A-L3-Lpa" secondAttribute="bottom" constant="10" id="LRb-hs-9Za"/>
                             <constraint firstItem="G7h-61-2J3" firstAttribute="top" secondItem="maM-uX-IoW" secondAttribute="bottom" constant="5" id="Nju-Gn-0EN"/>
                             <constraint firstAttribute="height" constant="276" id="PmG-Bp-yEu"/>
+                            <constraint firstItem="G7h-61-2J3" firstAttribute="trailing" secondItem="maM-uX-IoW" secondAttribute="trailing" id="Qab-cO-Hv8"/>
                             <constraint firstItem="dqx-7n-fo5" firstAttribute="leading" secondItem="maM-uX-IoW" secondAttribute="leading" id="QrU-PM-aRy"/>
                             <constraint firstItem="G7h-61-2J3" firstAttribute="leading" secondItem="maM-uX-IoW" secondAttribute="leading" id="VKb-Ly-n7N"/>
                             <constraint firstAttribute="trailing" secondItem="maM-uX-IoW" secondAttribute="trailing" constant="5" id="X6j-dI-isr"/>
                             <constraint firstItem="uuA-xR-gEL" firstAttribute="leading" secondItem="maM-uX-IoW" secondAttribute="leading" id="dgS-ts-n4k"/>
-                            <constraint firstAttribute="bottom" secondItem="uuA-xR-gEL" secondAttribute="bottom" constant="10" id="hY5-M8-HrO"/>
+                            <constraint firstAttribute="bottom" secondItem="uuA-xR-gEL" secondAttribute="bottom" constant="5" id="hY5-M8-HrO"/>
                             <constraint firstItem="maM-uX-IoW" firstAttribute="leading" secondItem="KkA-fP-fVM" secondAttribute="leading" constant="5" id="lLV-sq-Ba3"/>
                             <constraint firstItem="maM-uX-IoW" firstAttribute="top" secondItem="KkA-fP-fVM" secondAttribute="top" constant="5" id="nJL-eh-6mz"/>
                         </constraints>

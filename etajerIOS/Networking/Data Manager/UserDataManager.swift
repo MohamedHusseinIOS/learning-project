@@ -18,7 +18,7 @@ extension DataManager {
         SVProgressHUD.show()
         NetworkManager.shared.post(url: URLs.login.URL, paramters: params) { (response) in
             SVProgressHUD.dismiss()
-            self.handelResponseData(response: response, model: SignInUpResponse(), completion: completion)
+            self.handelResponseData(response: response, model: SignInUpResponse.self, completion: completion)
         }
     }
     
@@ -33,7 +33,7 @@ extension DataManager {
         SVProgressHUD.show()
         NetworkManager.shared.post(url: URLs.signup.URL, paramters: params) { (response) in
             SVProgressHUD.dismiss()
-            self.handelResponseData(response: response, model: SignInUpResponse(), completion: completion)
+            self.handelResponseData(response: response, model: SignInUpResponse.self, completion: completion)
         }
     }
     
@@ -43,7 +43,7 @@ extension DataManager {
         SVProgressHUD.show()
         NetworkManager.shared.post(url: URLs.requestResetPassword.URL, paramters: params) { (response) in
             SVProgressHUD.dismiss()
-            self.handelResponseData(response: response, model: SignInUpResponse(), completion: completion)
+            self.handelResponseData(response: response, model: SignInUpResponse.self, completion: completion)
         }
     }
     
@@ -51,7 +51,7 @@ extension DataManager {
         SVProgressHUD.show()
         NetworkManager.shared.get(url: URLs.currentUser.URL) { (response) in
             SVProgressHUD.dismiss()
-            self.handelResponseData(response: response, model: User(), completion: completion)
+            self.handelResponseData(response: response, model: User.self, completion: completion)
         }
     }
     

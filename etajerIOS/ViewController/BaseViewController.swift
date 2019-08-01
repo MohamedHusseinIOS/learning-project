@@ -27,7 +27,7 @@ class BaseViewController: UIViewController, configrationContract, Instantiator {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle{

@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import IHKeyboardAvoiding
 
 class ForgetPasswordViewController: BaseViewController {
 
@@ -30,7 +29,6 @@ class ForgetPasswordViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
-        KeyboardAvoiding.avoidingView = self.view
         backBtn.addTarget(self, action: #selector(backBtnTapped(_:)), for: .touchUpInside)
         if AppUtility.shared.currentLang == .ar{
             backBtn.setImage(#imageLiteral(resourceName: "back-en"), for: .normal)

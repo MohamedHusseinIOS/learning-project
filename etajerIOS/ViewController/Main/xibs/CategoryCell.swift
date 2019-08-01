@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import SkeletonView
 
 class CategoryCell: UITableViewCell {
 
@@ -26,7 +27,6 @@ class CategoryCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         registerCell()
-        configureCategoryCollection()
         moreBtn.tintColor = #colorLiteral(red: 0.7112585902, green: 0.3965147138, blue: 0.627440989, alpha: 1)
         moreBtn.imageView?.contentMode = .scaleAspectFit
         if AppUtility.shared.currentLang == .ar{
@@ -59,14 +59,15 @@ class CategoryCell: UITableViewCell {
         flowLayout.minimumLineSpacing = 0
         categoryCollectionView.setCollectionViewLayout(flowLayout, animated: true)
         categoryCollectionView.scrollsToTop = true
-        categoryItems.bind(to: categoryCollectionView.rx.items){ collectionView, item, element in
+        categoryItems.bind(to: categoryCollectionView.rx.items){[unowned self] collectionView, item, element in
+            self.categoryCollectionView.hideSkeleton()
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
             cell.bindOn(item: element)
-            cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            //cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             return cell
         }.disposed(by: bag)
         
-        categoryCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        //categoryCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
         categoryCollectionView.rx.itemSelected.subscribe { (event) in
             if self.categoryNameLbl.text! == CATEGORY_TITLE_2.localized() {
@@ -77,4 +78,26 @@ class CategoryCell: UITableViewCell {
         }.disposed(by: bag)
     }
 
+}
+
+extension CategoryCell: SkeletonCollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "ItemsCell"
+    }
 }

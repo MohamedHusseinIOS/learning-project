@@ -10,12 +10,12 @@ import Foundation
 
 
 protocol Decoderable {
-    func decodeJSON<T:Codable>(_ res: Any, To model: T, format: JSONDecoder.KeyDecodingStrategy) -> Any?
+    static func decodeJSON<T:Codable>(_ res: Any, To model: T.Type, format: JSONDecoder.KeyDecodingStrategy) -> Any?
 }
 
 extension Decoderable {
     
-    func decodeJSON<T:Codable>(_ res: Any, To model: T, format: JSONDecoder.KeyDecodingStrategy) -> Any?{
+    static func decodeJSON<T:Codable>(_ res: Any, To model: T.Type, format: JSONDecoder.KeyDecodingStrategy) -> Any?{
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = format
         do {
@@ -33,7 +33,7 @@ extension Decoderable {
             }
             return result
         } catch let _error {
-            debugPrint(_error.localizedDescription)
+            print(_error)
             return nil
         }
     }

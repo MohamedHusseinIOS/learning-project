@@ -26,7 +26,7 @@ struct HomeResponse: BaseModel {
         case ads3
         case categories
         case latestProducts
-        case lastestActions
+        case latestAuctions
         case adsUnderAuctions
         case bottomCategories
     }
@@ -42,7 +42,7 @@ struct HomeResponse: BaseModel {
         ads3                = try container.decode([Ads].self, forKey: .ads3)
         categories          = try container.decode([Category].self, forKey: .categories)
         latestProducts      = try container.decode([Product].self, forKey: .latestProducts)
-        latestAuctions      = try container.decode([Product].self, forKey: .lastestActions)
+        latestAuctions      = try container.decode([Product].self, forKey: .latestAuctions)
         adsUnderAuctions    = try container.decode([Ads].self, forKey: .adsUnderAuctions)
         bottomCategories    = try container.decode([Category].self, forKey: .bottomCategories)
     }
@@ -56,7 +56,7 @@ struct HomeResponse: BaseModel {
         try container.encode(ads3.self, forKey: .ads3)
         try container.encode(categories.self, forKey: .categories)
         try container.encode(latestProducts.self, forKey: .latestProducts)
-        try container.encode(latestAuctions.self, forKey: .lastestActions)
+        try container.encode(latestAuctions.self, forKey: .latestAuctions)
         try container.encode(adsUnderAuctions.self, forKey: .adsUnderAuctions)
         try container.encode(bottomCategories.self, forKey: .bottomCategories)
     }

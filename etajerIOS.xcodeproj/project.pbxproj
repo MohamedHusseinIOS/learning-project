@@ -311,6 +311,7 @@
 				D91947E822CDFF4000302A75 /* Info.plist */,
 				D941B93D22EF34AC00C847D0 /* Networking */,
 				D91947EE22CDFF6300302A75 /* Assets */,
+				D91947DC22CDFF3F00302A75 /* AppDelegate.swift */,
 			);
 			path = etajerIOS;
 			sourceTree = "<group>";
@@ -322,7 +323,6 @@
 				D91947E322CDFF4000302A75 /* Assets.xcassets */,
 				D919480722CE07B400302A75 /* din-next-lt-w23-regular.ttf */,
 				D9C2DC6622E0C19E00E4385D /* din-next-lt-w23-bold.ttf */,
-				D91947DC22CDFF3F00302A75 /* AppDelegate.swift */,
 				D9F8B44922D2178000DCD15C /* LocalizationTitles.swift */,
 				D9F8B44722D2170C00DCD15C /* Localizable.strings */,
 			);
@@ -760,8 +760,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -776,8 +776,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",

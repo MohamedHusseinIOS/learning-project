@@ -82,7 +82,7 @@ class NetworkManager {
     
     func errorHandling(_ res: Any, code: Int,completion: @escaping responseCallback){
         let error = ApiError(rawValue: code)
-        let errorModel = ErrorModel().decodeJSON(res, To: ErrorModel(), format: .convertFromSnakeCase)
+        let errorModel = ErrorModel.decodeJSON(res, To: ErrorModel.self, format: .convertFromSnakeCase)
         completion(.failure(error, errorModel))
     }
 }

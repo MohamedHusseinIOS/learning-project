@@ -2,8 +2,8 @@ PODS:
   - Alamofire (4.8.2)
   - Cosmos (19.0.3)
   - Differentiator (3.1.0)
-  - IHKeyboardAvoiding (4.7)
   - IQKeyboardManagerSwift (6.4.0)
+  - Kingfisher (5.7.0)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxDataSources (3.1.0):
@@ -18,8 +18,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Cosmos (~> 19.0)
-  - IHKeyboardAvoiding
   - IQKeyboardManagerSwift
+  - Kingfisher (~> 5.0)
   - RxCocoa (~> 4.0)
   - RxDataSources (~> 3.1.0)
   - RxSwift (~> 4.0)
@@ -32,8 +32,8 @@ SPEC REPOS:
     - Alamofire
     - Cosmos
     - Differentiator
-    - IHKeyboardAvoiding
     - IQKeyboardManagerSwift
+    - Kingfisher
     - RxCocoa
     - RxDataSources
     - RxSwift
@@ -45,8 +45,8 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  IHKeyboardAvoiding: 4cae0880c3975feffa278495df894c5166e71ad0
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
+  Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
@@ -54,6 +54,6 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: fcc90406b34cd1d19f981e85cf715807f79a1673
+PODFILE CHECKSUM: 236194eac8ebf88795cc857d4a5f1886a492e916
 
 COCOAPODS: 1.6.1

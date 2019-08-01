@@ -45,7 +45,7 @@ class NavigationCoordinator{
         nvc.viewControllers.removeAll(keepingCapacity: true)
         if AppUtility.shared.currentLang == .en{
             let slideMenuController = SlideMenuController(mainViewController: homeVC,
-                                                      leftMenuViewController: slideMenuVC)
+                                                          leftMenuViewController: slideMenuVC)
             nvc.viewControllers.append(slideMenuController)
         }else{
             let slideMenuController = SlideMenuController(mainViewController: homeVC,

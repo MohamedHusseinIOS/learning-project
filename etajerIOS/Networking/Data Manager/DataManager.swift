@@ -14,7 +14,7 @@ class DataManager {
     static let shared = DataManager()
     private init(){}
     
-    func handelResponseData<T: BaseModel>( response: ResponseEnum, model: T, completion: @escaping NetworkManager.responseCallback){
+    func handelResponseData<T: BaseModel>( response: ResponseEnum, model: T.Type, completion: @escaping NetworkManager.responseCallback){
         switch response {
         case .success(let value):
             guard let value = value else { return }
@@ -28,7 +28,7 @@ class DataManager {
     func getCategories(completion: @escaping NetworkManager.responseCallback){
         SVProgressHUD.show()
         NetworkManager.shared.get(url: URLs.categories.URL) { (response) in
-            self.handelResponseData(response: response, model: Category(), completion: completion)
+            self.handelResponseData(response: response, model: Category.self, completion: completion)
         }
     }
 }

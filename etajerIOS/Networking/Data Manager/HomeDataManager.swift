@@ -11,8 +11,8 @@ import Foundation
 extension DataManager {
     
     func gethomePage(completion: @escaping NetworkManager.responseCallback){
-        NetworkManager.shared.get(url: URLs.categories.URL) { (response) in
-            self.handelResponseData(response: response, model: HomeResponse(), completion: completion)
+        NetworkManager.shared.get(url: URLs.homePage.URL) { (response) in
+            self.handelResponseData(response: response, model: HomeResponse.self, completion: completion)
         }
     }
     

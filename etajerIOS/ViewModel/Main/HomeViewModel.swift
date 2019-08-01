@@ -22,7 +22,7 @@ class HomeViewModel: BaseViewModel, ViewModelType {
             case latestProduct
             case latestAuction
             case adsUnderAuction
-            case bottomCategories
+            case bottomCategories = "categories"
         }
     }
     
@@ -30,30 +30,30 @@ class HomeViewModel: BaseViewModel, ViewModelType {
     
     struct Output {
         let homeData: Observable<[HomeViewModel.HomeData]>
-        let scrollEmemnets: Observable<[Ads]>
+        let scrollElemnets: Observable<[Ads]>
         let failer: Observable<[ErrorModel]>
     }
     
-    
-    
     private let homeData = PublishSubject<[HomeViewModel.HomeData]>()
-    private let scrollEmemnets = PublishSubject<[Ads]>()
+    private let scrollElemnets = PublishSubject<[Ads]>()
     private let failer = PublishSubject<[ErrorModel]>()
     
     override init() {
         self.output = Output(homeData: homeData.asObservable(),
-                             scrollEmemnets: scrollEmemnets.asObservable(),
+                             scrollElemnets: scrollElemnets.asObservable(),
                              failer: failer.asObservable())
         self.input = Input()
     }
     
-    func getHome(){
+    func getHome(parent: HomeViewController){
+        
         DataManager.shared.gethomePage {[unowned self] (response) in
             switch response {
             case .success(let value):
-                
+                parent.homeTableView.delegate = nil
+                parent.homeTableView.dataSource = nil
                 guard let homeRes = value as? HomeResponse,
-                      let ads = homeRes.ads1,
+                      var ads = homeRes.ads1,
                       let lastProducts = homeRes.latestProducts,
                       let lastAuction = homeRes.latestAuctions,
                       let adsUnderAuction = homeRes.adsUnderAuctions,
@@ -63,9 +63,10 @@ class HomeViewModel: BaseViewModel, ViewModelType {
                                HomeData(title: .latestAuction, data: lastAuction),
                                HomeData(title: .adsUnderAuction, data: adsUnderAuction),
                                HomeData(title: .bottomCategories, data: bottomCatrgories)]
-                
+                parent.configureTableView()
                 self.homeData.onNext(dataArr)
-                self.scrollEmemnets.onNext(ads)
+                ads.reverse()
+                self.scrollElemnets.onNext(ads)
             case .failure(_, let data):
                 self.handelApiError(data: data, failer: self.failer)
             }

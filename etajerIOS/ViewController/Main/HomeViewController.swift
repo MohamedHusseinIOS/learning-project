@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import SkeletonView
 
 class HomeViewController: BaseViewController {
 
@@ -22,18 +23,17 @@ class HomeViewController: BaseViewController {
     
     
     let viewModel = HomeViewModel()
-    var banners = [#imageLiteral(resourceName: "baner1"),#imageLiteral(resourceName: "baner2"),#imageLiteral(resourceName: "baner3")]
+    var banners: Array<UIImage> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        registerCell()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupScrollView()
+        self.view.frame.size.height = AppUtility.shared.screenHeight
     }
     
     func registerCell(){
@@ -45,6 +45,12 @@ class HomeViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
+        registerCell()
+        configureTableView()
+        homeTableView.dataSource = self
+        homeTableView.showAnimatedGradientSkeleton()
+        sliderScrollView.showAnimatedGradientSkeleton()
+        viewModel.getHome(parent: self)
         
         menuBtn.rx
             .tap
@@ -58,7 +64,6 @@ class HomeViewController: BaseViewController {
                 NavigationCoordinator.shared.mainNavigator.navigate(To: .cartViewController)
         }.disposed(by: bag)
         
-        configureTableView()
         didSelectRow()
         sliderScrollView.rx
             .didEndDecelerating
@@ -74,8 +79,17 @@ class HomeViewController: BaseViewController {
                 self.sliderScrollView.setContentOffset(CGPoint(x:x, y:0), animated: true)
         }.disposed(by: bag)
         
-        configureTableView()
         didSelectRow()
+    }
+    
+    override func configureData() {
+        super.configureData()
+        
+        viewModel.output
+            .scrollElemnets
+            .bind {[unowned self] (adsArr) in
+                self.setupScrollView(elements: adsArr)
+        }.disposed(by: bag)
     }
     
     func configureTableView(){
@@ -84,27 +98,40 @@ class HomeViewController: BaseViewController {
         homeTableView.separatorStyle = .none
         viewModel.output
             .homeData
-            .bind(to: homeTableView.rx.items){ tableView, row, element in
+            .bind(to: homeTableView.rx.items){[unowned self] tableView, row, element in
+                self.homeTableView.hideSkeleton()
                 let indexPath = IndexPath(row: row, section: 0)
-                let cell = self.makeCellin(indexPath: indexPath, byTableView: tableView, element: element)
+                let cell = self.makeCellAt(indexPath: indexPath, byTableView: tableView, element: element)
                 return cell
         }.disposed(by: bag)
     }
     
-    func makeCellin(indexPath: IndexPath, byTableView tableView: UITableView, element: HomeViewModel.HomeData) -> UITableViewCell {
+    func makeCellAt(indexPath: IndexPath, byTableView tableView: UITableView, element: HomeViewModel.HomeData) -> UITableViewCell {
         
         guard indexPath.row != 2 else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "BannerCell", for: indexPath) as? BannerCell else {return BannerCell()}
-            cell.imageView?.contentMode = .scaleAspectFill
-            
+            cell.bannerImg?.contentMode = .scaleAspectFit
+            guard let item = (element.data as? [Ads])?.first else {return cell}
+            getImageForm(ads: item, to: cell.bannerImg)
             return cell
         }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell else {return CategoryCell()}
-        guard let items = element.data as? [Product]  else { return cell }
+        
+        guard let items = element.data as? [Product]  else {
+            let categories = element.data as? [Category]
+            let category = categories?.first
+            guard let products = category?.products else { return cell }
+            cell.categoryNameLbl.text = category?.name
+            cell.moreItemsLbl.text = MORE_ITEMS.localized()
+            cell.configureCategoryCollection()
+            cell.categoryItems.onNext([products])
+            return cell
+        }
         cell.parent = self
         cell.categoryNameLbl.text = element.title?.rawValue
         cell.moreItemsLbl.text = MORE_ITEMS.localized()
+        cell.configureCategoryCollection()
         cell.categoryItems.onNext(items)
         return cell
     }
@@ -117,10 +144,20 @@ class HomeViewController: BaseViewController {
         }.disposed(by: bag)
     }
     
-    func setupScrollView(){
+    func getImageForm(ads: Ads, to imageView: UIImageView){
+        let strUrl = (ads.bannerBaseUrl ?? "") + "/" + (ads.bannerPath ?? "")
+        let url = URL(string: strUrl)
+        imageView.kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: { (_, _) in
+            imageView.showAnimatedSkeleton()
+        }) { (_) in
+            imageView.hideSkeleton()
+        }
+    }
+    
+    func setupScrollView(elements: [Ads]){
         sliderScrollView.subviews.forEach({ $0.removeFromSuperview() })
-        sliderPageControl.numberOfPages = banners.count
-        sliderScrollView.contentSize.width = (view.bounds.width) * CGFloat(banners.count)
+        sliderPageControl.numberOfPages = elements.count
+        sliderScrollView.contentSize.width = (view.bounds.width) * CGFloat(elements.count)
         sliderScrollView.contentSize.height = headerView.bounds.height
         let childOfScrollView = UIView()
         childOfScrollView.frame.origin = CGPoint(x: 0, y: 0)
@@ -128,19 +165,18 @@ class HomeViewController: BaseViewController {
         sliderScrollView.isPagingEnabled = true
         sliderScrollView.bounces = false
         var viewsArray = [UIView]()
-        for item in banners.enumerated() {
+        for item in elements.enumerated() {
             let containerView = UIView()
             let scrollWidth = view.bounds.width
             let scrollSize = sliderScrollView.bounds.size
-            let containerPoint = CGPoint(x: scrollWidth * CGFloat(item.offset),
-                                         y: 0)
+            let containerPoint = CGPoint(x: scrollWidth * CGFloat(item.offset), y: 0)
             containerView.backgroundColor = UIColor.clear
             containerView.frame.origin = containerPoint
             containerView.frame.size.width = view.bounds.width
             containerView.frame.size.height = scrollSize.height
             containerView.tag = item.offset
             
-            let viewOrigin = CGPoint(x: 0 , y: 0)
+            let viewOrigin = CGPoint(x: 0, y: 0)
             let viewSize = containerView.bounds.size//CGSize(width: AppUtility.shared.screenWidth, height: sliderScrollView.frame.height)
             let imageView = UIImageView()
             
@@ -148,7 +184,8 @@ class HomeViewController: BaseViewController {
             imageView.clipsToBounds = true
             imageView.frame = CGRect(origin: viewOrigin, size: viewSize)
             imageView.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-            imageView.image = item.element
+            imageView.isSkeletonable = true
+            getImageForm(ads: item.element, to: imageView)
             
             if AppUtility.shared.currentLang == .ar{
                 imageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
@@ -163,6 +200,30 @@ class HomeViewController: BaseViewController {
         }
         sliderScrollView.showsHorizontalScrollIndicator = false
         sliderScrollView.bringSubviewToFront(sliderPageControl)
+    }
+}
+
+
+extension HomeViewController: SkeletonTableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        return UITableViewCell()
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "CategoryCell"
     }
 }

@@ -10,7 +10,8 @@
 #endif
 #endif
 
+#import "Kingfisher.h"
 
-FOUNDATION_EXPORT double IHKeyboardAvoidingVersionNumber;
-FOUNDATION_EXPORT const unsigned char IHKeyboardAvoidingVersionString[];
+FOUNDATION_EXPORT double KingfisherVersionNumber;
+FOUNDATION_EXPORT const unsigned char KingfisherVersionString[];
 
