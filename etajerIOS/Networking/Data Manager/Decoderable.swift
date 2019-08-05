@@ -24,6 +24,7 @@ extension Decoderable {
                 return nil
             }
             var result: Any?
+            
             if let _ = res as? [String: Any] {
                 let object = try decoder.decode(T.self, from: jsonData)
                 result = object

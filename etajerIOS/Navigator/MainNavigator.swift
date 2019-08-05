@@ -33,19 +33,31 @@ class MainNavigator{
 extension MainNavigator: Navigator{
     //MARK:- Destination
     enum Destination {
-        case homeViewController
-        case sideMenuViewController
+        
+        //SignIn Stroyboard
         case signInViewController
         case signUpViewController
         case forgetPasswordViewController
-        case categoryItemsViewController(_ categoryName: String, _ isAuction: Bool)
-        case itemDetailsViewController
-        case auctionDetailsViewController
+        
+        //Main Storyboard
+        case homeViewController
+        case sideMenuViewController
+        //Categories
+        case categoryItemsViewController(_ categoryName: String,
+                                         _ products: [Product]?,
+                                         _ categoryId: Int?)
+        case itemDetailsViewController(_ productId: Int)
+        case auctionDetailsViewController(_ productId: Int)
+        
+        //My Account VC
         case myAccountViewController
         case favoritesViewController
         case notificationViewController
         case addressesViewController
+        
+        //Cart VC
         case cartViewController
+        // child navigator in cart VC
         case cartPageViewController
         case cartAddressViewController
         case cartPaymentViewController
@@ -88,17 +100,26 @@ extension MainNavigator: Navigator{
         case .forgetPasswordViewController:
             let vc = ForgetPasswordViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: ForgetPasswordViewController())
             return vc
-        case .categoryItemsViewController(let title, let isAuction):
+        case .categoryItemsViewController(let title, let products, let categoryId):
             let vc = CategoryItemsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CategoryItemsViewController())
             vc?.title = title
-            vc?.isAuction = isAuction
+            vc?.categoryId = categoryId
+            guard let products = products else { return vc }
+            vc?.configureItemsCollection()
+            vc?.viewModel.input.products.onNext(products)
             return vc
-        case .itemDetailsViewController:
+            
+            
+        case .itemDetailsViewController(let productId):
             let vc = ItemDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: ItemDetailsViewController())
+            vc?.productId = productId
             return vc
-        case .auctionDetailsViewController:
+        case .auctionDetailsViewController(let productId):
             let vc = AuctionDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AuctionDetailsViewController())
+            vc?.productId = productId
             return vc
+            
+
         case .myAccountViewController:
             let vc = MyAccountViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MyAccountViewController())
             return vc

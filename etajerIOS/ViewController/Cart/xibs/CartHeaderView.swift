@@ -12,7 +12,7 @@ class CartHeaderView: UIView {
 
     
         
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var cartImg: UIImageView!
     @IBOutlet weak var addressImg: UIImageView!
     @IBOutlet weak var paymentImg: UIImageView!

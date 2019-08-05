@@ -8,6 +8,22 @@
 
 import Foundation
 
+struct Items: BaseModel{
+    
+    let items: [Product]?
+
+    enum CodingKeys: String,CodingKey{
+        case items
+    }
+}
+
+struct Products: BaseModel {
+    let product: Product?
+    enum CodingKeys: String, CodingKey{
+        case product
+    }
+}
+
 struct Product: BaseModel{
     
     let activateBuyNow : Int?
@@ -23,6 +39,7 @@ struct Product: BaseModel{
     let freeShipping : Int?
     let galleryPlus : Int?
     let id : Int?
+    let rating: String?
     let imgBaseUrl : String?
     let imgPath : String?
     let isShipAble : Int?
@@ -56,6 +73,7 @@ struct Product: BaseModel{
     let viewDuration : Int?
     let weight : String?
     let weightUnit : Double?
+    let images: [ImageModel]?
     
     enum CodingKeys: String, CodingKey {
         case activateBuyNow
@@ -71,6 +89,7 @@ struct Product: BaseModel{
         case freeShipping
         case galleryPlus
         case id
+        case rating
         case imgBaseUrl
         case imgPath
         case isShipAble
@@ -104,5 +123,36 @@ struct Product: BaseModel{
         case viewDuration
         case weight
         case weightUnit
+        case images
+    }
+}
+
+
+struct Images: BaseModel {
+    
+    var images: Array<ImageModel>?
+    
+    enum CodingKeys: String, CodingKey{
+        case images
+    }
+}
+
+struct ImageModel: BaseModel {
+    var path: String?
+    var baseUrl: String?
+    var type: String?
+    var size: Int?
+    var name: String?
+    var order: String?
+    var timestamp: Int?
+    
+    enum CodingKeys: String, CodingKey{
+        case path
+        case baseUrl
+        case type
+        case size
+        case name
+        case order
+        case timestamp
     }
 }

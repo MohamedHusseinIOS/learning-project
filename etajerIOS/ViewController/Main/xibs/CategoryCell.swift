@@ -20,8 +20,10 @@ class CategoryCell: UITableViewCell {
     @IBOutlet weak var moreBtn: UIButton!
     
     var categoryItems = BehaviorSubject<[Product]>(value: [])
+    var products = [Product]()
+    var categoryId: Int?
     var parent: HomeViewController?
-    let bag = DisposeBag()
+    var bag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,12 +36,16 @@ class CategoryCell: UITableViewCell {
         } else {
             moreBtnImg.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
         }
+        
+        categoryItems.bind {[unowned self] (products) in
+            self.products = products
+        }.disposed(by: bag)
+        
         moreBtn.rx
             .tap
             .subscribe {[unowned self] (_) in
-                guard let title = self.categoryNameLbl.text else { return }
-                let isAuction = title == CATEGORY_TITLE_2.localized()
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, isAuction))
+                guard let title = self.categoryNameLbl.text, let id = self.categoryId else { return }
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, self.products, id))
         }.disposed(by: bag)
     }
     
@@ -60,7 +66,7 @@ class CategoryCell: UITableViewCell {
         categoryCollectionView.setCollectionViewLayout(flowLayout, animated: true)
         categoryCollectionView.scrollsToTop = true
         categoryItems.bind(to: categoryCollectionView.rx.items){[unowned self] collectionView, item, element in
-            self.categoryCollectionView.hideSkeleton()
+            self.stopSkeleton()
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
             cell.bindOn(item: element)
             //cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
@@ -69,13 +75,31 @@ class CategoryCell: UITableViewCell {
         
         //categoryCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
-        categoryCollectionView.rx.itemSelected.subscribe { (event) in
-            if self.categoryNameLbl.text! == CATEGORY_TITLE_2.localized() {
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController)
-            }else{
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController)
-            }
+        categoryCollectionView.rx
+            .itemSelected
+            .subscribe { (event) in
+                guard let index = event.element else { return }
+                let product = self.products[index.item]
+                guard let id = product.id else { return }
+                if product.auctionPrice != nil {
+                    NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController(id))
+                } else {
+                    NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController(id))
+                }
         }.disposed(by: bag)
+    }
+    
+    
+    func stopSkeleton(){
+        self.categoryCollectionView.hideSkeleton()
+        self.moreItemsLbl.hideSkeleton()
+        self.categoryNameLbl.hideSkeleton()
+        self.moreBtnImg.hideSkeleton()
+        self.moreBtn.hideSkeleton()
+    }
+    
+    override func prepareForReuse() {
+        self.bag = DisposeBag()
     }
 
 }

@@ -16,7 +16,6 @@ class ItemsCell: UICollectionViewCell {
     @IBOutlet weak var itemNameLbl: UILabel!
     @IBOutlet weak var lastOverbidLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
-    
     @IBOutlet weak var ratingView: CosmosView!
     
     override func awakeFromNib() {
@@ -34,15 +33,11 @@ class ItemsCell: UICollectionViewCell {
         ratingView.rating = Double(item.sellQty ?? 0) / 2
         let strUrl = (item.imgBaseUrl ?? "") + "/" + (item.imgPath ?? "")
         let url = URL(string: strUrl)
-        itemImg.kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: { [unowned self] (_, _) in
+        
+        itemImg.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: { [unowned self] (_, _) in
             self.itemImg.showAnimatedSkeleton()
         }) { [unowned self] (result) in
-            switch result {
-            case .success( _):
-                self.itemImg.hideSkeleton()
-            case .failure( _):
-                self.itemImg.showAnimatedGradientSkeleton()
-            }
+            self.itemImg.hideSkeleton()
         }
         stopSkeleton()
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxCocoa
+import SkeletonView
 
 class CategoryItemsViewController: BaseViewController {
 
@@ -16,75 +17,22 @@ class CategoryItemsViewController: BaseViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     
-    var isAuction: Bool?
+    var categoryId: Int?
     let viewModel = CategoryItemsViewModel()
-    var items: [Item]?
-    var items2: [Item]? = [Item(name: "شاشة سامسونج",
-                               price: "3000 ر.س",
-                               image: #imageLiteral(resourceName: "screen"),
-                               images: nil,
-                               rating: 3,
-                               overbid: ""),
-                          Item(name: "لكرس إى اس 350",
-                               price: "45000 ر.س",
-                               image: #imageLiteral(resourceName: "lexus"),
-                               images: nil,
-                               rating: 5,
-                               overbid: ""),
-                          Item(name: "لكرس إى اس 350",
-                               price: "45000 ر.س",
-                               image: #imageLiteral(resourceName: "lexus"),
-                               images: nil,
-                               rating: 5,
-                               overbid: ""),
-                          Item(name: "شاشة سامسونج",
-                               price: "3000 ر.س",
-                               image: #imageLiteral(resourceName: "screen"),
-                               images: nil,
-                               rating: 3,
-                               overbid: ""),
-                          Item(name: "لكرس إى اس 350",
-                               price: "45000 ر.س",
-                               image: #imageLiteral(resourceName: "lexus"),
-                               images: nil,
-                               rating: 5,
-                               overbid: ""),
-                          Item(name: "لكرس إى اس 350",
-                               price: "45000 ر.س",
-                               image: #imageLiteral(resourceName: "lexus"),
-                               images: nil,
-                               rating: 5,
-                               overbid: ""),
-                          Item(name: "شاشة سامسونج",
-                               price: "3000 ر.س",
-                               image: #imageLiteral(resourceName: "screen"),
-                               images: nil,
-                               rating: 3,
-                               overbid: ""),
-                          Item(name: "لكرس إى اس 350",
-                               price: "45000 ر.س",
-                               image: #imageLiteral(resourceName: "lexus"),
-                               images: nil,
-                               rating: 5,
-                               overbid: ""),
-                          Item(name: "لكرس إى اس 350",
-                               price: "45000 ر.س",
-                               image: #imageLiteral(resourceName: "lexus"),
-                               images: nil,
-                               rating: 5,
-                               overbid: "")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        guard let id = categoryId else { return }
+        viewModel.getProducts(parent: self, categoryId: id)
     }
     
     override func configureUI() {
         super.configureUI()
         titleLbl.text = title
-        changeItemOverBid()
         registerCell()
-        configureCategoryCollection()
+        configureItemsCollection()
+        itemsCollectionView.dataSource = self
+        itemsCollectionView.showAnimatedGradientSkeleton()
         
         if AppUtility.shared.currentLang == .ar {
             backImg.image = #imageLiteral(resourceName: "white-back-ar")
@@ -98,32 +46,26 @@ class CategoryItemsViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
         
-        viewModel.input
-            .items
-            .onNext(items2 ?? [])
+        itemsCollectionView.rx
+            .itemSelected
+            .subscribe {[unowned self] (event) in
+                guard let indexPath = event.element else { return }
+                self.didSelectItemIn(indexPath: indexPath)
+        }.disposed(by: bag)
         
-        itemsCollectionView.rx.itemSelected.subscribe {[unowned self] (event) in
-            guard let indexPath = event.element else { return }
-            self.didSelectItemIn(indexPath: indexPath)
+        viewModel.output.products.bind {[unowned self] (products) in
+            self.itemsCollectionView.hideSkeleton()
         }.disposed(by: bag)
     }
+    
+
     
     func registerCell(){
         let nib = UINib(nibName: "ItemsCell", bundle: .main)
         itemsCollectionView.register(nib, forCellWithReuseIdentifier: "ItemsCell")
     }
     
-    func changeItemOverBid(){
-        items2?.enumerated().forEach({[unowned self] (element) in
-            if self.isAuction ?? false {
-                var item = element.element
-                item.overbid = LAST_OVERBID.localized()
-                self.items2?[element.offset] = item
-            }
-        })
-    }
-    
-    func configureCategoryCollection(){
+    func configureItemsCollection(){
         
         itemsCollectionView.delegate = nil
         itemsCollectionView.dataSource = nil
@@ -140,10 +82,11 @@ class CategoryItemsViewController: BaseViewController {
         itemsCollectionView.setCollectionViewLayout(flowLayout, animated: true)
         itemsCollectionView.scrollsToTop = true
         viewModel.output
-            .items
+            .products
             .bind(to: itemsCollectionView.rx.items){ collectionView, item, element in
+                
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
-                //cell.bindOn(item: element)
+                cell.bindOn(item: element)
                 cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                 return cell
             }.disposed(by: bag)
@@ -152,11 +95,34 @@ class CategoryItemsViewController: BaseViewController {
     }
     
     func didSelectItemIn(indexPath: IndexPath){
-        guard !(isAuction ?? false) else {
-            NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController)
-            return
+        
+        let product = viewModel.productsArr[indexPath.item]
+        guard let id = product.id else { return }
+        
+        if product.auctionPrice != nil {
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController(id))
+        } else {
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController(id))
         }
-        NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController)
     }
+}
 
+extension CategoryItemsViewController: SkeletonCollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: indexPath)
+        return cell
+    }
+    
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "ItemsCell"
+    }
 }

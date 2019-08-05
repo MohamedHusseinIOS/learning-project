@@ -92,4 +92,28 @@ class AppUtility {
             return nil
         }
     }
+    
+    func saveAppCategories(_ categories: Categories){
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        do{
+            let encodedCategoris = try? encoder.encode(categories)
+            UserDefaults.standard.set(encodedCategoris, forKey: Constants.categories.rawValue)
+            UserDefaults.standard.synchronize()
+        }catch let error {
+            print("[saveCurrentUser] \(error.localizedDescription)")
+        }
+    }
+    
+    func getAppCategories() -> Categories? {
+        guard let categoriesData = UserDefaults.standard.object(forKey: Constants.categories.rawValue) as? Data else { return nil }
+        let decoder = JSONDecoder()
+        do{
+            let user = try? decoder.decode(Categories.self, from: categoriesData)
+            return user
+        } catch let error {
+            print("[getCurrentUser] \(error.localizedDescription)")
+            return nil
+        }
+    }
 }

@@ -28,6 +28,7 @@ struct Category: BaseModel{
     var theBanner: String?
     var childs: [Category]?
     var products: Product?
+    var productsArray: [Product]?
     
     enum CodingKeys: String, CodingKey{
         case id

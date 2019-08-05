@@ -219,10 +219,10 @@ class FavoritesViewController: BaseViewController {
     
     func didSelectItemIn(indexPath: IndexPath){
         guard !(isAuction ?? false) else {
-            NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController)
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController(0))
             return
         }
-        NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController)
+        NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController(0))
     }
 
 }

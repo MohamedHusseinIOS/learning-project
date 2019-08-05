@@ -24,11 +24,4 @@ class DataManager {
             completion(.failure(error, data))
         }
     }
-    
-    func getCategories(completion: @escaping NetworkManager.responseCallback){
-        SVProgressHUD.show()
-        NetworkManager.shared.get(url: URLs.categories.URL) { (response) in
-            self.handelResponseData(response: response, model: Category.self, completion: completion)
-        }
-    }
 }

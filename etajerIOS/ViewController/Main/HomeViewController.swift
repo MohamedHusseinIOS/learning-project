@@ -54,7 +54,8 @@ class HomeViewController: BaseViewController {
         
         menuBtn.rx
             .tap
-            .subscribe {[unowned self] (_) in
+            .subscribe {[weak self] (_) in
+                guard let self = self else { return }
                 self.openMenu()
         }.disposed(by: bag)
         
@@ -84,7 +85,6 @@ class HomeViewController: BaseViewController {
     
     override func configureData() {
         super.configureData()
-        
         viewModel.output
             .scrollElemnets
             .bind {[unowned self] (adsArr) in
@@ -115,13 +115,14 @@ class HomeViewController: BaseViewController {
             getImageForm(ads: item, to: cell.bannerImg)
             return cell
         }
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell else {return CategoryCell()}
+        cell.categoryCollectionView.showAnimatedGradientSkeleton()
         
         guard let items = element.data as? [Product]  else {
             let categories = element.data as? [Category]
             let category = categories?.first
             guard let products = category?.products else { return cell }
+            cell.categoryId = category?.id
             cell.categoryNameLbl.text = category?.name
             cell.moreItemsLbl.text = MORE_ITEMS.localized()
             cell.configureCategoryCollection()
@@ -184,7 +185,6 @@ class HomeViewController: BaseViewController {
             imageView.clipsToBounds = true
             imageView.frame = CGRect(origin: viewOrigin, size: viewSize)
             imageView.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-            imageView.isSkeletonable = true
             getImageForm(ads: item.element, to: imageView)
             
             if AppUtility.shared.currentLang == .ar{
@@ -194,6 +194,7 @@ class HomeViewController: BaseViewController {
             containerView.addSubview(imageView)
             viewsArray.append(containerView)
             childOfScrollView.addSubview(containerView)
+            sliderScrollView.hideSkeleton()
         }
         if AppUtility.shared.currentLang == .ar{
             sliderScrollView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)

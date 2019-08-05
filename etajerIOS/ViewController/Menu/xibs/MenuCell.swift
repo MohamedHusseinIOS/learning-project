@@ -23,7 +23,7 @@ class MenuCell: UITableViewCell {
         }
     }
 
-    func bindOn(_ data: MenuElements){
-        elementLbl.text = data.title
+    func bindOn(_ data: Category){
+        elementLbl.text = data.name
     }
 }

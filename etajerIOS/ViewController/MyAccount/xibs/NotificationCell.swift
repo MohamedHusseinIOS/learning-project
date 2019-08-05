@@ -74,7 +74,7 @@ class NotificationCell: UITableViewCell {
         detailsBtn.rx
             .tap
             .subscribe { (_) in
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController)
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController(0))
         }.disposed(by: bag)
     }
 

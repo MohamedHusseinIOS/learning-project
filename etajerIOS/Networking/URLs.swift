@@ -16,6 +16,8 @@ enum URLs: String {
     case currentUser                = "/api/v1/user/current"
     case logout                     = "/api/v1/user/logout"
     
+    case products                   = "/api/v1/products"
+    case productDetails             = "/api/v1/products/details?"
     case categories                 = "/api/v1/products/categories"
     case homePage                   = "/api/v1/products/homepage"
     

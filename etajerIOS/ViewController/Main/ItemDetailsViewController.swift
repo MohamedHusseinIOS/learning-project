@@ -9,6 +9,7 @@
 import UIKit
 import Cosmos
 import RxCocoa
+import RxSwift
 
 class ItemDetailsViewController: BaseViewController {
 
@@ -24,6 +25,7 @@ class ItemDetailsViewController: BaseViewController {
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     
     @IBOutlet weak var itemNameLbl: UILabel!
+    @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var itemPriceLbl: UILabel!
     @IBOutlet weak var sellerNameLbl: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
@@ -36,17 +38,13 @@ class ItemDetailsViewController: BaseViewController {
     @IBOutlet weak var numberOfItemsLbl: UILabel!
     
     let viewModel = ItemDetailsViewModel()
+    var productId: Int?
     var numberOfItems = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let item = Item(name: "سماعة بلوتوث",
-                        price: "100",
-                        image:  #imageLiteral(resourceName: "carpet"),
-                        images: [#imageLiteral(resourceName: "lexus"), #imageLiteral(resourceName: "carpet"), #imageLiteral(resourceName: "screen"), #imageLiteral(resourceName: "baner1")],
-                        rating: 5,
-                        overbid: nil)
-        viewModel.input.item.onNext(item)
+        activeSkeleton()
+        viewModel.getProductDetails(id: productId)
     }
 
     override func configureUI() {
@@ -79,6 +77,12 @@ class ItemDetailsViewController: BaseViewController {
             .tap
             .subscribe {[unowned self] (_) in
                 self.shareAction()
+        }.disposed(by: bag)
+        
+        viewModel.output
+            .images
+            .bind { [unowned self] (_) in
+                self.hideSkeleton()
         }.disposed(by: bag)
         
         imagesCollectionView.rx
@@ -126,14 +130,56 @@ class ItemDetailsViewController: BaseViewController {
         present(ac, animated: true)
     }
     
-    func updateUI(_ item: Item){
-        titleLbl.text = item.name
-        bigImg.image = item.images?.first
-        itemNameLbl.text = item.name
-        itemPriceLbl.text = "\(item.price ?? "0.0") \(S_R.localized())"
-        //sealerNameLbl.text = ""
-        ratingView.rating = Double(item.rating ?? 0)
-        //itemShortDescriptionLbl.text = ""
+    func updateUI(_ item: Product){
+        
+        let lang = AppUtility.shared.currentLang
+        let isAr = lang == .ar
+        titleLbl.text = isAr ? item.titleAr : item.titleEn
+        
+        let imgUrl = getImagesUrl(images: item.images).first
+        bigImg.kf.setImage(with: imgUrl, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: nil) {[unowned self] (res) in
+            self.bigImg.hideSkeleton()
+        }
+        itemNameLbl.text = isAr ? item.titleAr : item.titleEn
+        discountLbl.text = "\(item.sellLessPrice ?? 0) \(S_R.localized())"
+        itemPriceLbl.text = "\(item.sellPrice ?? "0.0") \(S_R.localized())"
+        ratingView.rating = Double(item.rating ?? "0") ?? 0.0
+        itemShortDescriptionLbl.text = item.shortDesc
+        //sellerNameLbl.text =
+    }
+    
+    func getImagesUrl(images: [ImageModel]?) -> [URL] {
+        var urls = [URL]()
+        images?.forEach({ (imageModel) in
+            let baseUrl = imageModel.baseUrl ?? ""
+            let imgPath = imageModel.path ?? ""
+            let strUrl = baseUrl + "/" + imgPath
+            guard let url = URL(string: strUrl) else { return }
+            urls.append(url)
+        })
+        return urls
+    }
+    
+    func activeSkeleton(){
+        bigImg.showAnimatedGradientSkeleton()
+        titleLbl.showAnimatedGradientSkeleton()
+        itemNameLbl.showAnimatedGradientSkeleton()
+        itemPriceLbl.showAnimatedGradientSkeleton()
+        ratingView.showAnimatedGradientSkeleton()
+        itemShortDescriptionLbl.showAnimatedGradientSkeleton()
+        sellerNameLbl.showAnimatedGradientSkeleton()
+        imagesCollectionView.showAnimatedGradientSkeleton()
+    }
+    
+    func hideSkeleton(){
+        bigImg.hideSkeleton()
+        titleLbl.hideSkeleton()
+        itemNameLbl.hideSkeleton()
+        itemPriceLbl.hideSkeleton()
+        ratingView.hideSkeleton()
+        itemShortDescriptionLbl.hideSkeleton()
+        sellerNameLbl.hideSkeleton()
+        imagesCollectionView.hideSkeleton()
     }
     
     func configureCollectionView(){
@@ -147,9 +193,17 @@ class ItemDetailsViewController: BaseViewController {
         
         viewModel.output
             .images
-            .bind(to: imagesCollectionView.rx.items){ collectionView, item, image in
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: IndexPath(item: item, section: 0)) as? ImageCell else {return ImageCell()}
-                cell.itemImg.image = image
+            .bind(to: imagesCollectionView.rx.items){ collectionView, item, element in
+                 let indexPath = IndexPath(item: item, section: 0)
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else {return UICollectionViewCell()}
+                
+                let baseUrl = element.baseUrl ?? ""
+                let imgPath = element.path ?? ""
+                let strUrl = baseUrl + "/" + imgPath
+                let url = URL(string: strUrl)
+                cell.itemImg.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: nil, completionHandler: { (res) in
+                    cell.itemImg.hideSkeleton()
+                })
                 return cell
             }.disposed(by: bag)
     }

@@ -27,6 +27,7 @@ class MenuViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        viewModel.getCategories()
     }
     
     override func configureUI() {
@@ -34,14 +35,31 @@ class MenuViewController: BaseViewController {
         headerSetup()
         registerMenuCell()
         loadMenuTableView()
-        viewModel.sendMenuItems()
         menuTableView.rx.itemSelected.subscribe {[unowned self] (event) in
             guard let indexPath = event.element else {return}
             self.menuTableViewDidSelectItem(in: indexPath)
         }.disposed(by: bag)
     }
     
+    override func configureData() {
+        super.configureData()
+        
+        viewModel.output
+            .faliure
+            .bind {[unowned self] (errors) in
+                guard let errorMsg = errors.first?.message else { return }
+                self.alert(title: "", message: errorMsg, completion: nil)
+        }.disposed(by: bag)
+    }
+    
+    func setUserData(){
+        guard let user = AppUtility.shared.getCurrentUser() else { return }
+        userNameLbl.text = user.name
+        membershipNumberLbl.text = "\(user.id ?? 0)"
+    }
+    
     func headerSetup(){
+        setUserData()
         myAccountBtn.imageContentMode = .scaleAspectFit
         notificationBtn.imageContentMode = .scaleAspectFit
         favoritesBtn.imageContentMode = .scaleAspectFit
@@ -79,34 +97,24 @@ class MenuViewController: BaseViewController {
         menuTableView.delegate = nil
         menuTableView.dataSource = nil
         
-        viewModel.menuElements
+        viewModel.output
+            .menuElements
             .bind(to: menuTableView.rx.items){ tableView, row, element in
-            let index = IndexPath(row: row, section: 0)
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: index) as? MenuCell else {return MenuCell()}
-            cell.bindOn(element)
-            return cell
+                let index = IndexPath(row: row, section: 0)
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: index) as? MenuCell else {return MenuCell()}
+                cell.bindOn(element)
+                return cell
         }.disposed(by: bag)
+        
     }
     
     func menuTableViewDidSelectItem(in indexPath: IndexPath){
-        let element = MenuElements.element(row: indexPath.row)
-        switch element{
-            
-        case .MOBILES_AND_TAPLETS,
-             .CLOTHES_AND_SHOSES_AND_ACCESSORIES,
-             .CUMPUTERS_AND_NETWORKS_AND_PROGRAMS,
-             .ELECTRONICS,
-             .FURNITURE_AND_HOUSE_DECORATION,
-             .GARDEN_SUPPLIES,
-             .HELTH_AND_SELF_CARE,
-             .JEWELERY_AND_ACCESSORIES,
-             .KITCHEN_AND_HOUSE_SUPPLIES,
-             .OFFICE_EQUIPMENTS:
-            
-            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(element.title, false))
-            
-        case .CHANGE_LANG:
+        let category = viewModel.categories[indexPath.row]
+        if indexPath.row == viewModel.categories.count - 1 {
             AppUtility.shared.changeLanguage()
+        } else {
+            guard let title = category.name, let id = category.id else { return }
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, nil, id))
         }
         flashCellAt(indexPath: indexPath)
         closeMenu()

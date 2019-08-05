@@ -15,27 +15,45 @@ class AuctionDetailsViewModel: BaseViewModel, ViewModelType{
     var output: Output
     
     struct Input {
-        var item: AnyObserver<Item>
+        var item: AnyObserver<Product>
     }
     
     struct Output {
-        var item: Observable<Item>
-        var images: Observable<[UIImage]>
+        var item: Observable<Product>
+        var images: Observable<[ImageModel]>
+        var faliure: Observable<[ErrorModel]>
     }
     
-    private let item = PublishSubject<Item>()
-    private let images = PublishSubject<[UIImage]>()
+    private let item = PublishSubject<Product>()
+    private let images = PublishSubject<[ImageModel]>()
+    private let faliure = PublishSubject<[ErrorModel]>()
+    private var product: Product?
     
     override init() {
         self.input = Input(item: item.asObserver())
         self.output = Output(item: item.asObservable(),
-                             images: images.asObservable())
+                             images: images.asObservable(),
+                             faliure: faliure.asObservable())
         super.init()
         
-        item.subscribe {[unowned self] (event) in
-            guard let item = event.element else { return }
-            guard let images = item.images else { return }
-            self.images.onNext(images)
-        }.disposed(by: bag)
+        item.bind(onNext:{[unowned self] (product) in
+            self.product = product
+        }).disposed(by: bag)
+    }
+    
+    func getProductDetails( id: Int?){
+        guard let prodId = id else { return }
+        DataManager.shared.getProductDetails(productId: prodId) {[unowned self] (response) in
+            switch response {
+            case .success(let value):
+                guard let products = value as? Products,
+                      let product = products.product,
+                      let imgs = product.images else { return }
+                self.images.onNext(imgs)
+                self.item.onNext(product)
+            case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.faliure)
+            }
+        }
     }
 }

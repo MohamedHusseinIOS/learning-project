@@ -15,6 +15,7 @@ enum Constants: String{
     case accessToken
     case enviroment
     case currentUser
+    case categories
     
 }
 
