@@ -18,6 +18,7 @@ class SignInViewController: BaseViewController {
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var forgetPasswordBtn: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var closeBtn: UIButton!
     
     let viewModel = SignInViewModel()
     var email: String?
@@ -78,13 +79,17 @@ class SignInViewController: BaseViewController {
                 self.registerBtn.borderWidth = 1
                 NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
             }.disposed(by: disposeBag)
+        
+        closeBtn.rx.tap.bind {[unowned self] (_) in
+            self.dismiss(animated: true, completion: nil)
+        }.disposed(by: bag)
     }
     
     override func configureData() {
         super.configureData()
         
-        viewModel.output.success.bind { (success) in
-            NavigationCoordinator.shared.sideMenuSetup()
+        viewModel.output.success.bind {[unowned self] (success) in
+            self.dismiss(animated: true, completion: nil)
         }.disposed(by: bag)
         
         viewModel.output.failer.bind { (errorArr) in

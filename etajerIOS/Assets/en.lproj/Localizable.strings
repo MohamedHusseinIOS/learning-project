@@ -75,6 +75,16 @@
 "BUY_NOW_WITH_PRICE" = "buy now with a price";
 "SEND_OFFER" = "send offer";
 
+//MARK:- Filter
+
+"FILTAR" = "filter";
+"RESET" = "reset";
+"PRODUCT_FILTERATION" = "products filteration";
+"PRODUCT_TYBE" = "product type";
+"PRODUCT_CONDITION" = "product condition";
+"NEW" = "new";
+"USED" = "used";
+
 //MARK:- My Account
 "MY_ACCOUNT" = "my account";
 "HELLO" = "hello";

@@ -234,6 +234,7 @@
                         <viewLayoutGuide key="safeArea" id="vbt-03-0gk"/>
                     </view>
                     <connections>
+                        <outlet property="closeBtn" destination="KDj-SB-pCA" id="gPt-Q4-7Td"/>
                         <outlet property="emailTxt" destination="wqa-fA-cNi" id="NOK-0v-SuJ"/>
                         <outlet property="forgetPasswordBtn" destination="vyP-Uz-RKy" id="Puc-Uo-1cd"/>
                         <outlet property="passwordTxt" destination="7wI-3o-t5F" id="gul-lz-afQ"/>

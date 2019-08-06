@@ -76,6 +76,16 @@
 
 "SEND_OFFER" = "تقديم عرض";
 
+//MARK:- Filter
+
+"FILTAR" = "فلاتر/تصفيات";
+"RESET" = "إعادة ضبط";
+"PRODUCT_FILTERATION" = "فلترة المنتجات";
+"PRODUCT_TYBE" = "نوع المنتج";
+"PRODUCT_CONDITION" = "حالة المنتج";
+"NEW" = "جديدة";
+"USED" = "مستعملة";
+
 //MARK:- My Account
 "MY_ACCOUNT" = "حسابي";
 "HELLO" = "مرحبا";

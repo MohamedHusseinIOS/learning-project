@@ -30,6 +30,11 @@ class MenuViewController: BaseViewController {
         viewModel.getCategories()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUserData()
+    }
+    
     override func configureUI() {
         super.configureUI()
         headerSetup()
@@ -76,7 +81,12 @@ class MenuViewController: BaseViewController {
         myAccountBtn.rx
             .tap
             .subscribe {[unowned self] (_) in
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .myAccountViewController)
+                if AppUtility.shared.currentAccessToken != nil {
+                    NavigationCoordinator.shared.mainNavigator.navigate(To: .myAccountViewController)
+                } else {
+                    NavigationCoordinator.shared.mainNavigator.present(.signInViewController, completion: nil)
+                }
+                
                 self.closeMenu()
         }.disposed(by: bag)
         

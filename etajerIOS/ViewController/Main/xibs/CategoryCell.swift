@@ -19,7 +19,7 @@ class CategoryCell: UITableViewCell {
     @IBOutlet weak var moreBtnImg: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
     
-    var categoryItems = BehaviorSubject<[Product]>(value: [])
+    var categoryItems = PublishSubject<[Product]>()
     var products = [Product]()
     var categoryId: Int?
     var parent: HomeViewController?
@@ -37,10 +37,6 @@ class CategoryCell: UITableViewCell {
             moreBtnImg.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
         }
         
-        categoryItems.bind {[unowned self] (products) in
-            self.products = products
-        }.disposed(by: bag)
-        
         moreBtn.rx
             .tap
             .subscribe {[unowned self] (_) in
@@ -52,6 +48,13 @@ class CategoryCell: UITableViewCell {
     func registerCell(){
         let nib = UINib(nibName: "ItemsCell", bundle: .main)
         categoryCollectionView.register(nib, forCellWithReuseIdentifier: "ItemsCell")
+    }
+    
+    func subscribeOnData(){
+        categoryItems.subscribe { (event) in
+            guard let products = event.element else { return }
+            self.products = products
+        }.disposed(by: bag)
     }
     
     func configureCategoryCollection(){

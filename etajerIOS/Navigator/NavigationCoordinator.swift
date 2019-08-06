@@ -67,11 +67,7 @@ class NavigationCoordinator{
     }
     
     func startApp(){
-        if AppUtility.shared.currentAccessToken != nil {
-            sideMenuSetup()
-        } else {
-            mainNavigator.navigate(To: .signInViewController)
-        }
+        sideMenuSetup()
         sharedAppDelegate.window?.rootViewController = nvc
         sharedAppDelegate.window?.makeKeyAndVisible()
         

@@ -16,9 +16,11 @@ class CategoryItemsViewController: BaseViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
+    @IBOutlet weak var filterBtn: UIButton!
     
     var categoryId: Int?
     let viewModel = CategoryItemsViewModel()
+    var filterDict = [String: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,10 @@ class CategoryItemsViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
         
+        filterBtn.rx.tap.bind { (_) in
+            
+        }.disposed(by: bag)
+        
         itemsCollectionView.rx
             .itemSelected
             .subscribe {[unowned self] (event) in
@@ -57,8 +63,6 @@ class CategoryItemsViewController: BaseViewController {
             self.itemsCollectionView.hideSkeleton()
         }.disposed(by: bag)
     }
-    
-
     
     func registerCell(){
         let nib = UINib(nibName: "ItemsCell", bundle: .main)
@@ -84,7 +88,6 @@ class CategoryItemsViewController: BaseViewController {
         viewModel.output
             .products
             .bind(to: itemsCollectionView.rx.items){ collectionView, item, element in
-                
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
                 cell.bindOn(item: element)
                 cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)

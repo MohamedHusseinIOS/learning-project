@@ -33,7 +33,6 @@ class ItemsCell: UICollectionViewCell {
         ratingView.rating = Double(item.sellQty ?? 0) / 2
         let strUrl = (item.imgBaseUrl ?? "") + "/" + (item.imgPath ?? "")
         let url = URL(string: strUrl)
-        
         itemImg.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: { [unowned self] (_, _) in
             self.itemImg.showAnimatedSkeleton()
         }) { [unowned self] (result) in

@@ -125,6 +125,7 @@ class HomeViewController: BaseViewController {
             cell.categoryId = category?.id
             cell.categoryNameLbl.text = category?.name
             cell.moreItemsLbl.text = MORE_ITEMS.localized()
+            cell.subscribeOnData()
             cell.configureCategoryCollection()
             cell.categoryItems.onNext([products])
             return cell
@@ -132,6 +133,7 @@ class HomeViewController: BaseViewController {
         cell.parent = self
         cell.categoryNameLbl.text = element.title?.rawValue
         cell.moreItemsLbl.text = MORE_ITEMS.localized()
+        cell.subscribeOnData()
         cell.configureCategoryCollection()
         cell.categoryItems.onNext(items)
         return cell

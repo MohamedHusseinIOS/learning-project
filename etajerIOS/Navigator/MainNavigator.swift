@@ -46,6 +46,7 @@ extension MainNavigator: Navigator{
         case categoryItemsViewController(_ categoryName: String,
                                          _ products: [Product]?,
                                          _ categoryId: Int?)
+        case filterViewController(_ filterCallBack: (([String: Bool])->Void)?)
         case itemDetailsViewController(_ productId: Int)
         case auctionDetailsViewController(_ productId: Int)
         
@@ -70,11 +71,11 @@ extension MainNavigator: Navigator{
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func present(_ destination: Destination, completion: @escaping (() -> Void)) {
+    func present(_ destination: Destination, completion: (() -> Void)?) {
         guard let vc = makeViewController(for: destination) else{return}
         currentVC = destination
         navigationController.present(vc, animated: true) {
-            completion()
+            completion?()
         }
     }
     
@@ -108,8 +109,10 @@ extension MainNavigator: Navigator{
             vc?.configureItemsCollection()
             vc?.viewModel.input.products.onNext(products)
             return vc
-            
-            
+        case .filterViewController(let filterCallBack):
+            let vc = FilterViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: FilterViewController())
+            vc?.filterCallback = filterCallBack
+            return vc
         case .itemDetailsViewController(let productId):
             let vc = ItemDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: ItemDetailsViewController())
             vc?.productId = productId
