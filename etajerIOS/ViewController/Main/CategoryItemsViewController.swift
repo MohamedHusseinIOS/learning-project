@@ -18,13 +18,14 @@ class CategoryItemsViewController: BaseViewController {
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     @IBOutlet weak var filterBtn: UIButton!
     
-    var categoryId: Int?
+    var category: Category?
     let viewModel = CategoryItemsViewModel()
     var filterDict = [String: Bool]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let id = categoryId else { return }
+        guard let id = category?.id else { return }
         viewModel.getProducts(parent: self, categoryId: id)
     }
     
@@ -49,7 +50,10 @@ class CategoryItemsViewController: BaseViewController {
         }.disposed(by: bag)
         
         filterBtn.rx.tap.bind { (_) in
-            
+            NavigationCoordinator.shared.mainNavigator.present(.filterViewController({[weak self] (filterDict) in
+                guard let self = self else { return }
+                self.filterData(by: filterDict)
+            }, self.category, self.filterDict), completion: nil)
         }.disposed(by: bag)
         
         itemsCollectionView.rx
@@ -98,7 +102,6 @@ class CategoryItemsViewController: BaseViewController {
     }
     
     func didSelectItemIn(indexPath: IndexPath){
-        
         let product = viewModel.productsArr[indexPath.item]
         guard let id = product.id else { return }
         
@@ -106,6 +109,49 @@ class CategoryItemsViewController: BaseViewController {
             NavigationCoordinator.shared.mainNavigator.navigate(To: .auctionDetailsViewController(id))
         } else {
             NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController(id))
+        }
+    }
+    
+    func filterData(by dict: [String: Bool]){
+        self.filterDict = dict
+        let products = viewModel.allProducts
+        var filteredData = [Product]()
+        var filteredSubCategoriesData = [Product]()
+        
+        for filterBy in dict where filterBy.value == true {
+            let name = filterBy.key
+            switch name {
+            case PRODUCTS.localized():
+                let filtered = products.filter({ $0.auctionPrice == nil })
+                filteredData.append(contentsOf: filtered)
+            case CATEGORY_TITLE_2.localized():
+                let filtered = products.filter({ $0.auctionPrice != nil })
+                filteredData.append(contentsOf: filtered)
+            case NEW.localized():
+                continue
+            case USED.localized():
+                continue
+            default:
+                let subCategories = category?.childs
+                let subCategory = subCategories?.filter({ $0.name == name }).first
+                if filteredData.count == 0 {
+                    let filtered = products.filter { (product) in
+                        return subCategory?.childs?.contains(where: {$0.id == product.categoryId}) ?? false
+                    }
+                    filteredSubCategoriesData.append(contentsOf: filtered)
+                } else {
+                    let filtered = filteredData.filter { (product) in
+                        return subCategory?.childs?.contains(where: {$0.id == product.categoryId}) ?? false
+                    }
+                    filteredSubCategoriesData.append(contentsOf: filtered)
+                }
+            }
+        }
+        
+        if filteredSubCategoriesData.count > 0 {
+            viewModel.input.products.onNext(filteredSubCategoriesData)
+        } else {
+            viewModel.input.products.onNext(filteredData)
         }
     }
 }

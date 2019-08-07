@@ -13,7 +13,12 @@ class FilterSectionHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var sectionTitleLbl: UILabel!
     @IBOutlet weak var dropDownArrowImg: UIImageView!
     
-    static let reuseIdentifire = "FilterSectionHeader"
+    
+    override var reuseIdentifier: String?{
+        return "FilterSectionHeader"
+    }
+    
+    static let identifier = "FilterSectionHeader"
     
     override func awakeFromNib() {
         super.awakeFromNib()

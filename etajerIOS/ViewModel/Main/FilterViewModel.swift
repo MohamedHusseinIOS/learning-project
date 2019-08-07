@@ -29,8 +29,8 @@ class FilterViewModel: BaseViewModel, ViewModelType {
     private var category: Category?
     
     let sections = [PRODUCT_FILTERATION.localized(),
-                    PRODUCT_TYBE.localized(),
-                    PRODUCT_CONDITION.localized()]
+                    PRODUCT_TYBE.localized()]
+                    //PRODUCT_CONDITION.localized()]
     
     override init() {
         input = Input(data: data.asObserver())

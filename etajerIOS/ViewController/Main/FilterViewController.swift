@@ -19,6 +19,7 @@ class FilterViewController: BaseViewController {
     
     var category: Category?
     let viewModel = FilterViewModel()
+    var sectionModels: [SectionModel<String, Category>] = []
     var filterCallback: (([String: Bool])->Void)?
     var filterDict = [String: Bool]()
     
@@ -29,22 +30,43 @@ class FilterViewController: BaseViewController {
 
     override func configureUI() {
         super.configureUI()
+        registerCells()
+        configureTableView()
+        
+        if filterDict.count == 0 {
+            self.defultFilterDict()
+        }
         
         doneBtn.rx.tap.bind {[unowned self] (_) in
             self.filterCallback?(self.filterDict)
+            self.dismiss(animated: true, completion: nil)
         }.disposed(by: bag)
         
-        resetBtn.rx.tap.bind { (_) in
-            self.filterDict.removeAll()
-            self.filterDict.updateValue(true, forKey: PRODUCTS.localized())
-            // CATEGORY_TITLE_2 >>> its for Auction
-            self.filterDict.updateValue(true, forKey: CATEGORY_TITLE_2.localized())
-            self.filterTableView.reloadData()
+        resetBtn.rx.tap.bind {[unowned self] (_) in
+            self.defultFilterDict()
         }.disposed(by: bag)
     }
     
     override func configureData() {
         super.configureData()
+        viewModel.output.data.bind {[unowned self] (sectionModels) in
+            self.sectionModels = sectionModels
+        }.disposed(by: bag)
+    }
+    
+    func defultFilterDict(){
+        self.filterDict.removeAll()
+        self.filterDict.updateValue(true, forKey: PRODUCTS.localized())
+        // CATEGORY_TITLE_2 >>> its for Auction
+        self.filterDict.updateValue(true, forKey: CATEGORY_TITLE_2.localized())
+        self.filterTableView.reloadData()
+    }
+    
+    func registerCells(){
+        let cellNib = UINib(nibName: FilterCell.reuseIdentifire, bundle: .main)
+        let headerNib = UINib(nibName: FilterSectionHeader.identifier, bundle: .main)
+        filterTableView.register(cellNib, forCellReuseIdentifier: FilterCell.reuseIdentifire)
+        filterTableView.register(headerNib, forHeaderFooterViewReuseIdentifier: FilterSectionHeader.identifier)
     }
 
     func configureTableView(){
@@ -67,7 +89,9 @@ class FilterViewController: BaseViewController {
     }
     
     func makeHeaderForSection(_ section: Int, in tableView: UITableView) -> UIView {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FilterSectionHaeder") else { return UIView() }
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: FilterSectionHeader.identifier) as? FilterSectionHeader else { return FilterSectionHeader() }
+        header.sectionTitleLbl.text = self.sectionModels[section].model
+        header.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return header
     }
 }

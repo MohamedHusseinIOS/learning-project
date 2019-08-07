@@ -21,6 +21,7 @@ class CategoryCell: UITableViewCell {
     
     var categoryItems = PublishSubject<[Product]>()
     var products = [Product]()
+    var category: Category?
     var categoryId: Int?
     var parent: HomeViewController?
     var bag = DisposeBag()
@@ -36,13 +37,6 @@ class CategoryCell: UITableViewCell {
         } else {
             moreBtnImg.setImage(#imageLiteral(resourceName: "back-ar"), for: .normal)
         }
-        
-        moreBtn.rx
-            .tap
-            .subscribe {[unowned self] (_) in
-                guard let title = self.categoryNameLbl.text, let id = self.categoryId else { return }
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, self.products, id))
-        }.disposed(by: bag)
     }
     
     func registerCell(){
@@ -55,6 +49,13 @@ class CategoryCell: UITableViewCell {
             guard let products = event.element else { return }
             self.products = products
         }.disposed(by: bag)
+        
+        moreBtn.rx
+            .tap
+            .subscribe {[unowned self] (_) in
+                guard let title = self.categoryNameLbl.text else { return }
+                NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, self.products, self.category))
+            }.disposed(by: bag)
     }
     
     func configureCategoryCollection(){
@@ -98,7 +99,7 @@ class CategoryCell: UITableViewCell {
         self.moreItemsLbl.hideSkeleton()
         self.categoryNameLbl.hideSkeleton()
         self.moreBtnImg.hideSkeleton()
-        self.moreBtn.hideSkeleton()
+        //self.moreBtn.hideSkeleton()
     }
     
     override func prepareForReuse() {

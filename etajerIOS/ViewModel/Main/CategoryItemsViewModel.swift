@@ -25,6 +25,7 @@ final class CategoryItemsViewModel: BaseViewModel, ViewModelType {
     
     private let products = PublishSubject<[Product]>()
     private let faliure = PublishSubject<[ErrorModel]>()
+    var allProducts = [Product]()
     var productsArr = [Product]()
     
     override init() {
@@ -46,6 +47,7 @@ final class CategoryItemsViewModel: BaseViewModel, ViewModelType {
                       let products = items.items,
                       let caetgories = AppUtility.shared.getAppCategories()?.categories else { return }
                 let categoryProducts = self.getProductsFormCategories(products, categories: caetgories, id: categoryId)
+                self.allProducts = categoryProducts
                 parent.configureItemsCollection()
                 self.products.onNext(categoryProducts)
             case .failure(_, let data):

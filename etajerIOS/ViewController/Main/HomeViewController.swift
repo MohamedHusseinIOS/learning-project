@@ -123,6 +123,7 @@ class HomeViewController: BaseViewController {
             let category = categories?.first
             guard let products = category?.products else { return cell }
             cell.categoryId = category?.id
+            cell.category = category
             cell.categoryNameLbl.text = category?.name
             cell.moreItemsLbl.text = MORE_ITEMS.localized()
             cell.subscribeOnData()

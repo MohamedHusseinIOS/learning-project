@@ -84,7 +84,7 @@ class MenuViewController: BaseViewController {
                 if AppUtility.shared.currentAccessToken != nil {
                     NavigationCoordinator.shared.mainNavigator.navigate(To: .myAccountViewController)
                 } else {
-                    NavigationCoordinator.shared.mainNavigator.present(.signInViewController, completion: nil)
+                NavigationCoordinator.shared.mainNavigator.present(.signInViewController, completion: nil)
                 }
                 
                 self.closeMenu()
@@ -124,7 +124,7 @@ class MenuViewController: BaseViewController {
             AppUtility.shared.changeLanguage()
         } else {
             guard let title = category.name, let id = category.id else { return }
-            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, nil, id))
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, nil, category))
         }
         flashCellAt(indexPath: indexPath)
         closeMenu()

@@ -45,8 +45,10 @@ extension MainNavigator: Navigator{
         //Categories
         case categoryItemsViewController(_ categoryName: String,
                                          _ products: [Product]?,
-                                         _ categoryId: Int?)
-        case filterViewController(_ filterCallBack: (([String: Bool])->Void)?)
+                                         _ categoryId: Category?)
+        case filterViewController(_ filterCallBack: (([String: Bool])->Void)?,
+                                  _ category: Category?,
+                                  _ filterDict: [String: Bool])
         case itemDetailsViewController(_ productId: Int)
         case auctionDetailsViewController(_ productId: Int)
         
@@ -86,12 +88,15 @@ extension MainNavigator: Navigator{
     
     func makeViewController(for destination: Destination)-> UIViewController? {
         switch destination {
+        //MARK:- home and sideMenu
         case .homeViewController:
             let vc = HomeViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: HomeViewController())
             return vc
         case .sideMenuViewController:
             let vc = MenuViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MenuViewController())
             return vc
+        
+        //MARK:- Signin
         case .signInViewController:
             let vc = SignInViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: SignInViewController())
             return vc
@@ -101,16 +106,20 @@ extension MainNavigator: Navigator{
         case .forgetPasswordViewController:
             let vc = ForgetPasswordViewController.InstantiateFormStoryBoard(storyboards.signIn.instanse, vc: ForgetPasswordViewController())
             return vc
-        case .categoryItemsViewController(let title, let products, let categoryId):
+            
+        //MARK:- category items and filter
+        case .categoryItemsViewController(let title, let products, let category):
             let vc = CategoryItemsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CategoryItemsViewController())
             vc?.title = title
-            vc?.categoryId = categoryId
+            vc?.category = category
             guard let products = products else { return vc }
             vc?.configureItemsCollection()
             vc?.viewModel.input.products.onNext(products)
             return vc
-        case .filterViewController(let filterCallBack):
+        case .filterViewController(let filterCallBack, let category, let filterDict):
             let vc = FilterViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: FilterViewController())
+            vc?.category = category
+            vc?.filterDict = filterDict
             vc?.filterCallback = filterCallBack
             return vc
         case .itemDetailsViewController(let productId):
@@ -121,8 +130,8 @@ extension MainNavigator: Navigator{
             let vc = AuctionDetailsViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AuctionDetailsViewController())
             vc?.productId = productId
             return vc
-            
-
+        
+        //MARK:- myAccount
         case .myAccountViewController:
             let vc = MyAccountViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MyAccountViewController())
             return vc
@@ -135,6 +144,8 @@ extension MainNavigator: Navigator{
         case .addressesViewController:
             let vc = AddressesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AddressesViewController())
             return vc
+            
+        //MARK:- Cart
         case .cartViewController:
             let vc = CartViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartViewController())
             return vc

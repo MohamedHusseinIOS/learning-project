@@ -77,7 +77,7 @@
 
 //MARK:- Filter
 
-"FILTAR" = "filter";
+"FILTER" = "filter";
 "RESET" = "reset";
 "PRODUCT_FILTERATION" = "products filteration";
 "PRODUCT_TYBE" = "product type";

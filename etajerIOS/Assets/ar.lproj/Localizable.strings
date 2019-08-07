@@ -78,7 +78,7 @@
 
 //MARK:- Filter
 
-"FILTAR" = "فلاتر/تصفيات";
+"FILTER" = "فلاتر/تصفيات";
 "RESET" = "إعادة ضبط";
 "PRODUCT_FILTERATION" = "فلترة المنتجات";
 "PRODUCT_TYBE" = "نوع المنتج";

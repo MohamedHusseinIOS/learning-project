@@ -40,7 +40,7 @@
                         </userDefinedRuntimeAttributes>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUL-C9-LMD">
-                        <rect key="frame" x="20" y="15" width="384" height="20.5"/>
+                        <rect key="frame" x="20" y="15" width="349" height="20.5"/>
                         <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
                         <color key="textColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogf-yl-yh6">
                         <rect key="frame" x="374" y="9" width="30" height="30"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </button>
                 </subviews>
@@ -77,13 +77,13 @@
                     <constraint firstItem="5OY-FI-db6" firstAttribute="top" secondItem="Ogf-yl-yh6" secondAttribute="top" id="ACd-C3-ItR"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="top" secondItem="bUL-C9-LMD" secondAttribute="bottom" constant="8" id="AIC-JV-IEe"/>
                     <constraint firstItem="bUL-C9-LMD" firstAttribute="top" secondItem="kDu-Ew-Lch" secondAttribute="top" constant="15" id="ALs-ts-TVD"/>
+                    <constraint firstItem="5OY-FI-db6" firstAttribute="leading" secondItem="bUL-C9-LMD" secondAttribute="trailing" constant="5" id="IRg-Nf-rAp"/>
                     <constraint firstItem="bUL-C9-LMD" firstAttribute="leading" secondItem="kDu-Ew-Lch" secondAttribute="leading" constant="20" id="NXK-oK-gfR"/>
                     <constraint firstItem="fY7-tx-v2s" firstAttribute="leading" secondItem="5OY-FI-db6" secondAttribute="trailing" constant="2" id="QLd-pw-KKy"/>
                     <constraint firstItem="fY7-tx-v2s" firstAttribute="centerY" secondItem="5OY-FI-db6" secondAttribute="centerY" constant="2" id="RFp-bm-gyl"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="leading" secondItem="kDu-Ew-Lch" secondAttribute="leading" id="WbJ-cF-WWG"/>
                     <constraint firstAttribute="bottom" secondItem="qEh-Hk-2L8" secondAttribute="bottom" id="XPn-8F-Kgk"/>
                     <constraint firstItem="fY7-tx-v2s" firstAttribute="trailing" secondItem="Ogf-yl-yh6" secondAttribute="trailing" id="oZQ-KN-fza"/>
-                    <constraint firstItem="Ogf-yl-yh6" firstAttribute="trailing" secondItem="bUL-C9-LMD" secondAttribute="trailing" id="osO-bl-r7p"/>
                     <constraint firstItem="qEh-Hk-2L8" firstAttribute="top" secondItem="fY7-tx-v2s" secondAttribute="bottom" constant="10" id="ukC-Da-x14"/>
                     <constraint firstAttribute="trailing" secondItem="qEh-Hk-2L8" secondAttribute="trailing" id="yTU-ak-2eU"/>
                 </constraints>
