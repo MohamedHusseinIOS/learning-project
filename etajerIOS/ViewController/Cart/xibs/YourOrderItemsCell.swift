@@ -15,7 +15,7 @@ class YourOrderItemsCell: UITableViewCell {
     @IBOutlet weak var itemsTableView: UITableView!
     @IBOutlet weak var TVHeightConstraint: NSLayoutConstraint!
     
-    var items = PublishSubject<[Product]>()
+    var items = PublishSubject<[CartProduct]>()
     var bag = DisposeBag()
     
     override func awakeFromNib() {
@@ -50,7 +50,7 @@ class YourOrderItemsCell: UITableViewCell {
         }.disposed(by: bag)
     }
     
-    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data: Product) -> UITableViewCell {
+    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data: CartProduct) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartCell else { return CartCell() }
         cell.bindOnData(data)
         cell.numberOfItemsContainer.isHidden = true

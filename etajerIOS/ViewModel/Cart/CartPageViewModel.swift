@@ -16,19 +16,19 @@ class CartPageViewModel: BaseViewModel, ViewModelType {
     var output: Output
     
     struct Input {
-        var items: AnyObserver<[Product]>
+        var items: AnyObserver<[CartProduct]>
     }
     
     struct Output {
-        var items: Observable<[Product]>
+        var items: Observable<[CartProduct]>
         var faliure: Observable<[ErrorModel]>
         var cart: Observable<Cart>
     }
     
     private var faliure = PublishSubject<[ErrorModel]>()
-    private var items = PublishSubject<[Product]>()
+    private var items = PublishSubject<[CartProduct]>()
     private var cart = PublishSubject<Cart>()
-    var dataArray = [Product]()
+    var dataArray = [CartProduct]()
     
     override init() {
         input = Input(items: items.asObserver())
@@ -39,7 +39,7 @@ class CartPageViewModel: BaseViewModel, ViewModelType {
         cart.bind {[unowned self] (cart) in
             guard let products = cart.products else { return }
             self.dataArray = products
-            self.dataArray.append(Product())
+            self.dataArray.append(CartProduct())
             self.items.onNext(self.dataArray)
         }.disposed(by: bag)
     }

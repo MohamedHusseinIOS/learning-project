@@ -47,7 +47,7 @@ class CartPageViewController: BaseViewController {
             .bind(to: itemsTableView.rx.items){[unowned self] tableView, row, element in
                 let indexPath = IndexPath(row: row, section: 0)
                 if row == (self.viewModel.dataArray.count - 1) {
-                    let cell = self.dequeueEnterCodeCell(tableView: tableView, indexPath: indexPath, data: nil)
+                    let cell = self.dequeueEnterCodeCell(tableView: tableView, indexPath: indexPath)
                     return cell
                 } else {
                     let cell = self.dequeueCartCell(tableView: tableView, indexPath: indexPath, data: element)
@@ -56,7 +56,8 @@ class CartPageViewController: BaseViewController {
             }.disposed(by: bag)
     }
     
-    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data: Product) -> UITableViewCell {
+    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data:
+        CartProduct) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartCell else { return CartCell() }
         cell.bindOnData(data)
         cell.deleteAction = {[unowned self] in
@@ -66,7 +67,7 @@ class CartPageViewController: BaseViewController {
         return cell
     }
     
-    func dequeueEnterCodeCell(tableView: UITableView, indexPath: IndexPath, data: Product?) -> UITableViewCell {
+    func dequeueEnterCodeCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EnterCodeCell", for: indexPath) as? EnterCodeCell else { return EnterCodeCell() }
         return cell
     }

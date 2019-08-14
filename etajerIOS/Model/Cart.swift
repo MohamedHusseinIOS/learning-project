@@ -10,7 +10,7 @@ import Foundation
 
 struct CartResponse: BaseModel {
     let cart: Cart?
-    let byShippment: [String: Product]?
+    let byShippment: [String: CartProduct]?
     let isUpdated: Bool?
     
     enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ struct CartResponse: BaseModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         cart                = try container.decode(Cart.self, forKey: .cart)
-        byShippment         = try container.decode([String: Product].self, forKey: .byShippment)
+        byShippment         = try container.decode([String: CartProduct].self, forKey: .byShippment)
         isUpdated           = try container.decode(Bool.self, forKey: .isUpdated)
     }
     
@@ -52,10 +52,8 @@ struct Cart: BaseModel {
     let voucherDiscount: String?
     let vat: String?
     let totalOrder: String?
-    let products: [Product]?
+    let products: [CartProduct]?
     let shippments: [String]?
-    
-    
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -76,4 +74,39 @@ struct Cart: BaseModel {
         case products
         case shippments
     }
+}
+
+struct CartProduct: BaseModel {
+    
+    var id : Int?
+    var price : String?
+    var productId : Int?
+    var qty : Int?
+    var rating : Bool?
+    var seller : User?
+    var sellerId : Int?
+    var shippingMethod : String?
+    var shippmentId : String?
+    var sku : String?
+    var thumbUrl : String?
+    var title : String?
+    var upc : String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case price
+        case productId
+        case qty
+        case rating
+        case seller
+        case sellerId
+        case shippingMethod
+        case shippmentId
+        case sku
+        case thumbUrl
+        case title
+        case upc
+    }
+    
+    init() {}
 }
