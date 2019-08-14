@@ -39,7 +39,7 @@ final class CategoryItemsViewModel: BaseViewModel, ViewModelType {
         }).disposed(by: bag)
     }
     
-    func getProducts(parent: CategoryItemsViewController,categoryId:Int){
+    func getProducts(parent: CategoryItemsViewController, categoryId: Int){
         DataManager.shared.getProducts { (response) in
             switch response {
             case .success(let value):

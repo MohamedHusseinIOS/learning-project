@@ -12,6 +12,12 @@ import RxSwift
 
 class MenuViewController: BaseViewController {
 
+    @IBOutlet weak var notSigninHeader: UIView!
+    @IBOutlet weak var signinBtn: UIButton!
+    @IBOutlet weak var userDataHeader: UIView!
+    @IBOutlet weak var userActionsStackViewHeader: UIStackView!
+    @IBOutlet weak var sellingHeader: UIView!
+    
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var membershipNumberLbl: UILabel!
     @IBOutlet weak var myAccountBtn: UIButton!
@@ -37,12 +43,23 @@ class MenuViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
+        
+        if AppUtility.shared.currentAccessToken != nil {
+            notSignin(false)
+        } else {
+            notSignin(true)
+        }
+        
         headerSetup()
         registerMenuCell()
         loadMenuTableView()
         menuTableView.rx.itemSelected.subscribe {[unowned self] (event) in
             guard let indexPath = event.element else {return}
             self.menuTableViewDidSelectItem(in: indexPath)
+        }.disposed(by: bag)
+        
+        signinBtn.rx.tap.bind { (_) in
+            NavigationCoordinator.shared.mainNavigator.present(.signInViewController, completion: nil)
         }.disposed(by: bag)
     }
     
@@ -55,6 +72,13 @@ class MenuViewController: BaseViewController {
                 guard let errorMsg = errors.first?.message else { return }
                 self.alert(title: "", message: errorMsg, completion: nil)
         }.disposed(by: bag)
+    }
+    
+    func notSignin(_ bool: Bool){
+        notSigninHeader.isHidden = !bool
+        userDataHeader.isHidden = bool
+        userActionsStackViewHeader.isHidden = bool
+        sellingHeader.isHidden = bool
     }
     
     func setUserData(){

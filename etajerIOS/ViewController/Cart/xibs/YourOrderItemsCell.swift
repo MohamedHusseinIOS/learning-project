@@ -15,7 +15,7 @@ class YourOrderItemsCell: UITableViewCell {
     @IBOutlet weak var itemsTableView: UITableView!
     @IBOutlet weak var TVHeightConstraint: NSLayoutConstraint!
     
-    var items = PublishSubject<[Item]>()
+    var items = PublishSubject<[Product]>()
     var bag = DisposeBag()
     
     override func awakeFromNib() {
@@ -31,13 +31,6 @@ class YourOrderItemsCell: UITableViewCell {
         registerCell()
         configureTableView()
         
-        let itemsData = [Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                         Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                         Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                         Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                         Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil)]
-        
-        items.onNext(itemsData)
     }
     
     func registerCell(){
@@ -57,12 +50,11 @@ class YourOrderItemsCell: UITableViewCell {
         }.disposed(by: bag)
     }
     
-    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data: Item) -> UITableViewCell {
+    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data: Product) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartCell else { return CartCell() }
         cell.bindOnData(data)
         cell.numberOfItemsContainer.isHidden = true
         cell.deleteBtn.isHidden = true
         return cell
     }
-
 }

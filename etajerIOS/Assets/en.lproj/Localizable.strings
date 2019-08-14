@@ -35,6 +35,8 @@
 "SEND" = "Send";
 
 //MARK:- Menu
+
+"NOT_SIGNIN" = "you are not sign in";
 "MY_ACCOUNT" = "my account";
 "NOTIFICATION" = "notifications";
 "FAVORITES" = "favorites";

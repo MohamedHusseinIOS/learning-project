@@ -18,14 +18,7 @@ class CartPageViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let items = [Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                     Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                     Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                     Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil),
-                     Item(name: nil, price: nil, image: nil, images: nil, rating: nil, overbid: nil)]
-        
-        viewModel.input.items.onNext(items)
+        viewModel.getCartItems()
     }
     
     override func configureUI() {
@@ -33,6 +26,11 @@ class CartPageViewController: BaseViewController {
         
         registerCell()
         configureTableView()
+    }
+    
+    override func configureData() {
+        super.configureData()
+        
     }
 
     func registerCell(){
@@ -58,16 +56,17 @@ class CartPageViewController: BaseViewController {
             }.disposed(by: bag)
     }
     
-    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data: Item) -> UITableViewCell {
+    func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data: Product) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartCell else { return CartCell() }
         cell.bindOnData(data)
         cell.deleteAction = {[unowned self] in
-            self.deleteBtnTapped(in: indexPath)
+            guard let id = data.id else { return }
+            self.viewModel.removeProductFormCart(productId: id)
         }
         return cell
     }
     
-    func dequeueEnterCodeCell(tableView: UITableView, indexPath: IndexPath, data: Item?) -> UITableViewCell {
+    func dequeueEnterCodeCell(tableView: UITableView, indexPath: IndexPath, data: Product?) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EnterCodeCell", for: indexPath) as? EnterCodeCell else { return EnterCodeCell() }
         return cell
     }
@@ -86,7 +85,6 @@ class CartPageViewController: BaseViewController {
     }
     
     func deleteRow(at index: IndexPath) {
-        viewModel.removeItem(at: index)
         if AppUtility.shared.currentLang == .ar {
             itemsTableView.deleteRows(at: [index], with: .right)
         } else {

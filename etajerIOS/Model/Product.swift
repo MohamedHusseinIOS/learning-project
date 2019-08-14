@@ -26,54 +26,56 @@ struct Products: BaseModel {
 
 struct Product: BaseModel{
     
-    let activateBuyNow : Int?
-    let auctionLastPrice : String?
-    let auctionMinPrice : String?
-    let auctionPrice : String?
-    let auctionSellPrice : String?
-    let boldTitle : Int?
-    let categoryId : Int?
-    let createdAt : Int?
-    let desc : String?
-    let freeInternational : Int?
-    let freeShipping : Int?
-    let galleryPlus : Int?
-    let id : Int?
-    let rating: String?
-    let imgBaseUrl : String?
-    let imgPath : String?
-    let isShipAble : Int?
-    let pickupAddress : Int?
-    let priceType : Int?
-    let productStatus : Int?
-    let returnPolicy : Int?
-    let secondCategoryId : Int?
-    let sellLessPrice : Int?
-    let sellPrice : String?
-    let sellQty : Int?
-    let shippingMethod : String?
-    let shortDesc : String?
-    let sku : String?
-    let status : Int?
-    let subTitleAr : String?
-    let subTitleEn : String?
-    let titleAr : String?
-    let titleEn : String?
-    let twoCategories : Int?
-    let unshipEmail : String?
-    let unshipMobile : String?
-    let unshipName : String?
-    let unshipViewInfo : Int?
-    let upc : String?
-    let updatedAt : Int?
-    let useSubtitle : Int?
-    let usedStatus : String?
-    let userId : Int?
-    let viewAt : String?
-    let viewDuration : Int?
-    let weight : String?
-    let weightUnit : Double?
-    let images: [ImageModel]?
+    var activateBuyNow : Int?
+    var auctionLastPrice : String?
+    var auctionMinPrice : String?
+    var auctionPrice : String?
+    var auctionSellPrice : String?
+    var boldTitle : Int?
+    var categoryId : Int?
+    var createdAt : Int?
+    var desc : String?
+    var freeInternational : Int?
+    var freeShipping : Int?
+    var galleryPlus : Int?
+    var id : Int?
+    var rating: String?
+    var imgBaseUrl : String?
+    var imgPath : String?
+    var isShipAble : Int?
+    var pickupAddress : Int?
+    var priceType : Int?
+    var productStatus : Int?
+    var returnPolicy : Int?
+    var secondCategoryId : Int?
+    var sellLessPrice : Int?
+    var sellPrice : String?
+    var sellQty : Int?
+    var shippingMethod : String?
+    var shortDesc : String?
+    var sku : String?
+    var status : Int?
+    var subTitleAr : String?
+    var subTitleEn : String?
+    var titleAr : String?
+    var titleEn : String?
+    var twoCategories : Int?
+    var unshipEmail : String?
+    var unshipMobile : String?
+    var unshipName : String?
+    var unshipViewInfo : Int?
+    var upc : String?
+    var updatedAt : Int?
+    var useSubtitle : Int?
+    var usedStatus : String?
+    var userId : Int?
+    var viewAt : String?
+    var viewDuration : Int?
+    var weight : String?
+    var weightUnit : Double?
+    var images: [ImageModel]?
+    var seller: User?
+    var thumbUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case activateBuyNow
@@ -124,7 +126,11 @@ struct Product: BaseModel{
         case weight
         case weightUnit
         case images
+        case seller
+        case thumbUrl
     }
+    
+    init() {}
 }
 
 

@@ -19,13 +19,17 @@ class CartViewModel: BaseViewModel, ViewModelType {
     }
     
     struct Output {
-        
+        let faliure: Observable<[ErrorModel]>
+        let cart: Observable<Cart>
     }
 
+    private let faliure = PublishSubject<[ErrorModel]>()
+    private let cart = PublishSubject<Cart>()
+    
     override init() {
         input = Input()
-        output = Output()
+        output = Output(faliure: faliure.asObservable(),
+                        cart: cart.asObservable())
         super.init()
     }
-
 }

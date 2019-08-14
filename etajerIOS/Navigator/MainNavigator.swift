@@ -113,8 +113,7 @@ extension MainNavigator: Navigator{
             vc?.title = title
             vc?.category = category
             guard let products = products else { return vc }
-            vc?.configureItemsCollection()
-            vc?.viewModel.input.products.onNext(products)
+            vc?.viewModel.allProducts = products
             return vc
         case .filterViewController(let filterCallBack, let category, let filterDict):
             let vc = FilterViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: FilterViewController())

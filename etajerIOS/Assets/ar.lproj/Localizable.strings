@@ -35,6 +35,7 @@
 "SEND" = "ارسال";
 
 //MARK:- Menu
+"NOT_SIGNIN" = "انت لم تقم بتسجيل الدخول";
 "MY_ACCOUNT" = "حسابي";
 "NOTIFICATION" = "التنبيهات";
 "FAVORITES" = "المفضلة";

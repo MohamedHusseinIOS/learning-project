@@ -35,7 +35,7 @@ class CartCell: UITableViewCell {
         bag = DisposeBag()
     }
     
-    func bindOnData(_ data: Item) {
+    func bindOnData(_ data: Product) {
         
         self.itemImg.image = #imageLiteral(resourceName: "carpet")
         self.sealLbl.text = "99 \(S_R.localized())"

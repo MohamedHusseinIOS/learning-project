@@ -28,7 +28,6 @@ class CartFinishedViewController: BaseViewController {
         super.configureUI()
         
         orderNumberLbl.text = "\(ORDER_NUMBER.localized())\(orderNumber)"
-        
         homeBtn.rx.tap.bind { (_) in
             NavigationCoordinator.shared.mainNavigator.popViewController(to: .homeViewController)
         }.disposed(by: bag)

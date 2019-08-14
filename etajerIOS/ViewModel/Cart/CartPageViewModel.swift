@@ -16,27 +16,55 @@ class CartPageViewModel: BaseViewModel, ViewModelType {
     var output: Output
     
     struct Input {
-        var items: AnyObserver<[Item]>
+        var items: AnyObserver<[Product]>
     }
     
     struct Output {
-        var items: Observable<[Item]>
+        var items: Observable<[Product]>
+        var faliure: Observable<[ErrorModel]>
+        var cart: Observable<Cart>
     }
     
-    private var items = PublishSubject<[Item]>()
-    var dataArray = [Item]()
+    private var faliure = PublishSubject<[ErrorModel]>()
+    private var items = PublishSubject<[Product]>()
+    private var cart = PublishSubject<Cart>()
+    var dataArray = [Product]()
     
     override init() {
         input = Input(items: items.asObserver())
-        output = Output(items: items.asObservable())
+        output = Output(items: items.asObservable(),
+                        faliure: faliure.asObservable(),
+                        cart: cart.asObservable())
         super.init()
-        items.bind {[unowned self] (items) in
-            self.dataArray = items
+        cart.bind {[unowned self] (cart) in
+            guard let products = cart.products else { return }
+            self.dataArray = products
+            self.dataArray.append(Product())
+            self.items.onNext(self.dataArray)
         }.disposed(by: bag)
     }
     
-    func removeItem(at index: IndexPath) {
-        dataArray.remove(at: index.row)
-        items.onNext(dataArray)
+    func getCartItems(){
+        DataManager.shared.getCart {[unowned self] (response) in
+            switch response {
+            case .success(let value):
+                guard let cart = value as? Cart else { return }
+                self.cart.onNext(cart)
+            case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.faliure)
+            }
+        }
+    }
+    
+    func removeProductFormCart(productId: Int){
+        DataManager.shared.removeProductFromCart(productId: productId) { (response) in
+            switch response {
+            case .success(let value):
+                guard let cart = value as? Cart else { return }
+                self.cart.onNext(cart)
+            case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.faliure)
+            }
+        }
     }
 }

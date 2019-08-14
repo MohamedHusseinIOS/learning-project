@@ -19,9 +19,6 @@ class CartAddressesViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let data = [["m": 1],
-                    ["m": 1]]
-        viewModel.input.addresses.onNext(data)
     }
     
     override func configureUI() {
@@ -61,7 +58,6 @@ class CartAddressesViewController: BaseViewController {
             .bind {[unowned self] (indexPath) in
                 self.selectedCellAt(indexPath)
         }.disposed(by: bag)
-        
     }
     
     

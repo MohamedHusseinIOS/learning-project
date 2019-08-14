@@ -17,6 +17,7 @@ class CategoryItemsViewController: BaseViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     @IBOutlet weak var filterBtn: UIButton!
+    @IBOutlet weak var filterView: UIView!
     
     var category: Category?
     let viewModel = CategoryItemsViewModel()
@@ -25,7 +26,17 @@ class CategoryItemsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let id = category?.id else { return }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let id = category?.id else {
+            configureItemsCollection()
+            viewModel.input.products.onNext(viewModel.allProducts)
+            filterView.isHidden = true
+            return
+        }
         viewModel.getProducts(parent: self, categoryId: id)
     }
     
@@ -49,11 +60,13 @@ class CategoryItemsViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
         
-        filterBtn.rx.tap.bind { (_) in
-            NavigationCoordinator.shared.mainNavigator.present(.filterViewController({[weak self] (filterDict) in
-                guard let self = self else { return }
-                self.filterData(by: filterDict)
-            }, self.category, self.filterDict), completion: nil)
+        filterBtn.rx
+            .tap
+            .bind { (_) in
+                NavigationCoordinator.shared.mainNavigator.present(.filterViewController({[weak self] (filterDict) in
+                    guard let self = self else { return }
+                    self.filterData(by: filterDict)
+                }, self.category, self.filterDict), completion: nil)
         }.disposed(by: bag)
         
         itemsCollectionView.rx

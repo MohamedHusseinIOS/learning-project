@@ -43,7 +43,8 @@ class ItemDetailsViewModel: BaseViewModel, ViewModelType{
     
     func getProductDetails( id: Int?){
         guard let prodId = id else { return }
-        DataManager.shared.getProductDetails(productId: prodId) {[unowned self] (response) in
+        DataManager.shared.getProductDetails(productId: prodId) {[weak self] (response) in
+            guard let self = self else { return }
             switch response {
             case .success(let value):
 
