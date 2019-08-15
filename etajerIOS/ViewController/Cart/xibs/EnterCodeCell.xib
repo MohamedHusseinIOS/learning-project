@@ -27,7 +27,7 @@
                         <rect key="frame" x="20" y="15" width="474" height="55"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pv3-Wu-9Fi">
-                                <rect key="frame" x="5" y="5" width="389" height="45"/>
+                                <rect key="frame" x="10" y="5" width="379" height="45"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="DINNextLTW23-Regular" family="DIN Next LT W23" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -59,10 +59,10 @@
                             <constraint firstItem="rrh-mL-hGm" firstAttribute="top" secondItem="0dX-Xg-T0e" secondAttribute="top" constant="5" id="9VX-qz-kt1"/>
                             <constraint firstAttribute="trailing" secondItem="rrh-mL-hGm" secondAttribute="trailing" constant="5" id="HCs-ET-WbY"/>
                             <constraint firstAttribute="bottom" secondItem="rrh-mL-hGm" secondAttribute="bottom" constant="5" id="LiN-8H-nlp"/>
-                            <constraint firstItem="pv3-Wu-9Fi" firstAttribute="leading" secondItem="0dX-Xg-T0e" secondAttribute="leading" constant="5" id="Tnd-WR-y5r"/>
+                            <constraint firstItem="pv3-Wu-9Fi" firstAttribute="leading" secondItem="0dX-Xg-T0e" secondAttribute="leading" constant="10" id="Tnd-WR-y5r"/>
                             <constraint firstAttribute="bottom" secondItem="pv3-Wu-9Fi" secondAttribute="bottom" constant="5" id="Typ-4N-mzz"/>
                             <constraint firstAttribute="bottom" secondItem="rrh-mL-hGm" secondAttribute="bottom" constant="5" id="Y8M-4q-Q45"/>
-                            <constraint firstItem="rrh-mL-hGm" firstAttribute="leading" secondItem="pv3-Wu-9Fi" secondAttribute="trailing" constant="5" id="srG-H2-4bo"/>
+                            <constraint firstItem="rrh-mL-hGm" firstAttribute="leading" secondItem="pv3-Wu-9Fi" secondAttribute="trailing" constant="10" id="srG-H2-4bo"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">

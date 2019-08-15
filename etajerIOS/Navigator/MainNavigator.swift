@@ -23,6 +23,7 @@ enum storyboards: String {
 class MainNavigator{
     
     private weak var navigationController: UINavigationController!
+    let presentNVC = UINavigationController()
     var currentVC: Destination?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -75,10 +76,17 @@ extension MainNavigator: Navigator{
     
     func present(_ destination: Destination, completion: (() -> Void)?) {
         guard let vc = makeViewController(for: destination) else{return}
-        currentVC = destination
-        navigationController.present(vc, animated: true) {
+        presentNVC.viewControllers.append(vc)
+        //currentVC = destination
+        navigationController.present(presentNVC, animated: true) {
             completion?()
         }
+    }
+    
+    func presentNavigateTo(_ destination: Destination) {
+        guard let vc = makeViewController(for: destination) else{return}
+        currentVC = destination
+        presentNVC.pushViewController(vc, animated: true)
     }
     
     func popViewController(to destination: Destination?){

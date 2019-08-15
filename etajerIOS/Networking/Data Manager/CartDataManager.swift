@@ -18,14 +18,16 @@ extension DataManager {
         }
     }
     
-    func addProductToCart(productId: Int?, completion: @escaping NetworkManager.responseCallback) {
+    func addProductToCart(productId: Int?, quantity: Int?, completion: @escaping NetworkManager.responseCallback) {
         
         guard let id = productId else { return }
-        let params: [String: Any] = ["product_id": id]
+        guard let qty = quantity else { return }
+        let params: [String: Any] = ["product_id": id,
+                                     "qty":qty]
         
         NetworkManager.shared.post(url: URLs.addToCart.URL, paramters: params) { (response) in
             SVProgressHUD.dismiss()
-            self.handelResponseData(response: response, model: CartResponse.self, completion: completion)
+            self.handelResponseData(response: response, model: AddToCartResponse.self, completion: completion)
         }
     }
     
@@ -36,7 +38,13 @@ extension DataManager {
         
         NetworkManager.shared.post(url: URLs.removeFormCart.URL, paramters: params) { (response) in
             SVProgressHUD.dismiss()
-            self.handelResponseData(response: response, model: CartResponse.self, completion: completion)
+            self.handelResponseData(response: response, model: AddToCartResponse.self, completion: completion)
+        }
+    }
+    
+    func getAddresses(completion: @escaping NetworkManager.responseCallback) {
+        NetworkManager.shared.get(url: URLs.getAddresses.URL) { (response) in
+            self.handelResponseData(response: response, model: Addresses.self, completion: completion)
         }
     }
 }

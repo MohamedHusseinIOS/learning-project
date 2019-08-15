@@ -9,21 +9,22 @@
 import Foundation
 
 struct CartResponse: BaseModel {
-    let cart: Cart?
-    let byShippment: [String: CartProduct]?
+    var cart: Cart?
+    let byShippment: [String: byShippmentResponse]?
     let isUpdated: Bool?
     
     enum CodingKeys: String, CodingKey {
         case cart
+        case shippments
         case byShippment
         case isUpdated
     }
-    
+        
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         cart                = try container.decode(Cart.self, forKey: .cart)
-        byShippment         = try container.decode([String: CartProduct].self, forKey: .byShippment)
+        byShippment         = try container.decode([String: byShippmentResponse].self, forKey: .byShippment)
         isUpdated           = try container.decode(Bool.self, forKey: .isUpdated)
     }
     
@@ -33,6 +34,31 @@ struct CartResponse: BaseModel {
         try container.encode(cart.self, forKey: .cart)
         try container.encode(byShippment.self, forKey: .byShippment)
         try container.encode(isUpdated.self, forKey: .isUpdated)
+    }
+}
+
+struct byShippmentResponse: BaseModel {
+    
+    let fees: Double?
+    let items: [CartProduct]?
+    let method: String?
+    let name: String?
+    let seller: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case fees
+        case items
+        case method
+        case name
+        case seller
+    }
+}
+
+struct AddToCartResponse: BaseModel {
+    let cart: Cart?
+    
+    enum CodingKeys: String, CodingKey{
+        case cart
     }
 }
 

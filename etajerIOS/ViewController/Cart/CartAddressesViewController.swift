@@ -19,6 +19,7 @@ class CartAddressesViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.getAddresses()
     }
     
     override func configureUI() {
@@ -26,6 +27,16 @@ class CartAddressesViewController: BaseViewController {
         
         registerCell()
         configureTableView()
+    }
+    
+    override func configureData() {
+        super.configureData()
+            
+        viewModel.output
+            .faliure
+            .bind {[unowned self] (errors) in
+                self.alert(title: "", message: errors.first?.message ?? "", completion: nil)
+            }.disposed(by: bag)
     }
     
     func registerCell(){
@@ -60,17 +71,16 @@ class CartAddressesViewController: BaseViewController {
         }.disposed(by: bag)
     }
     
-    
     func selectedCellAt(_ indexPath: IndexPath){
         //Code
     }
     
-    func dequeueAddAddressCell(tableView: UITableView, indexPath: IndexPath, data: [String: Any]?) -> UITableViewCell {
+    func dequeueAddAddressCell(tableView: UITableView, indexPath: IndexPath, data: Address?) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddAddressCell", for: indexPath) as? AddAddressCell else { return AddAddressCell() }
         return cell
     }
     
-    func dequeueAddressCell(tableView: UITableView, indexPath: IndexPath, data: [String: Any]) -> UITableViewCell {
+    func dequeueAddressCell(tableView: UITableView, indexPath: IndexPath, data: Address) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartAddressCell", for: indexPath) as? CartAddressCell else { return CartAddressCell() }
         cell.bindOnData(data)

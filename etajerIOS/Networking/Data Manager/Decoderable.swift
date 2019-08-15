@@ -34,7 +34,7 @@ extension Decoderable {
             }
             return result
         } catch let _error {
-            print(_error)
+            debugPrint(_error)
             return nil
         }
     }

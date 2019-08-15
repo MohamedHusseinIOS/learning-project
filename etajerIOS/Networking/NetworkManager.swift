@@ -61,9 +61,10 @@ class NetworkManager {
     func post(url: String, paramters: Parameters?, completion: @escaping responseCallback){
         
         Alamofire.request(url, method: .post, parameters: paramters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            
             response.interceptResuest(url, paramters)
-            self.handleResponse(response, completion: completion)
+            DispatchQueue.main.async {
+                 self.handleResponse(response, completion: completion)
+            }
         }
     }
     
@@ -72,7 +73,6 @@ class NetworkManager {
             completion(.failure(ApiError.ClientSideError, nil))
             return
         }
-        
         if code < 400, let res = response.value as? Parameters {
             completion(.success(res))
         } else if let res = response.value {

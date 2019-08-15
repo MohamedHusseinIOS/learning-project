@@ -15,23 +15,37 @@ class CartAddressesViewModel: BaseViewModel, ViewModelType {
     var output: Output
     
     struct Input {
-        var addresses: AnyObserver<[[String: Any]]>
+        var addresses: AnyObserver<[Address]>
     }
     
     struct Output {
-        var addresses: Observable<[[String: Any]]>
+        var faliure: Observable<[ErrorModel]>
+        var addresses: Observable<[Address]>
     }
-    
-    private var addresses = PublishSubject<[[String: Any]]>()
-    var dataArray = [[String: Any]]()
+    private var faliure = PublishSubject<[ErrorModel]>()
+    private var addresses = PublishSubject<[Address]>()
+    var dataArray = [Address]()
     
     override init() {
         input = Input(addresses: addresses.asObserver())
-        output = Output(addresses: addresses.asObservable())
+        output = Output(faliure: faliure.asObservable(),
+                        addresses: addresses.asObservable())
         super.init()
-        addresses.bind {[unowned self] (items) in
+        addresses.bind { [unowned self] (items) in
             self.dataArray = items
         }.disposed(by: bag)
+    }
+    
+    func getAddresses(){
+        DataManager.shared.getAddresses { [unowned self] (response) in
+            switch response {
+            case .success(let value):
+                guard let addresses = value as? Addresses else { return }
+                self.addresses.onNext(addresses.addresses)
+            case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.faliure)
+            }
+        }
     }
     
     func removeItem(at index: IndexPath) {

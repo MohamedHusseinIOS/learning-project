@@ -39,8 +39,10 @@ class CartAddressCell: UITableViewCell {
         bag = DisposeBag()
     }
     
-    func bindOnData(_ data: [String: Any]) {
-        
+    func bindOnData(_ data: Address) {
+        self.titleLbl.text = data.name
+        self.usernameLbl.text = AppUtility.shared.getCurrentUser()?.name
+        self.addressLbl.text = "\(data.building ?? "") \(data.street ?? ""),\(data.desc ?? ""),\(data.area ?? ""),\(data.city ?? ""),\(data.country ?? "")"
     }
 
 }

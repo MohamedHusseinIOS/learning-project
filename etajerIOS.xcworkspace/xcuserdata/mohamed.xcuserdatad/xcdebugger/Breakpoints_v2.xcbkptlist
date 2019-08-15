@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "etajerIOS/ViewModel/Cart/CartPageViewModel.swift"
-            timestampString = "587492078.390963"
+            filePath = "etajerIOS/Networking/Data Manager/Decoderable.swift"
+            timestampString = "587572775.326154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "init()"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "decodeJSON(_:To:format:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

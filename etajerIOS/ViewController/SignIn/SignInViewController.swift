@@ -68,7 +68,7 @@ class SignInViewController: BaseViewController {
         forgetPasswordBtn.rx
             .tap
             .subscribe { (_) in
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .forgetPasswordViewController)
+                NavigationCoordinator.shared.mainNavigator.presentNavigateTo(.forgetPasswordViewController)
             }.disposed(by: disposeBag)
         
         registerBtn.rx
@@ -77,7 +77,7 @@ class SignInViewController: BaseViewController {
                 self.registerBtn.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 self.registerBtn.borderColor = #colorLiteral(red: 0.2761612535, green: 0.1481507123, blue: 0.3897372484, alpha: 1)
                 self.registerBtn.borderWidth = 1
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .signUpViewController)
+                NavigationCoordinator.shared.mainNavigator.presentNavigateTo(.signUpViewController)
             }.disposed(by: disposeBag)
         
         closeBtn.rx.tap.bind {[unowned self] (_) in

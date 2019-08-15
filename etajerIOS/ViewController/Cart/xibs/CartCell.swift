@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Kingfisher
 
 class CartCell: UITableViewCell {
 
@@ -21,6 +22,7 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var decteaseBtn: UIButton!
     @IBOutlet weak var numberOfItemsLbl: UILabel!
     
+    var parent: CartPageViewController?
     var bag = DisposeBag()
     var deleteAction: (()->Void)?
     var numberOfItems = 1
@@ -37,9 +39,15 @@ class CartCell: UITableViewCell {
     
     func bindOnData(_ data: CartProduct) {
         
-        self.itemImg.image = #imageLiteral(resourceName: "carpet")
-        self.sealLbl.text = "99 \(S_R.localized())"
-        self.priceLbl.text = "99 \(S_R.localized())"
+        let url = URL(string: data.thumbUrl ?? "")
+        self.itemImg.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: nil) { (res) in
+            //Code
+        }
+        self.sealLbl.text = ""
+        self.priceLbl.text = "\(data.price ?? "") \(S_R.localized())"
+        self.itemNameLbl.text = data.title
+        self.numberOfItems = data.qty ?? 1
+        self.numberOfItemsLbl.text = "\(data.qty ?? 1)"
         
         deleteBtn.rx
             .tap
@@ -51,7 +59,8 @@ class CartCell: UITableViewCell {
             .tap
             .bind {[unowned self] (_) in
                 self.numberOfItems += 1
-                self.numberOfItemsLbl.text = "\(self.numberOfItems)"
+                //self.numberOfItemsLbl.text = "\(self.numberOfItems)"
+                self.parent?.viewModel.changeQuitity(ofProduct: data.productId, by: self.numberOfItems)
         }.disposed(by: bag)
         
         decteaseBtn.rx
@@ -59,7 +68,8 @@ class CartCell: UITableViewCell {
             .bind {[unowned self] (_) in
                 if self.numberOfItems > 1 {
                     self.numberOfItems -= 1
-                    self.numberOfItemsLbl.text = "\(self.numberOfItems)"
+                    //self.numberOfItemsLbl.text = "\(self.numberOfItems)"
+                    self.parent?.viewModel.changeQuitity(ofProduct: data.productId, by: self.numberOfItems)
                 }
         }.disposed(by: bag)
     }

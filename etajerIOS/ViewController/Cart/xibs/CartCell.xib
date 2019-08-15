@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoO-pb-fe2">
-                                <rect key="frame" x="307" y="53.5" width="62" height="30"/>
+                                <rect key="frame" x="307" y="62.5" width="62" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tV5-pv-5ca">
                                         <rect key="frame" x="42" y="0.0" width="20" height="30"/>
@@ -120,6 +120,7 @@
                             <constraint firstAttribute="bottom" secondItem="cMq-zp-Gm2" secondAttribute="bottom" constant="5" id="CsT-be-IrW"/>
                             <constraint firstItem="cMq-zp-Gm2" firstAttribute="top" secondItem="qCr-yO-PgL" secondAttribute="top" id="Et4-hr-dW5"/>
                             <constraint firstItem="cMq-zp-Gm2" firstAttribute="leading" secondItem="hJA-6Y-0Ra" secondAttribute="leading" constant="5" id="HUi-3v-EJ8"/>
+                            <constraint firstAttribute="bottom" secondItem="zoO-pb-fe2" secondAttribute="bottom" constant="5" id="KNI-hh-VOq"/>
                             <constraint firstItem="Ivd-NE-2av" firstAttribute="top" secondItem="hqY-fu-0wI" secondAttribute="bottom" constant="2" id="Ons-RQ-Ip7"/>
                             <constraint firstAttribute="trailing" secondItem="zoO-pb-fe2" secondAttribute="trailing" constant="5" id="TxN-N9-HD7"/>
                             <constraint firstItem="cMq-zp-Gm2" firstAttribute="top" secondItem="hJA-6Y-0Ra" secondAttribute="top" constant="5" id="U9t-qB-45O"/>
@@ -129,7 +130,6 @@
                             <constraint firstAttribute="trailing" secondItem="FDX-QV-YO6" secondAttribute="trailing" constant="5" id="aox-pu-Yct"/>
                             <constraint firstItem="Ivd-NE-2av" firstAttribute="leading" secondItem="cMq-zp-Gm2" secondAttribute="trailing" constant="10" id="b3s-9C-3Lr"/>
                             <constraint firstItem="hqY-fu-0wI" firstAttribute="top" secondItem="qCr-yO-PgL" secondAttribute="bottom" constant="11" id="jX7-jU-bMa"/>
-                            <constraint firstItem="zoO-pb-fe2" firstAttribute="top" secondItem="qCr-yO-PgL" secondAttribute="bottom" constant="10" id="phc-JB-hBQ"/>
                             <constraint firstItem="qCr-yO-PgL" firstAttribute="leading" secondItem="cMq-zp-Gm2" secondAttribute="trailing" constant="10" id="rK5-VT-R4L"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

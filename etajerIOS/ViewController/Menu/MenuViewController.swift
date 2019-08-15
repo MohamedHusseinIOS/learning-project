@@ -38,17 +38,19 @@ class MenuViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if AppUtility.shared.currentAccessToken != nil {
+            notSignin(false)
+        } else {
+            notSignin(true)
+        }
+        
         setUserData()
     }
     
     override func configureUI() {
         super.configureUI()
         
-        if AppUtility.shared.currentAccessToken != nil {
-            notSignin(false)
-        } else {
-            notSignin(true)
-        }
+        
         
         headerSetup()
         registerMenuCell()

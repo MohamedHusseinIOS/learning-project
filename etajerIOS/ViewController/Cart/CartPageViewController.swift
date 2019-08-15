@@ -26,11 +26,18 @@ class CartPageViewController: BaseViewController {
         
         registerCell()
         configureTableView()
+        
+        
     }
     
     override func configureData() {
         super.configureData()
         
+        viewModel.output
+            .faliure
+            .bind {[unowned self] (errors) in
+                self.alert(title: "", message: errors.first?.message ?? "", completion: nil)
+        }.disposed(by: bag)
     }
 
     func registerCell(){
@@ -59,6 +66,7 @@ class CartPageViewController: BaseViewController {
     func dequeueCartCell(tableView: UITableView, indexPath: IndexPath, data:
         CartProduct) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as? CartCell else { return CartCell() }
+        cell.parent = self
         cell.bindOnData(data)
         cell.deleteAction = {[unowned self] in
             guard let id = data.id else { return }
@@ -92,5 +100,4 @@ class CartPageViewController: BaseViewController {
             itemsTableView.deleteRows(at: [index], with: .left)
         }
     }
-    
 }
