@@ -17,19 +17,19 @@ struct Addresses: BaseModel {
 }
 
 struct Address: BaseModel{
-    let additionalNumber : String?
-    let area : String?
-    let building : String?
-    let city : String?
-    let country : String?
-    let desc : String?
-    let id : Int?
-    let mobile : String?
-    let name : String?
-    let postal : String?
-    let street : String?
-    let theCountry : String?
-    let userId : Int?
+    var additionalNumber : String?
+    var area : String?
+    var building : String?
+    var city : String?
+    var country : String?
+    var desc : String?
+    var id : Int?
+    var mobile : String?
+    var name : String?
+    var postal : String?
+    var street : String?
+    var theCountry : String?
+    var userId : Int?
     
     enum CodingKeys: String, CodingKey {
         case additionalNumber
@@ -46,4 +46,6 @@ struct Address: BaseModel{
         case theCountry
         case userId
     }
+    
+    init() {}
 }

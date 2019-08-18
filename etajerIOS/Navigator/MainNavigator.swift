@@ -63,8 +63,8 @@ extension MainNavigator: Navigator{
         case cartViewController
         // child navigator in cart VC
         case cartPageViewController
-        case cartAddressViewController
-        case cartPaymentViewController
+        case cartAddressViewController(_ dataCallback: (([Address])->Void)?)
+        case cartPaymentViewController(_ items: [CartProduct], _ addresses: [Address], dataCallback: ((PaymentMethod)->Void))
         case cartFinishedViewController
     }
     
@@ -159,11 +159,13 @@ extension MainNavigator: Navigator{
         case .cartPageViewController:
             let vc = CartPageViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartPageViewController())
             return vc
-        case .cartAddressViewController:
+        case .cartAddressViewController(let dataCallback):
             let vc = CartAddressesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartAddressesViewController())
+            vc?.dataCallback = dataCallback
             return vc
-        case .cartPaymentViewController:
+        case .cartPaymentViewController(let items, let addresses, let dataCallback):
             let vc  = CartPaymentViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartPaymentViewController())
+            
             return vc
         case .cartFinishedViewController:
             let vc  = CartFinishedViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: CartFinishedViewController())

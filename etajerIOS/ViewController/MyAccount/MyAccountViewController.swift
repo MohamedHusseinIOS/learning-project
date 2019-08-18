@@ -22,8 +22,11 @@ class MyAccountViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         viewModel.sendElemnts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUserData()
     }
     
     override func configureUI() {
@@ -85,6 +88,12 @@ class MyAccountViewController: BaseViewController {
         default:
             break
         }
+    }
+    
+    func setUserData(){
+        let user = AppUtility.shared.getCurrentUser()
+        userNameLbl.text = user?.name
+        membershipNumberLbl.text = "\(user?.id ?? 0)"
     }
     
 }

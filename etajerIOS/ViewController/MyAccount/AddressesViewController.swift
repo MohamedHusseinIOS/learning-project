@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class AddressesViewController: BaseViewController {
 
@@ -20,13 +21,14 @@ class AddressesViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let data = [["m": 1],
-                    ["m": 1]]
-        viewModel.input.addresses.onNext(data)
+        viewModel.getAddresses(parent: self)
     }
     
     override func configureUI() {
         super.configureUI()
+        registerCell()
+        addressesTableView.dataSource = self
+        addressesTableView.showAnimatedGradientSkeleton()
         
         if AppUtility.shared.currentLang == .ar {
             backImg.image = #imageLiteral(resourceName: "white-back-ar")
@@ -34,8 +36,11 @@ class AddressesViewController: BaseViewController {
             backImg.image = #imageLiteral(resourceName: "white-back-en")
         }
         
-        registerCell()
-        configureTableView()
+        backBtn.rx
+            .tap
+            .bind {[unowned self] (_) in
+                self.navigationController?.popViewController(animated: true)
+        }.disposed(by: bag)
     }
     
     func registerCell(){
@@ -48,11 +53,15 @@ class AddressesViewController: BaseViewController {
         addressesTableView.dataSource = nil
         
         viewModel.output.addresses.bind(to: addressesTableView.rx.items) { tableView, row, element in
+            tableView.hideSkeleton()
             let indexPath = IndexPath(row: row, section: 0)
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as? AddressCell else { return AddressCell() }
             cell.bindOnData(element)
             cell.deleteAction = {[unowned self] in
                 self.deleteBtnTapped(in: indexPath)
+            }
+            cell.editAddress = {
+                //Code
             }
             return cell
         }.disposed(by: bag)
@@ -61,12 +70,6 @@ class AddressesViewController: BaseViewController {
             .itemSelected
             .bind {[unowned self] (indexPath) in
                 self.selectedCellAt(indexPath)
-        }.disposed(by: bag)
-        
-        backBtn.rx
-            .tap
-            .bind {[unowned self] (_) in
-                self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
     }
     
@@ -97,4 +100,29 @@ class AddressesViewController: BaseViewController {
         }
     }
 
+}
+
+extension AddressesViewController: SkeletonTableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as? AddressCell
+        cell?.activeSkeleton()
+        return cell ?? UITableViewCell()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "AddressCell"
+    }
 }

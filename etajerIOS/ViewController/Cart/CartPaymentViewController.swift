@@ -18,6 +18,11 @@ class CartPaymentViewController: BaseViewController {
     
     let viewModel = CartPaymentViewModel()
     
+    var items: [CartProduct]?
+    var addresses: [Address]?
+    var paymentMethod: PaymentMethod? = .cash
+    var dataCallback: ((String)->Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,7 +63,6 @@ class CartPaymentViewController: BaseViewController {
         
         let yourOrderItemsNib = UINib(nibName: "YourOrderItemsCell", bundle: .main)
         paymentTableView.register(yourOrderItemsNib, forCellReuseIdentifier: "YourOrderItemsCell")
-        
     }
     
     func configureTableView() {
@@ -71,11 +75,11 @@ class CartPaymentViewController: BaseViewController {
             case 0:
                return self.makePaymentMethodCellForm(tableView: tableView, at: indexPath, with: item)
             case 1:
-                return self.makeOrderSummeryCellForm(tableView: tableView, at: indexPath, with: item)
+                return self.makeOrderSummeryCellForm(tableView: tableView, at: indexPath)
             case 2:
-                return self.makeAddressCellForm(tableView: tableView, at: indexPath, with: item)
+                return self.makeAddressCellForm(tableView: tableView, at: indexPath)
             case 3:
-                return self.makeOrderItemsCellFrom(tableView: tableView, at: indexPath, with: item)
+                return self.makeOrderItemsCellFrom(tableView: tableView, at: indexPath)
             default:
                 return UITableViewCell()
             }
@@ -87,30 +91,30 @@ class CartPaymentViewController: BaseViewController {
     func makePaymentMethodCellForm(tableView: UITableView,at index: IndexPath, with data: [String:Any?]) -> UITableViewCell{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: index) as? PaymentMethodCell else { return UITableViewCell() }
         cell.bindOnData()
-        cell.selection = { selectedMethod in
-            switch selectedMethod {
-            case .creditCard:
-                break
-            case .cash:
-                break
-            }
+        cell.selection = {[weak self] selectedMethod in
+            guard let self = self else { return }
+            self.paymentMethod = selectedMethod
         }
         return cell
     }
     
-    func makeAddressCellForm(tableView: UITableView, at index: IndexPath, with data: [String:Any?]) -> UITableViewCell{
+    func makeAddressCellForm(tableView: UITableView, at index: IndexPath) -> UITableViewCell{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartAddressCell", for: index) as? CartAddressCell else { return UITableViewCell() }
+        guard let address = addresses?.first else { return cell }
+        cell.bindOnData(address)
         return cell
     }
     
-    func makeOrderSummeryCellForm(tableView: UITableView, at index: IndexPath, with data: [String:Any?]) -> UITableViewCell{
+    func makeOrderSummeryCellForm(tableView: UITableView, at index: IndexPath) -> UITableViewCell{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrderSummeryCell", for: index) as? OrderSummeryCell else { return UITableViewCell() }
+        cell.bindOnData(items: items, paymentMethpd: paymentMethod)
         return cell
     }
     
-    func makeOrderItemsCellFrom(tableView: UITableView, at index: IndexPath, with data: [String:Any?]) -> UITableViewCell{
+    func makeOrderItemsCellFrom(tableView: UITableView, at index: IndexPath) -> UITableViewCell{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "YourOrderItemsCell", for: index) as? YourOrderItemsCell else { return UITableViewCell() }
-        cell.bindOnData()
+        guard let data = items else { return  cell }
+        cell.bindOnData(items: data)
         return cell
     }
     

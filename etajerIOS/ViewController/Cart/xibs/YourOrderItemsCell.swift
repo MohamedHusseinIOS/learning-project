@@ -27,10 +27,10 @@ class YourOrderItemsCell: UITableViewCell {
         bag = DisposeBag()
     }
 
-    func bindOnData() {
+    func bindOnData(items: [CartProduct]) {
         registerCell()
         configureTableView()
-        
+        self.items.onNext(items)
     }
     
     func registerCell(){

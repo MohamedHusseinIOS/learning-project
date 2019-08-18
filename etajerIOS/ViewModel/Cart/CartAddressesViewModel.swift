@@ -24,6 +24,7 @@ class CartAddressesViewModel: BaseViewModel, ViewModelType {
     }
     private var faliure = PublishSubject<[ErrorModel]>()
     private var addresses = PublishSubject<[Address]>()
+    private var addressesResponse = PublishSubject<[Address]>()
     var dataArray = [Address]()
     
     override init() {
@@ -31,8 +32,10 @@ class CartAddressesViewModel: BaseViewModel, ViewModelType {
         output = Output(faliure: faliure.asObservable(),
                         addresses: addresses.asObservable())
         super.init()
-        addresses.bind { [unowned self] (items) in
+        addressesResponse.bind { [unowned self] (items) in
             self.dataArray = items
+            self.dataArray.append(Address())
+            self.addresses.onNext(self.dataArray)
         }.disposed(by: bag)
     }
     
@@ -41,7 +44,7 @@ class CartAddressesViewModel: BaseViewModel, ViewModelType {
             switch response {
             case .success(let value):
                 guard let addresses = value as? Addresses else { return }
-                self.addresses.onNext(addresses.addresses)
+                self.addressesResponse.onNext(addresses.addresses)
             case .failure(_, let data):
                 self.handelApiError(data: data, failer: self.faliure)
             }

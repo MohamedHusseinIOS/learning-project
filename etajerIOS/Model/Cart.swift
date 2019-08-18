@@ -64,7 +64,7 @@ struct AddToCartResponse: BaseModel {
 
 struct Cart: BaseModel {
     let id: Int?
-    let userId: String?
+    let userId: Int?
     let hashId: String?
     let status: Int?
     let paymentMethod: String?

@@ -242,6 +242,13 @@
                     <constraint firstAttribute="trailing" secondItem="DDZ-So-Y79" secondAttribute="trailing" id="drW-Xh-GlU"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="cashOnDelevaryFees" destination="eL5-RU-8Yv" id="wHA-9r-204"/>
+                <outlet property="delevaryFees" destination="wiX-J9-Guo" id="GWU-YY-ewp"/>
+                <outlet property="subTotal" destination="YUe-vb-eQr" id="bge-TU-76g"/>
+                <outlet property="totalPlasVat" destination="CKd-1U-k7Y" id="IV8-rP-L1E"/>
+                <outlet property="vatValue" destination="wE4-b9-IYn" id="nhf-Jd-5SC"/>
+            </connections>
             <point key="canvasLocation" x="415.94202898550731" y="209.93303571428569"/>
         </tableViewCell>
     </objects>

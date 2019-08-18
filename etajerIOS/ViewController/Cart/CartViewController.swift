@@ -27,6 +27,10 @@ class CartViewController: BaseViewController {
     
     let viewModel = CartViewModel()
     
+    var addresses = [Address]()
+    var items = [CartProduct]()
+    var paymentMethod: PaymentMethod?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.checkPage(.cart)
@@ -46,13 +50,7 @@ class CartViewController: BaseViewController {
             self.backTapped()
         }.disposed(by: bag)
         
-        guard let childRootVC = NavigationCoordinator.shared.mainNavigator?.makeViewController(for: .cartPageViewController) else { return }
-        let childNVC = UINavigationController(rootViewController: childRootVC)
-        addChildNavigationController(navigation: childNVC, to: childNavigationView, in: self)
-        NavigationCoordinator.shared.addChildNVC(childNVC, parentViewController: self)
-        //this used just once here (any push after that Auto pass currentVC)
-        NavigationCoordinator.shared.childNavigator?.currentVC = .cartPageViewController
-        
+        navigateToFirstPage()
         continueLbl.isHidden = true
         
         continueBtn.rx
@@ -60,6 +58,18 @@ class CartViewController: BaseViewController {
             .bind {[unowned self] (_) in
                 self.continueTapped()
         }.disposed(by: bag)
+    }
+    
+    func navigateToFirstPage(){
+        guard let childRootVC = NavigationCoordinator.shared.mainNavigator?.makeViewController(for: .cartPageViewController) else { return }
+        (childRootVC as? CartPageViewController)?.dataCallback = {[unowned self] data in
+            self.items = data
+        }
+        let childNVC = UINavigationController(rootViewController: childRootVC)
+        addChildNavigationController(navigation: childNVC, to: childNavigationView, in: self)
+        NavigationCoordinator.shared.addChildNVC(childNVC, parentViewController: self)
+        //this used just once here (any push after that Auto pass currentVC)
+        NavigationCoordinator.shared.childNavigator?.currentVC = .cartPageViewController
     }
     
     func addChildNavigationController(navigation: UINavigationController, to containerView: UIView, in ViewController: UIViewController){
@@ -82,7 +92,7 @@ class CartViewController: BaseViewController {
             buyLbl.isHidden = false
             dayDateLbl.isHidden = false
         case .some(.cartPaymentViewController):
-            NavigationCoordinator.shared.childNavigator?.popViewController(to: .cartAddressViewController)
+            NavigationCoordinator.shared.childNavigator?.popViewController(to: .cartAddressViewController(nil))
             headerView.checkPage(.address)
         case .some(.cartFinishedViewController):
             NavigationCoordinator.shared.mainNavigator.popViewController(to: .homeViewController)
@@ -94,14 +104,20 @@ class CartViewController: BaseViewController {
     func continueTapped(){
         switch NavigationCoordinator.shared.childNavigator?.currentVC {
         case .some(.cartPageViewController):
-            NavigationCoordinator.shared.childNavigator?.navigate(To: .cartAddressViewController)
+            let callback = {[unowned self] (data:[Address]) in
+                self.addresses = data
+            }
+            NavigationCoordinator.shared.childNavigator?.navigate(To: .cartAddressViewController(callback))
             headerView.checkPage(.address)
             continueLbl.text = CONTENUE.localized()
             continueLbl.isHidden = false
             buyLbl.isHidden = true
             dayDateLbl.isHidden = true
         case .some(.cartAddressViewController):
-            NavigationCoordinator.shared.childNavigator?.navigate(To: .cartPaymentViewController)
+            let callback = {[unowned self] (data: PaymentMethod) in
+                self.paymentMethod = data
+            }
+            NavigationCoordinator.shared.childNavigator?.navigate(To: .cartPaymentViewController(items, addresses, dataCallback: callback))
             headerView.checkPage(.payment)
             continueLbl.text = CONFIRM_THE_OREDER.localized()
         case .some(.cartPaymentViewController):

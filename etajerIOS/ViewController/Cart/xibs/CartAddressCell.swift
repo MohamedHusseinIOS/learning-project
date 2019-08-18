@@ -43,6 +43,7 @@ class CartAddressCell: UITableViewCell {
         self.titleLbl.text = data.name
         self.usernameLbl.text = AppUtility.shared.getCurrentUser()?.name
         self.addressLbl.text = "\(data.building ?? "") \(data.street ?? ""),\(data.desc ?? ""),\(data.area ?? ""),\(data.city ?? ""),\(data.country ?? "")"
+        self.mobileLbl.text = data.mobile
     }
-
+    
 }

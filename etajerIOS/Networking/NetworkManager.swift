@@ -43,7 +43,7 @@ class NetworkManager {
     private var headers: HTTPHeaders {
         guard let token = UserDefaults.standard.value(forKey: Constants.accessToken.rawValue) as? String else { return [:] }
         let headerDict = [
-            "Authorization":"Bearer\(token)",
+            "Authorization":"Bearer \(token)",
             "Accept-Language": AppUtility.shared.currentLang.rawValue
         ]
         return headerDict

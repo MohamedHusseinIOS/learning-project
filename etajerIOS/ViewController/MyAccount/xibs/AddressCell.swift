@@ -8,9 +8,11 @@
 
 import UIKit
 import RxSwift
+import SkeletonView
 
 class AddressCell: UITableViewCell {
-
+    
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var addressLbl: UILabel!
     @IBOutlet weak var mobileNumberLbl: UILabel!
@@ -19,6 +21,7 @@ class AddressCell: UITableViewCell {
     
     var bag = DisposeBag()
     var deleteAction: (()->Void)?
+    var editAddress: (()->Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,10 +32,11 @@ class AddressCell: UITableViewCell {
         bag = DisposeBag()
     }
     
-    func bindOnData(_ data: [String: Any]){
-        nameLbl.text = "المصنع"
-        addressLbl.text = "المملكة الهربية السعودية -2- الحمراء"
-        mobileNumberLbl.text = "+966555555555"
+    func bindOnData(_ data: Address){
+        stopSkeleton()
+        nameLbl.text = data.name
+        addressLbl.text = "\(data.building ?? "") \(data.street ?? ""),\(data.desc ?? ""),\(data.area ?? ""),\(data.city ?? ""),\(data.country ?? "")"
+        mobileNumberLbl.text = data.mobile
         
         editBtn.rx
             .tap
@@ -45,6 +49,24 @@ class AddressCell: UITableViewCell {
             .bind {[unowned self] (_) in
                 self.deleteAction?()
         }.disposed(by: bag)
-    }
         
+    }
+    
+    func activeSkeleton(){
+        
+        nameLbl.showAnimatedGradientSkeleton()
+        addressLbl.showAnimatedGradientSkeleton()
+        mobileNumberLbl.showAnimatedGradientSkeleton()
+        editBtn.showAnimatedGradientSkeleton()
+        deleteBtn.showAnimatedGradientSkeleton()
+    }
+
+    func stopSkeleton(){
+        containerView.hideSkeleton()
+        nameLbl.hideSkeleton()
+        addressLbl.hideSkeleton()
+        mobileNumberLbl.hideSkeleton()
+        editBtn.hideSkeleton()
+        deleteBtn.hideSkeleton()
+    }
 }

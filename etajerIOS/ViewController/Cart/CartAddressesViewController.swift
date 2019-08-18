@@ -15,7 +15,8 @@ class CartAddressesViewController: BaseViewController {
     @IBOutlet weak var addressTableView: UITableView!
     
     let viewModel = CartAddressesViewModel()
-
+    var dataCallback: (([Address])->Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +38,11 @@ class CartAddressesViewController: BaseViewController {
             .bind {[unowned self] (errors) in
                 self.alert(title: "", message: errors.first?.message ?? "", completion: nil)
             }.disposed(by: bag)
+        viewModel.output.addresses.bind {[unowned self] (addresses) in
+            var dataArr = addresses
+            dataArr.removeLast()
+            self.dataCallback?(dataArr)
+        }.disposed(by: bag)
     }
     
     func registerCell(){

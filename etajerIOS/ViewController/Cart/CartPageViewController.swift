@@ -15,6 +15,7 @@ class CartPageViewController: BaseViewController {
     @IBOutlet weak var itemsTableView: UITableView!
 
     let viewModel = CartPageViewModel()
+    var dataCallback: (([CartProduct])->Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,6 @@ class CartPageViewController: BaseViewController {
         
         registerCell()
         configureTableView()
-        
-        
     }
     
     override func configureData() {
@@ -37,6 +36,10 @@ class CartPageViewController: BaseViewController {
             .faliure
             .bind {[unowned self] (errors) in
                 self.alert(title: "", message: errors.first?.message ?? "", completion: nil)
+        }.disposed(by: bag)
+        
+        viewModel.output.items.bind {[unowned self] (items) in
+            self.dataCallback?(items)
         }.disposed(by: bag)
     }
 
