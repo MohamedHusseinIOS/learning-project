@@ -109,6 +109,7 @@
 "DETAILS" = "التفاصيل";
 
 //MARK:- Addresses
+"SELECT_ADDRESS" = "اختيار العنوان";
 "ADDRESSES" = " عناويني";
 "ADDRESS" = "عنوان";
 "NAME" = "الاسم";

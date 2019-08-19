@@ -60,8 +60,8 @@ class AddressesViewController: BaseViewController {
             cell.deleteAction = {[unowned self] in
                 self.deleteBtnTapped(in: indexPath)
             }
-            cell.editAddress = {
-                //Code
+            cell.editAddress = { (address) in
+                NavigationCoordinator.shared.mainNavigator.present(.selectAddressViewController(address), completion: nil)
             }
             return cell
         }.disposed(by: bag)

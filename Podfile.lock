@@ -2,6 +2,13 @@ PODS:
   - Alamofire (4.8.2)
   - Cosmos (19.0.3)
   - Differentiator (3.1.0)
+  - GoogleMaps (3.2.0):
+    - GoogleMaps/Maps (= 3.2.0)
+  - GoogleMaps/Base (3.2.0)
+  - GoogleMaps/Maps (3.2.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.2.0):
+    - GoogleMaps/Base (= 3.2.0)
   - IQKeyboardManagerSwift (6.4.0)
   - Kingfisher (5.7.0)
   - RxCocoa (4.5.0):
@@ -18,6 +25,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Cosmos (~> 19.0)
+  - GoogleMaps
+  - GooglePlaces
   - IQKeyboardManagerSwift
   - Kingfisher (~> 5.0)
   - RxCocoa (~> 4.0)
@@ -32,6 +41,8 @@ SPEC REPOS:
     - Alamofire
     - Cosmos
     - Differentiator
+    - GoogleMaps
+    - GooglePlaces
     - IQKeyboardManagerSwift
     - Kingfisher
     - RxCocoa
@@ -45,6 +56,8 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  GoogleMaps: 5046d7edfe381c1a0b20fdaf293915a375c3122b
+  GooglePlaces: 41bc2e480816b1234a48f4bec92e1c886f37cfe1
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
@@ -54,6 +67,6 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 236194eac8ebf88795cc857d4a5f1886a492e916
+PODFILE CHECKSUM: 27e54ddb37d6e42d4f1aa55a00d4731d13a1106c
 
 COCOAPODS: 1.6.1

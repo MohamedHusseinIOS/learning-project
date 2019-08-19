@@ -58,6 +58,7 @@ extension MainNavigator: Navigator{
         case favoritesViewController
         case notificationViewController
         case addressesViewController
+        case selectAddressViewController(_ address: String?)
         
         //Cart VC
         case cartViewController
@@ -150,6 +151,10 @@ extension MainNavigator: Navigator{
             return vc
         case .addressesViewController:
             let vc = AddressesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: AddressesViewController())
+            return vc
+        case .selectAddressViewController(let address):
+            let vc = SelectAddressViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: SelectAddressViewController())
+            vc?.address = address
             return vc
             
         //MARK:- Cart

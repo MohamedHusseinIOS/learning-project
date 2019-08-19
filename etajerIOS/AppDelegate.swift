@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         NavigationCoordinator.shared.startApp()
         LanguageManager.shared.DoTheSwizzling()
+        AppUtility.shared.configureGoogleMaps()
         return true
     }
 

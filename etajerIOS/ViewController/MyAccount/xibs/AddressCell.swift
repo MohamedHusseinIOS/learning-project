@@ -21,7 +21,7 @@ class AddressCell: UITableViewCell {
     
     var bag = DisposeBag()
     var deleteAction: (()->Void)?
-    var editAddress: (()->Void)?
+    var editAddress: ((String?)->Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,8 +40,8 @@ class AddressCell: UITableViewCell {
         
         editBtn.rx
             .tap
-            .bind { (_) in
-                
+            .bind {[unowned self] (_) in
+                self.editAddress?(self.addressLbl.text)
         }.disposed(by: bag)
         
         deleteBtn.rx

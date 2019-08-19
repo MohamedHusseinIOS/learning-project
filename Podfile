@@ -18,6 +18,9 @@ target 'etajerIOS' do
   pod 'SVProgressHUD'
   pod 'Kingfisher', '~> 5.0'
   
+  pod 'GooglePlaces'
+  pod 'GoogleMaps'
+  
   post_install do |installer|
     installer.pods_project.targets.each do |target|
       if 'SlideMenuControllerSwift'.include? target.name

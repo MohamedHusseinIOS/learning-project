@@ -84,6 +84,7 @@
 		D9C2DC6322E0745300E4385D /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C2DC6222E0745300E4385D /* FavoritesViewController.swift */; };
 		D9C2DC6522E0746F00E4385D /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C2DC6422E0746F00E4385D /* FavoritesViewModel.swift */; };
 		D9C2DC6722E0C76200E4385D /* din-next-lt-w23-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9C2DC6622E0C19E00E4385D /* din-next-lt-w23-bold.ttf */; };
+		D9C2DCA0230A955800CC8C1C /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C2DC9F230A955800CC8C1C /* SelectAddressViewController.swift */; };
 		D9C3B0D122D321160010F45C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C3B0D022D321160010F45C /* HomeViewController.swift */; };
 		D9C3B0D422D3417D0010F45C /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C3B0D322D3417D0010F45C /* Bundle+Extension.swift */; };
 		D9C3B0D622D3428B0010F45C /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C3B0D522D3428B0010F45C /* LanguageManager.swift */; };
@@ -223,6 +224,7 @@
 		D9C2DC6222E0745300E4385D /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		D9C2DC6422E0746F00E4385D /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		D9C2DC6622E0C19E00E4385D /* din-next-lt-w23-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-lt-w23-bold.ttf"; sourceTree = "<group>"; };
+		D9C2DC9F230A955800CC8C1C /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		D9C3B0D022D321160010F45C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D9C3B0D322D3417D0010F45C /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		D9C3B0D522D3428B0010F45C /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				D9C2DC6222E0745300E4385D /* FavoritesViewController.swift */,
 				D9DE930722E461CE00144B8B /* NotificationsViewController.swift */,
 				D99D2A1222E5958400A430A7 /* AddressesViewController.swift */,
+				D9C2DC9F230A955800CC8C1C /* SelectAddressViewController.swift */,
 			);
 			path = MyAccount;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				D91947D622CDFF3F00302A75 /* Frameworks */,
 				D91947D722CDFF3F00302A75 /* Resources */,
 				FE5C961C9C5AEC239BA1FD18 /* [CP] Embed Pods Frameworks */,
+				43FF9802F2610A584ECC6DF8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -764,6 +768,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		43FF9802F2610A584ECC6DF8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-etajerIOS/Pods-etajerIOS-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-etajerIOS/Pods-etajerIOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9FE4BC89A2F68CFCBADE9974 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -922,6 +950,7 @@
 				D91947F322CE034300302A75 /* BaseViewModel.swift in Sources */,
 				D957A4C922F99B16004709B5 /* FilterCell.swift in Sources */,
 				D9FDC71422DDE2090023B797 /* AuctionDetailsViewController.swift in Sources */,
+				D9C2DCA0230A955800CC8C1C /* SelectAddressViewController.swift in Sources */,
 				D9CED6FA22D486CA00D8026E /* ItemsCell.swift in Sources */,
 				D957A4C322F97F46004709B5 /* FilterViewModel.swift in Sources */,
 				D9F8B43E22D1F33F00DCD15C /* UITextField+Extension.swift in Sources */,

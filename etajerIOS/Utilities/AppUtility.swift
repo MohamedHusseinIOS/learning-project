@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 class AppUtility {
     
@@ -72,48 +74,38 @@ class AppUtility {
     func saveCurrentUser(_ user: User){
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
-        do{
-            let encodedUser = try? encoder.encode(user)
-            UserDefaults.standard.set(encodedUser, forKey: Constants.currentUser.rawValue)
-            UserDefaults.standard.synchronize()
-        }catch let error {
-            print("[saveCurrentUser] \(error.localizedDescription)")
-        }
+      
+        let encodedUser = try? encoder.encode(user)
+        UserDefaults.standard.set(encodedUser, forKey: Constants.currentUser.rawValue)
+        UserDefaults.standard.synchronize()
+        
     }
     
     func getCurrentUser() -> User? {
         guard let userData = UserDefaults.standard.object(forKey: Constants.currentUser.rawValue) as? Data else { return nil }
         let decoder = JSONDecoder()
-        do{
-            let user = try? decoder.decode(User.self, from: userData)
-            return user
-        } catch let error {
-            print("[getCurrentUser] \(error.localizedDescription)")
-            return nil
-        }
+        let user = try? decoder.decode(User.self, from: userData)
+        return user
     }
     
     func saveAppCategories(_ categories: Categories){
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
-        do{
-            let encodedCategoris = try? encoder.encode(categories)
-            UserDefaults.standard.set(encodedCategoris, forKey: Constants.categories.rawValue)
-            UserDefaults.standard.synchronize()
-        }catch let error {
-            print("[saveCurrentUser] \(error.localizedDescription)")
-        }
+        let encodedCategoris = try? encoder.encode(categories)
+        UserDefaults.standard.set(encodedCategoris, forKey: Constants.categories.rawValue)
+        UserDefaults.standard.synchronize()
+        
     }
     
     func getAppCategories() -> Categories? {
         guard let categoriesData = UserDefaults.standard.object(forKey: Constants.categories.rawValue) as? Data else { return nil }
         let decoder = JSONDecoder()
-        do{
-            let user = try? decoder.decode(Categories.self, from: categoriesData)
-            return user
-        } catch let error {
-            print("[getCurrentUser] \(error.localizedDescription)")
-            return nil
-        }
+        let user = try? decoder.decode(Categories.self, from: categoriesData)
+        return user
+    }
+    
+    func configureGoogleMaps(){
+        GMSServices.provideAPIKey(Constants.googleAPIKey.rawValue)
+        GMSPlacesClient.provideAPIKey(Constants.googleAPIKey.rawValue)
     }
 }

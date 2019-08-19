@@ -16,6 +16,7 @@ enum Constants: String{
     case enviroment
     case currentUser
     case categories
+    case googleAPIKey = "AIzaSyA6jtedC506eRoP4JIy5QxYP--4L4KqYzQ"
     
 }
 

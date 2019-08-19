@@ -109,15 +109,14 @@
 "DETAILS" = "details";
 
 //MARK:- Addresses
+"SELECT_ADDRESS" = "Select Address";
 "ADDRESSES" = "Addresses";
 "ADDRESS" = "address";
-
 "NAME" = "name";
 "DELETE" = "delete";
 "EDIT" = "edit";
 
 //MARK:- Cart
-
 
 "CONTINUE" = "continue";
 "CONFIRM_THE_OREDER" = "confirm the order";
