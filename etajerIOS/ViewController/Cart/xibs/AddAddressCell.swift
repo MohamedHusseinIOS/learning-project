@@ -19,10 +19,13 @@ class AddAddressCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+    }
+    
+    func setup(){
         addAdressBtn.rx
             .tap
             .bind { (_) in
-            
+                NavigationCoordinator.shared.mainNavigator.present(.selectAddressViewController(nil), completion: nil)
         }.disposed(by: bag)
     }
 

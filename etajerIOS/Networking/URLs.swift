@@ -26,7 +26,10 @@ enum URLs: String {
     case removeFormCart             = "/api/v1/order/remove-from-cart?hash=111"
     
     case getAddresses               = "/api/v1/user/addresses"
+    case newAddress                 = "/api/v1/user/new-address"
+    
     case getNotifications           = "/api/v1/notifications/index"
+    
     
     var URL: String{
         return AppUtility.shared.currentEnviroment + self.rawValue

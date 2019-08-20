@@ -61,7 +61,7 @@ class AddressesViewController: BaseViewController {
                 self.deleteBtnTapped(in: indexPath)
             }
             cell.editAddress = { (address) in
-                NavigationCoordinator.shared.mainNavigator.present(.selectAddressViewController(address), completion: nil)
+                // TODO:- Need Edit Address API
             }
             return cell
         }.disposed(by: bag)

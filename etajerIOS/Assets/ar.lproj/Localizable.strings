@@ -115,6 +115,9 @@
 "NAME" = "الاسم";
 "DELETE" = "حذف";
 "EDIT" = "تعديل";
+"ALL_FIELDS_ERROR" = "كل الحقول ضرورية";
+"SELECT_FORM_MAP" = "اختر العنوان علي الخريطة";
+"ADDRESS_ADDED" = "تم اضافة العنوان بنجاح";
 
 //MARK:- Cart
 

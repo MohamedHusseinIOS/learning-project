@@ -18,6 +18,6 @@ extension UIViewController {
         }
         
         alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        navigationController?.present(alert, animated: true, completion: nil)
     }
 }

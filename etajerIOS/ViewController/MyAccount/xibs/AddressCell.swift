@@ -35,7 +35,7 @@ class AddressCell: UITableViewCell {
     func bindOnData(_ data: Address){
         stopSkeleton()
         nameLbl.text = data.name
-        addressLbl.text = "\(data.building ?? "") \(data.street ?? ""),\(data.desc ?? ""),\(data.area ?? ""),\(data.city ?? ""),\(data.country ?? "")"
+        addressLbl.text = "\(data.building ?? "") \(data.street ?? "")،\(data.desc ?? "")،\(data.area ?? "")،\(data.city ?? "")،\(data.country ?? "")"
         mobileNumberLbl.text = data.mobile
         
         editBtn.rx
@@ -49,7 +49,6 @@ class AddressCell: UITableViewCell {
             .bind {[unowned self] (_) in
                 self.deleteAction?()
         }.disposed(by: bag)
-        
     }
     
     func activeSkeleton(){

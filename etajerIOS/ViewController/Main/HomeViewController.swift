@@ -15,6 +15,8 @@ class HomeViewController: BaseViewController {
 
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var cartProductsCountView: UIView!
+    @IBOutlet weak var cartProductsCountLbl: UILabel!
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var homeTableView: UITableView!
@@ -28,12 +30,15 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        viewModel.getHome(parent: self)
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.frame.size.height = AppUtility.shared.screenHeight
+        viewModel.getCart()
     }
     
     func registerCell(){
@@ -50,7 +55,7 @@ class HomeViewController: BaseViewController {
         homeTableView.dataSource = self
         homeTableView.showAnimatedGradientSkeleton()
         sliderScrollView.showAnimatedGradientSkeleton()
-        viewModel.getHome(parent: self)
+        cartProductsCountView.isHidden = true
         
         menuBtn.rx
             .tap
@@ -89,6 +94,17 @@ class HomeViewController: BaseViewController {
             .scrollElemnets
             .bind {[unowned self] (adsArr) in
                 self.setupScrollView(elements: adsArr)
+        }.disposed(by: bag)
+        
+        viewModel.output
+            .cartProductsCount
+            .bind {[unowned self] (productCount) in
+                if productCount > 0 {
+                    self.cartProductsCountLbl.text = "\(productCount)"
+                    self.cartProductsCountView.isHidden = false
+                } else {
+                    self.cartProductsCountView.isHidden = true
+                }
         }.disposed(by: bag)
     }
     

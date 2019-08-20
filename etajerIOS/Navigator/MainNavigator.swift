@@ -55,7 +55,7 @@ extension MainNavigator: Navigator{
         
         //My Account VC
         case myAccountViewController
-        case favoritesViewController
+        case favoritesViewController 
         case notificationViewController
         case addressesViewController
         case selectAddressViewController(_ address: String?)

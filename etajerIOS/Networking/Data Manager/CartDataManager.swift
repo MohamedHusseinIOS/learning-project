@@ -47,6 +47,23 @@ extension DataManager {
             self.handelResponseData(response: response, model: Addresses.self, completion: completion)
         }
     }
+    
+    func setNewAddress(name: String, country: String, city: String, area: String, street: String, building: String, mobile: String, completion: @escaping NetworkManager.responseCallback) {
+        
+        let params: [String: Any] = ["name": name,
+                                     "country": country,
+                                     "city":city,
+                                     "area":area,
+                                     "street":street,
+                                     "building":building,
+                                     "mobile":mobile]
+        
+        NetworkManager.shared.post(url: URLs.newAddress.URL, paramters: params) { (response) in
+            SVProgressHUD.dismiss()
+            self.handelResponseData(response: response, model: AddressResponse.self, completion: completion)
+        }
+        
+    }
 }
 
 

@@ -15,4 +15,5 @@ extension DataManager {
             self.handelResponseData(response: response, model: NotificationResponse.self, completion: completion)
         }
     }
+    
 }

@@ -115,7 +115,9 @@
 "NAME" = "name";
 "DELETE" = "delete";
 "EDIT" = "edit";
-
+"ALL_FIELDS_ERROR" = "all fields are mandatory";
+"SELECT_FORM_MAP" = "Select Address on The map";
+"ADDRESS_ADDED" = "Address added successfully";
 //MARK:- Cart
 
 "CONTINUE" = "continue";

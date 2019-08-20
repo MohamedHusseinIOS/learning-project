@@ -16,6 +16,14 @@ struct Addresses: BaseModel {
     }
 }
 
+struct AddressResponse: BaseModel {
+    let address: Address
+    
+    enum CodingKeys: String, CodingKey{
+        case address
+    }
+}
+
 struct Address: BaseModel{
     var additionalNumber : String?
     var area : String?

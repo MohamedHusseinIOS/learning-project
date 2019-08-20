@@ -16,9 +16,17 @@ class SelectAddressViewController: BaseViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var backImg: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var searchTxt: UITextField!
     @IBOutlet weak var addressLbl: UILabel!
     @IBOutlet weak var mapView: GMSMapView!
+    
+    @IBOutlet weak var nameTxt: UITextField!
+    @IBOutlet weak var countryTxt: UITextField!
+    @IBOutlet weak var buildingTxt: UITextField!
+    @IBOutlet weak var streetTxt: UITextField!
+    @IBOutlet weak var areaTxt: UITextField!
+    @IBOutlet weak var cityTxt: UITextField!
+    @IBOutlet weak var doneBtn: UIButton!
+    
     
     let locationManager = CLLocationManager()
     
@@ -31,10 +39,12 @@ class SelectAddressViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if address != nil {
+        if let address = address {
             addressLbl.text = address
+            setAddressOnFildes(address: address)
+        } else {
+            addressLbl.text = SELECT_FORM_MAP.localized()
         }
-        
     }
     
     override func configureUI() {
@@ -59,6 +69,12 @@ class SelectAddressViewController: BaseViewController {
             .bind {[unowned self] (_) in
                 self.navigationController?.dismiss(animated: true, completion: nil)
             }.disposed(by: bag)
+        
+        doneBtn.rx
+            .tap
+            .bind {[unowned self] (_) in
+                self.creatNewAddress()
+            }.disposed(by: bag)
     }
     
     func setupLocationManager(){
@@ -80,6 +96,50 @@ class SelectAddressViewController: BaseViewController {
     func changePositionTo(coordinate: CLLocationCoordinate2D){
         let camera = GMSCameraPosition(latitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 15.0)
         mapView.animate(to: camera)
+    }
+    
+    func setAddressOnFildes(address: String) {
+        var addressArr = address.split(separator: "،")
+        var area = ""
+        var city = ""
+        var country = ""
+        
+        if addressArr.count <= 1 {
+            addressArr = address.split(separator: ",")
+        }
+        
+        if addressArr.count == 3 {
+            area = "--"
+            city = addressArr[1].description
+            country = addressArr[2].description
+        }
+        
+        if addressArr.count == 4 {
+            area = addressArr[1].description
+            city = addressArr[2].description
+            country = addressArr[3].description
+        } else if addressArr.count == 5 {
+            area = addressArr[1].description
+            area = area + " -" + addressArr[2].description
+            city = addressArr[3].description
+            country = addressArr[4].description
+        }
+        
+        let streetAndBuilding = addressArr[0].description
+        let building = streetAndBuilding.split(separator: " ").first?.description
+        let street = streetAndBuilding.split(separator: " ").dropFirst().joined(separator: " ").description
+    
+        if let num = Int(building ?? "--") {
+            self.buildingTxt.text = "\(num)"
+            self.streetTxt.text = street
+        } else {
+            self.buildingTxt.text = "--"
+            self.streetTxt.text = streetAndBuilding
+        }
+        
+        self.areaTxt.text = area
+        self.cityTxt.text = city
+        self.countryTxt.text = country
     }
     
     func configureAutocomplete() {
@@ -110,6 +170,41 @@ class SelectAddressViewController: BaseViewController {
             }
         }
     }
+    
+    func creatNewAddress(){
+        guard let name = nameTxt.text?.trimmingCharacters(in: .whitespaces),
+              let country = countryTxt.text?.trimmingCharacters(in: .whitespaces),
+              let city = cityTxt.text?.trimmingCharacters(in: .whitespaces),
+              let area = areaTxt.text?.trimmingCharacters(in: .whitespaces),
+              let street = streetTxt.text?.trimmingCharacters(in: .whitespaces),
+              let building = buildingTxt.text?.trimmingCharacters(in: .whitespaces)  else {
+                self.alert(title: "", message: ALL_FIELDS_ERROR.localized(), completion: nil)
+                return
+        }
+        
+        guard let mobile = AppUtility.shared.getCurrentUser()?.mobile else { return }
+        DataManager.shared.setNewAddress(name: name ,
+                                         country: country,
+                                         city: city,
+                                         area: area,
+                                         street: street,
+                                         building: building,
+                                         mobile: mobile) {[unowned self] (response) in
+                                            switch response {
+                                            case .success(let vlaue):
+                                                guard let _ = vlaue as? AddressResponse else { return }
+                                                self.alert(title: "", message: ADDRESS_ADDED.localized(), completion: {
+                                                    self.dismiss(animated: true, completion: nil)
+                                                })
+                                            case .failure(_, let data):
+                                                if let err = data as? ErrorModel, let msg = err.message {
+                                                    self.alert(title: "", message: msg, completion: nil)
+                                                } else if let errs = data as? [ErrorModel], let err = errs.first, let msg = err.message {
+                                                    self.alert(title: "", message: msg, completion: nil)
+                                                }
+                                            }
+        }
+    }
 
 }
 
@@ -129,22 +224,21 @@ extension SelectAddressViewController: CLLocationManagerDelegate {
 
 extension SelectAddressViewController: GMSMapViewDelegate{
     
+    //Handel User Tap On the map
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         mapView.clear()
         marker = GMSMarker(position: coordinate)
         marker.map = mapView
-        getAddressFormCoordinate(coordinate) { (address) in
+        getAddressFormCoordinate(coordinate) {[unowned self] (address) in
+            self.setAddressOnFildes(address: address)
             self.address = address
             self.addressLbl.text = address
         }
     }
     
+    //Handel map camera position move ( get the coordinate of screen center )
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-//        let coordinate = position.target
-//        getAddressFormCoordinate(coordinate) { (address) in
-//            self.address = address
-//            self.addressLbl.text = address
-//        }
+        //Code
     }
 }
 

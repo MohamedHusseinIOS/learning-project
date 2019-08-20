@@ -19,7 +19,11 @@ class CartAddressesViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.getAddresses()
     }
     
@@ -38,6 +42,7 @@ class CartAddressesViewController: BaseViewController {
             .bind {[unowned self] (errors) in
                 self.alert(title: "", message: errors.first?.message ?? "", completion: nil)
             }.disposed(by: bag)
+        
         viewModel.output.addresses.bind {[unowned self] (addresses) in
             var dataArr = addresses
             dataArr.removeLast()
@@ -83,6 +88,7 @@ class CartAddressesViewController: BaseViewController {
     
     func dequeueAddAddressCell(tableView: UITableView, indexPath: IndexPath, data: Address?) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddAddressCell", for: indexPath) as? AddAddressCell else { return AddAddressCell() }
+        cell.setup()
         return cell
     }
     
@@ -90,7 +96,8 @@ class CartAddressesViewController: BaseViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CartAddressCell", for: indexPath) as? CartAddressCell else { return CartAddressCell() }
         cell.bindOnData(data)
-        cell.deleteAction = {[unowned self] in
+        cell.deleteAction = { [weak self] in
+            guard let self = self else { return }
             self.deleteBtnTapped(in: indexPath)
         }
         return cell

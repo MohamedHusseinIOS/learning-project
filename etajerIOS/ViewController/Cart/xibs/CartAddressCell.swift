@@ -26,16 +26,9 @@ class CartAddressCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        deleteBtn.rx
-            .tap
-            .bind {[unowned self] (_) in
-                self.deleteAction?()
-        }.disposed(by: bag)
     }
 
     override func prepareForReuse() {
-        super.prepareForReuse()
         bag = DisposeBag()
     }
     
@@ -44,6 +37,13 @@ class CartAddressCell: UITableViewCell {
         self.usernameLbl.text = AppUtility.shared.getCurrentUser()?.name
         self.addressLbl.text = "\(data.building ?? "") \(data.street ?? ""),\(data.desc ?? ""),\(data.area ?? ""),\(data.city ?? ""),\(data.country ?? "")"
         self.mobileLbl.text = data.mobile
+        
+        deleteBtn.rx
+            .tap
+            .bind { [weak self] (_) in
+                guard let self = self else { return }
+                self.deleteAction?()
+            }.disposed(by: bag)
     }
     
 }

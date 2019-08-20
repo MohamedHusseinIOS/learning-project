@@ -30,16 +30,19 @@ class HomeViewModel: BaseViewModel, ViewModelType {
     
     struct Output {
         let homeData: Observable<[HomeViewModel.HomeData]>
+        let cartProductsCount: Observable<Int>
         let scrollElemnets: Observable<[Ads]>
         let failer: Observable<[ErrorModel]>
     }
     
     private let homeData = PublishSubject<[HomeViewModel.HomeData]>()
+    private let cartProductsCount = PublishSubject<Int>()
     private let scrollElemnets = PublishSubject<[Ads]>()
     private let failer = PublishSubject<[ErrorModel]>()
     
     override init() {
         self.output = Output(homeData: homeData.asObservable(),
+                             cartProductsCount: cartProductsCount.asObservable(),
                              scrollElemnets: scrollElemnets.asObservable(),
                              failer: failer.asObservable())
         self.input = Input()
@@ -68,6 +71,19 @@ class HomeViewModel: BaseViewModel, ViewModelType {
                 ads.reverse()
                 self.scrollElemnets.onNext(ads)
             case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.failer)
+            }
+        }
+    }
+    
+    func getCart(){
+        DataManager.shared.getCart {[unowned self] (response) in
+            switch response {
+            case .success(let value):
+                guard let cartRes = value as? CartResponse, let cartProductsCount = cartRes.cart?.products?.count else { return }
+                self.cartProductsCount.onNext(cartProductsCount)
+            case .failure(_, let data):
+                self.cartProductsCount.onNext(0)
                 self.handelApiError(data: data, failer: self.failer)
             }
         }
