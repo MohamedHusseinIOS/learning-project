@@ -93,6 +93,8 @@
 "MEMBERSHIP" = "عضويتك:";
 
 "MY_ORDERS" = "الطلبات";
+"DONT_HAVE_ORDERS" = "ليس لديك طلبات مسجلة حتي الآن";
+"DONT_HAVE_NOTIFICATIONS" = "ليس لديك اشعارات في الوقت الحالي";
 "ADDRESSES" = "العنواين";
 "PAYMENT_INFO" = "معلومات الدفع";
 "MY_INFO" = "معلوماتي";

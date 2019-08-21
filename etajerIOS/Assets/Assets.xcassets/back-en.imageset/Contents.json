@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iconfinder_27_171489 copy.png"
+      "filename" : "iconfinder_27_171489 copy.png",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

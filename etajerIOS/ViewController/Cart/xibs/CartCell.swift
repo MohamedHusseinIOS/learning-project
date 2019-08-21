@@ -22,6 +22,8 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var decteaseBtn: UIButton!
     @IBOutlet weak var numberOfItemsLbl: UILabel!
     
+    static let reuseId = "CartCell"
+    
     var parent: CartPageViewController?
     var bag = DisposeBag()
     var deleteAction: (()->Void)?

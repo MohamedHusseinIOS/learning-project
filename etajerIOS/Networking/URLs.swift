@@ -28,6 +28,8 @@ enum URLs: String {
     case getAddresses               = "/api/v1/user/addresses"
     case newAddress                 = "/api/v1/user/new-address"
     
+    case getMyOrders                = "/api/v1/my-orders/index"
+    case getOrderDetails            = "/api/v1/my-orders/details"
     case getNotifications           = "/api/v1/notifications/index"
     
     

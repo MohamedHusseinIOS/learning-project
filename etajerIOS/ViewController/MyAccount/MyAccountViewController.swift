@@ -81,6 +81,8 @@ class MyAccountViewController: BaseViewController {
         flashCellAt(indexPath: indexPath)
         let myAccountElemant = MyAccountElements.element(row: indexPath.row)
         switch myAccountElemant {
+        case .MY_ORDERS:
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .myOrdersViewController)
         case .FAVORITES:
             NavigationCoordinator.shared.mainNavigator.navigate(To: .favoritesViewController)
         case .NOTIFICATION:

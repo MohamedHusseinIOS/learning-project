@@ -10,8 +10,14 @@ import Foundation
 
 extension DataManager {
     
-    func getNotification(completion: @escaping NetworkManager.responseCallback){
-        NetworkManager.shared.get(url: URLs.getNotifications.URL) { (response) in
+    func getMyOrders(page: Int, completion: @escaping NetworkManager.responseCallback){
+        NetworkManager.shared.get(url: URLs.getMyOrders.URL + "?page=\(page)") { (response) in
+            self.handelResponseData(response: response, model: MyOrdersResponse.self, completion: completion)
+        }
+    }
+    
+    func getNotification(page: Int, completion: @escaping NetworkManager.responseCallback){
+        NetworkManager.shared.get(url: URLs.getNotifications.URL + "?page=\(page)") { (response) in
             self.handelResponseData(response: response, model: NotificationResponse.self, completion: completion)
         }
     }

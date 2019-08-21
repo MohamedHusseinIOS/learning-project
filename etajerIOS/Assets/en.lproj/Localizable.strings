@@ -93,6 +93,8 @@
 "MEMBERSHIP" = "membership:";
 
 "MY_ORDERS" = "my orders";
+"DONT_HAVE_ORDERS" = "you don't have orders, yet";
+"DONT_HAVE_NOTIFICATIONS" = "you don't have notifications, right now";
 "ADDRESSES" = "Addresses";
 "PAYMENT_INFO" = "payment info";
 "MY_INFO" = "my info";

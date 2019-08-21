@@ -35,7 +35,7 @@ class NotificationCell: UITableViewCell {
         bag = DisposeBag()
     }
     
-    func configureUI(buyOffer: Bool, notificationData: [String: Any]){
+    func configureUI(buyOffer: Bool, notificationData: Notification){
         
         if buyOffer {
             detailsBtn.isHidden = true

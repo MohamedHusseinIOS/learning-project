@@ -18,14 +18,15 @@ class NotificationsViewController: BaseViewController {
     @IBOutlet weak var notificationsTableView: UITableView!
     
     let viewModel = NotificationViewModel()
+    let refreshControl = UIRefreshControl()
+    let indicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let data = [["m": 1],
-                    ["m": 1],
-                    ["m": 1],
-                    ["m": 1]]
-        viewModel.input.notifications.onNext(data)
+        
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        notificationsTableView.addSubview(refreshControl)
+        viewModel.getNotifications()
     }
     
     override func configureUI() {
@@ -47,6 +48,29 @@ class NotificationsViewController: BaseViewController {
         }.disposed(by: bag)
     }
     
+    override func configureData() {
+        super.configureData()
+        
+        viewModel.output
+            .notifications
+            .bind { [unowned self] (orders) in
+            if orders.count == 0 {
+                self.notificationsTableView.isHidden = true
+            } else {
+                self.notificationsTableView.isHidden = false
+                self.refreshControl.endRefreshing()
+                self.indicator.stopAnimating()
+            }
+            }.disposed(by: bag)
+        
+        viewModel.output
+            .faliure
+            .bind { (errors) in
+                guard let error = errors.first, let msg = error.message else { return }
+                self.alert(title: "", message: msg, completion: nil)
+            }.disposed(by: bag)
+    }
+    
     func registerCell(){
         let nib = UINib(nibName: "NotificationCell", bundle: .main)
         notificationsTableView.register(nib, forCellReuseIdentifier: "NotificationCell")
@@ -63,7 +87,10 @@ class NotificationsViewController: BaseViewController {
                 cell.configureUI(buyOffer: true, notificationData: element)
                 cell.closeAction = { [weak self] in
                     guard let self = self else { return }
-                    self.closeBtnTapped(in: indexPath)
+                    //self.closeBtnTapped(in: indexPath)
+                }
+                if (row == (self.viewModel.notificationsArray.count - 1 )) {
+                    self.loadNewPage()
                 }
                 return cell
         }.disposed(by: bag)
@@ -75,26 +102,37 @@ class NotificationsViewController: BaseViewController {
         }.disposed(by: bag)
     }
     
-    func closeBtnTapped(in index: IndexPath){
-        if #available(iOS 11.0, *) {
-            notificationsTableView.performBatchUpdates({ [unowned self] in
-                self.deleteRow(at: index)
-            }, completion: nil)
-        } else {
-            notificationsTableView.beginUpdates()
-            deleteRow(at: index)
-            notificationsTableView.endUpdates()
-        }
-        notificationsTableView.reloadData()
+//    func closeBtnTapped(in index: IndexPath){
+//        if #available(iOS 11.0, *) {
+//            notificationsTableView.performBatchUpdates({ [unowned self] in
+//                self.deleteRow(at: index)
+//            }, completion: nil)
+//        } else {
+//            notificationsTableView.beginUpdates()
+//            deleteRow(at: index)
+//            notificationsTableView.endUpdates()
+//        }
+//        notificationsTableView.reloadData()
+//    }
+    
+    @objc func refreshTableView(){
+        viewModel.pageNum = 1
+        viewModel.getNotifications()
     }
     
-    func deleteRow(at index: IndexPath) {
-        viewModel.removeItem(at: index)
-        if AppUtility.shared.currentLang == .ar {
-            notificationsTableView.deleteRows(at: [index], with: .right)
-        } else {
-            notificationsTableView.deleteRows(at: [index], with: .left)
-        }
+    func loadNewPage(){
+        indicator.startAnimating()
+        viewModel.getNotifications()
+        notificationsTableView.scrollToRow(at: IndexPath(row: viewModel.pastLastIndex, section: 0), at: .bottom, animated: false)
     }
+    
+//    func deleteRow(at index: IndexPath) {
+//        viewModel.removeItem(at: index)
+//        if AppUtility.shared.currentLang == .ar {
+//            notificationsTableView.deleteRows(at: [index], with: .right)
+//        } else {
+//            notificationsTableView.deleteRows(at: [index], with: .left)
+//        }
+//    }
     
 }

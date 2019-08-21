@@ -55,7 +55,8 @@ extension MainNavigator: Navigator{
         
         //My Account VC
         case myAccountViewController
-        case favoritesViewController 
+        case myOrdersViewController
+        case favoritesViewController
         case notificationViewController
         case addressesViewController
         case selectAddressViewController(_ address: String?)
@@ -142,6 +143,9 @@ extension MainNavigator: Navigator{
         //MARK:- myAccount
         case .myAccountViewController:
             let vc = MyAccountViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MyAccountViewController())
+            return vc
+        case .myOrdersViewController:
+            let vc = MyOrdersViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MyOrdersViewController())
             return vc
         case .favoritesViewController:
             let vc  = FavoritesViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: FavoritesViewController())
