@@ -107,6 +107,13 @@ class ItemDetailsViewController: BaseViewController {
                     self.numberOfItemsLbl.text = "\(self.numberOfItems)"
                 }
         }.disposed(by: bag)
+        
+        addToCartBtn.rx
+            .tap
+            .bind { [unowned self] () in
+                guard let id = self.productId else { return }
+                self.viewModel.addToCart(productId: id, quantity: self.numberOfItems)
+        }.disposed(by: bag)
     }
     
     override func configureData(){
@@ -115,6 +122,19 @@ class ItemDetailsViewController: BaseViewController {
             .subscribe {[unowned self] (event) in
                 guard let item = event.element else { return }
                 self.updateUI(item)
+        }.disposed(by: bag)
+        
+        viewModel.output
+            .success
+            .bind { [unowned self] (success) in
+                self.alert(title: "", message: ITEM_ADD_TO_CART.localized(), completion: nil)
+        }.disposed(by: bag)
+        
+        viewModel.output
+            .faliure
+            .bind { (error) in
+                guard let msg = error.first?.message else { return}
+                self.alert(title: "", message: msg, completion: nil)
         }.disposed(by: bag)
     }
     
@@ -137,13 +157,14 @@ class ItemDetailsViewController: BaseViewController {
         titleLbl.text = isAr ? item.titleAr : item.titleEn
         
         let imgUrl = getImagesUrl(images: item.images).first
-        bigImg.kf.setImage(with: imgUrl, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: nil) {[unowned self] (res) in
+        bigImg.kf.setImage(with: imgUrl, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: nil) {[weak self] (res) in
+            guard let self = self else { return }
             self.bigImg.hideSkeleton()
         }
         itemNameLbl.text = isAr ? item.titleAr : item.titleEn
         discountLbl.text = "\(item.sellLessPrice ?? 0) \(S_R.localized())"
         itemPriceLbl.text = "\(item.sellPrice ?? "0.0") \(S_R.localized())"
-        ratingView.rating = Double(item.rating ?? "0") ?? 0.0
+        ratingView.rating = item.rating ?? 0.0
         itemShortDescriptionLbl.text = item.shortDesc
         //sellerNameLbl.text =
     }

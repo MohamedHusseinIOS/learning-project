@@ -19,115 +19,6 @@ class FavoritesViewController: BaseViewController {
     let viewModel = FavoritesViewModel()
     var isAuction: Bool?
     var items: [Item]?
-    var items2: [Item]? = [Item(name: "شاشة سامسونج",
-                                price: "3000 ر.س",
-                                image: #imageLiteral(resourceName: "screen"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "لكرس إى اس 350",
-                                price: "45000 ر.س",
-                                image: #imageLiteral(resourceName: "lexus"),
-                                images: nil,
-                                rating: 5,
-                                overbid: ""),
-                           Item(name: "لكرس إى اس 350",
-                                price: "45000 ر.س",
-                                image: #imageLiteral(resourceName: "lexus"),
-                                images: nil,
-                                rating: 5,
-                                overbid: ""),
-                           Item(name: "شاشة سامسونج",
-                                price: "3000 ر.س",
-                                image: #imageLiteral(resourceName: "screen"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "لكرس إى اس 350",
-                                price: "45000 ر.س",
-                                image: #imageLiteral(resourceName: "lexus"),
-                                images: nil,
-                                rating: 5,
-                                overbid: ""),
-                           Item(name: "لكرس إى اس 350",
-                                price: "45000 ر.س",
-                                image: #imageLiteral(resourceName: "lexus"),
-                                images: nil,
-                                rating: 5,
-                                overbid: ""),
-                           Item(name: "شاشة سامسونج",
-                                price: "3000 ر.س",
-                                image: #imageLiteral(resourceName: "screen"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "لكرس إى اس 350",
-                                price: "45000 ر.س",
-                                image: #imageLiteral(resourceName: "lexus"),
-                                images: nil,
-                                rating: 5,
-                                overbid: ""),
-                           Item(name: "لكرس إى اس 350",
-                                price: "45000 ر.س",
-                                image: #imageLiteral(resourceName: "lexus"),
-                                images: nil,
-                                rating: 5,
-                                overbid: "")]
-    
-    var items3: [Item]? = [Item(name: "مكتبة جرير",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "اكسترا ستورز",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "لولو ماركت",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "مكتبة جرير",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "اكسترا ستورز",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "لولو ماركت",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "مكتبة جرير",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "اكسترا ستورز",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: ""),
-                           Item(name: "لولو ماركت",
-                                price: "",
-                                image: #imageLiteral(resourceName: "photo"),
-                                images: nil,
-                                rating: 3,
-                                overbid: "")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,10 +46,10 @@ class FavoritesViewController: BaseViewController {
             .tap
             .subscribe {[unowned self] (_) in
                 self.navigationController?.popViewController(animated: true)
-            }.disposed(by: bag)
+        }.disposed(by: bag)
         
         productAndShopSegment.selectedSegmentIndex = 0
-        viewModel.input.items.onNext(items2 ?? [])
+        //viewModel.input.items.onNext(items2 ?? [])
         
         itemsCollectionView.rx.itemSelected.subscribe {[unowned self] (event) in
             guard let indexPath = event.element else { return }
@@ -169,9 +60,9 @@ class FavoritesViewController: BaseViewController {
             .controlEvent(.valueChanged)
             .subscribe {[unowned self] (_) in
                 if self.productAndShopSegment.selectedSegmentIndex == 0 {
-                    self.viewModel.input.items.onNext(self.items2 ?? [])
+                    //self.viewModel.input.items.onNext(self.items2 ?? [])
                 } else {
-                    self.viewModel.input.items.onNext(self.items3 ?? [])
+                    //self.viewModel.input.items.onNext(self.items3 ?? [])
                 }
         }.disposed(by: bag)
     }
@@ -182,13 +73,13 @@ class FavoritesViewController: BaseViewController {
     }
     
     func changeItemOverBid(){
-        items2?.enumerated().forEach({[unowned self] (element) in
-            if self.isAuction ?? false {
-                var item = element.element
-                item.overbid = LAST_OVERBID.localized()
-                self.items2?[element.offset] = item
-            }
-        })
+//        items2?.enumerated().forEach({[unowned self] (element) in
+//            if self.isAuction ?? false {
+//                var item = element.element
+//                item.overbid = LAST_OVERBID.localized()
+//                self.items2?[element.offset] = item
+//            }
+//        })
     }
     
     func configureCategoryCollection(){

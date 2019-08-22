@@ -24,7 +24,7 @@ extension DataManager {
         guard let qty = quantity else { return }
         let params: [String: Any] = ["product_id": id,
                                      "qty":qty]
-        
+        SVProgressHUD.show()
         NetworkManager.shared.post(url: URLs.addToCart.URL, paramters: params) { (response) in
             SVProgressHUD.dismiss()
             self.handelResponseData(response: response, model: AddToCartResponse.self, completion: completion)

@@ -4,29 +4,51 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "etajerIOS/ViewController/MyAccount/SelectAddressViewController.swift"
-            timestampString = "588002183.976128"
+            filePath = "etajerIOS/ViewModel/Main/ItemDetailsViewModel.swift"
+            timestampString = "588162016.01861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "creatNewAddress()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "addToCart(productId:quantity:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (etajerIOS.ResponseEnum) -&gt; () in etajerIOS.ItemDetailsViewModel.addToCart(productId: Swift.Int, quantity: Swift.Int) -&gt; ()"
+                  moduleName = "etajerIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamed/Desktop/Maxsys/etajerIOS/etajerIOS/ViewModel/Main/ItemDetailsViewModel.swift"
+                  timestampString = "588154286.719433"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (etajerIOS.ResponseEnum) -&gt; () in etajerIOS.ItemDetailsViewModel.addToCart(productId: Swift.Int, quantity: Swift.Int) -&gt; ()"
+                  moduleName = "etajerIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamed/Desktop/Maxsys/etajerIOS/etajerIOS/ViewModel/Main/ItemDetailsViewModel.swift"
+                  timestampString = "588154286.730865"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -50,11 +50,10 @@ class MenuViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
-        
-        
         headerSetup()
         registerMenuCell()
         loadMenuTableView()
+        
         menuTableView.rx.itemSelected.subscribe {[unowned self] (event) in
             guard let indexPath = event.element else {return}
             self.menuTableViewDidSelectItem(in: indexPath)
@@ -116,12 +115,21 @@ class MenuViewController: BaseViewController {
                 self.closeMenu()
         }.disposed(by: bag)
         
+        notificationBtn.rx.tap.bind { (_) in
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .notificationViewController)
+        }.disposed(by: bag)
+        
         favoritesBtn.rx
             .tap
             .subscribe {[unowned self] _ in
                 NavigationCoordinator.shared.mainNavigator.navigate(To: .favoritesViewController)
                 self.closeMenu()
         }.disposed(by: bag)
+    
+        cartBtn.rx.tap.bind { (_) in
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .cartViewController)
+        }.disposed(by: bag)
+        
     }
     
     func registerMenuCell(){

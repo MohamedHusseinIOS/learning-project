@@ -80,7 +80,10 @@ class HomeViewModel: BaseViewModel, ViewModelType {
         DataManager.shared.getCart {[unowned self] (response) in
             switch response {
             case .success(let value):
-                guard let cartRes = value as? CartResponse, let cartProductsCount = cartRes.cart?.products?.count else { return }
+                guard let cartRes = value as? CartResponse, let cartProductsCount = cartRes.cart?.products?.count else {
+                    self.cartProductsCount.onNext(0)
+                    return
+                }
                 self.cartProductsCount.onNext(cartProductsCount)
             case .failure(_, let data):
                 self.cartProductsCount.onNext(0)

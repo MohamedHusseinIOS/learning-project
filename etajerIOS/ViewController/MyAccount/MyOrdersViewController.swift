@@ -32,6 +32,12 @@ class MyOrdersViewController: BaseViewController {
         registerCell()
         configureTableView()
         
+        if AppUtility.shared.currentLang == .ar {
+            backImg.image = #imageLiteral(resourceName: "white-back-ar")
+        } else {
+            backImg.image = #imageLiteral(resourceName: "white-back-en")
+        }
+        
         backBtn.rx
             .tap
             .subscribe {[unowned self] (_) in

@@ -54,6 +54,7 @@ let USED = "USED";
 
 let S_R = "S.R"
 let LAST_OVERBID = "LAST_OVERBID"
+let ITEM_ADD_TO_CART = "ITEM_ADD_TO_CART"
 
 //MARK:- Auction Details
 

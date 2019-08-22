@@ -121,13 +121,14 @@ class AuctionDetailsViewController: BaseViewController {
         titleLbl.text = isAr ? item.titleAr : item.titleEn
         
         let imgUrl = getImagesUrl(images: item.images).first
-        bigImg.kf.setImage(with: imgUrl, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: nil) {[unowned self] (res) in
+        bigImg.kf.setImage(with: imgUrl, placeholder: #imageLiteral(resourceName: "img_placeholder"), options: nil, progressBlock: nil) {[weak self] (res) in
+            guard let self = self else { return  }
             self.bigImg.hideSkeleton()
         }
         itemNameLbl.text = isAr ? item.titleAr : item.titleEn
         lastOverbidLbl.text = "\(item.auctionLastPrice ?? "0.0") \(S_R.localized())"
         //sealerNameLbl.text = ""
-        ratingView.rating = Double(item.rating ?? "0") ?? 0.0
+        ratingView.rating = item.rating ?? 0.0
         itemShortDescriptionLbl.text = item.shortDesc
         numberOfBidding.text = "\(item.activateBuyNow ?? 0)"
         

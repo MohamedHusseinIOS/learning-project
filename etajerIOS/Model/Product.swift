@@ -39,7 +39,7 @@ struct Product: BaseModel{
     var freeShipping : Int?
     var galleryPlus : Int?
     var id : Int?
-    var rating: String?
+    var rating: Double?
     var imgBaseUrl : String?
     var imgPath : String?
     var isShipAble : Int?

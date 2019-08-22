@@ -69,6 +69,7 @@
 "DESCRIPTION" = "Short description:";
 "ADD_TO_CART" = "Add to cart";
 "S.R" = "S.R";
+"ITEM_ADD_TO_CART" = "item added to cart successfully";
 
 //MARK:- Auction Details
 "LAST_OVERBID" = "last overbid";

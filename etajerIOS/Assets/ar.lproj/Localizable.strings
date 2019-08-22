@@ -68,6 +68,7 @@
 "DESCRIPTION" = "وصف مختصر:";
 "ADD_TO_CART" = "إضافة الى السلة";
 "S.R" = "ر.س";
+"ITEM_ADD_TO_CART" = "تم اضافة المنتج الي السلة";
 
 //MARK:- Auction Details
 "LAST_OVERBID" = "آخر مزايدة";

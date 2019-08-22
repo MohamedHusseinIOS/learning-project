@@ -100,7 +100,7 @@ class HomeViewController: BaseViewController {
             .cartProductsCount
             .bind {[unowned self] (productCount) in
                 if productCount > 0 {
-                    self.cartProductsCountLbl.text = "\(productCount)"
+                    self.cartProductsCountLbl.text = " \(productCount) "
                     self.cartProductsCountView.isHidden = false
                 } else {
                     self.cartProductsCountView.isHidden = true

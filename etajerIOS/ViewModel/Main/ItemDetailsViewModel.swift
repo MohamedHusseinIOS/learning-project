@@ -19,11 +19,12 @@ class ItemDetailsViewModel: BaseViewModel, ViewModelType{
     }
     
     struct Output {
+        var success: Observable<Bool>
         var item: Observable<Product>
         var images: Observable<[ImageModel]>
         var faliure: Observable<[ErrorModel]>
     }
-    
+    private let success = PublishSubject<Bool>()
     private let item = PublishSubject<Product>()
     private let images = PublishSubject<[ImageModel]>()
     private let faliure = PublishSubject<[ErrorModel]>()
@@ -31,7 +32,8 @@ class ItemDetailsViewModel: BaseViewModel, ViewModelType{
     
     override init() {
         self.input = Input(item: item.asObserver())
-        self.output = Output(item: item.asObservable(),
+        self.output = Output(success: success.asObserver(),
+                             item: item.asObservable(),
                              images: images.asObservable(),
                              faliure: faliure.asObservable())
         super.init()
@@ -47,12 +49,23 @@ class ItemDetailsViewModel: BaseViewModel, ViewModelType{
             guard let self = self else { return }
             switch response {
             case .success(let value):
-
                 guard let products = value as? Products,
                       let product = products.product,
                       let imgs = product.images else { return }
                 self.images.onNext(imgs)
                 self.item.onNext(product)
+            case .failure(_, let data):
+                self.handelApiError(data: data, failer: self.faliure)
+            }
+        }
+    }
+    
+    func addToCart(productId: Int, quantity: Int){
+        DataManager.shared.addProductToCart(productId: productId, quantity: quantity) { (response) in
+            switch response {
+            case .success(let value):
+                guard let _ = value as? AddToCartResponse else { return}
+                self.success.onNext(true)
             case .failure(_, let data):
                 self.handelApiError(data: data, failer: self.faliure)
             }
