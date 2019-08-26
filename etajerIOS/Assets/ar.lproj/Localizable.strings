@@ -104,6 +104,8 @@
 "FAVORITES" = "مفضلتي";
 "PRODUCTS" = "المنتجات";
 "SHOPS" = "المتاجر";
+"DONT_HAVE_FAVORITES" = "ليس لديك منتجات في المفضلة";
+"DONT_HAVE_FAVORITES_STORES" = "ليس لديك محلات في المفضلة";
 
 //MARK:- Notifications
 "ACCEPT" = "قبول";

@@ -104,6 +104,9 @@
 "FAVORITES" = "Favorites";
 "PRODUCTS" = "Products";
 "SHOPS" = "Shops";
+"DONT_HAVE_FAVORITES" = "you don't have favorite products for now";
+"DONT_HAVE_FAVORITES_STORES" = "you don't have favorites stores for now";
+
 
 //MARK:- Notifications
 "ACCEPT" = "accept";

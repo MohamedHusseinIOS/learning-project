@@ -54,13 +54,13 @@ class NotificationsViewController: BaseViewController {
         viewModel.output
             .notifications
             .bind { [unowned self] (orders) in
-            if orders.count == 0 {
-                self.notificationsTableView.isHidden = true
-            } else {
-                self.notificationsTableView.isHidden = false
-                self.refreshControl.endRefreshing()
-                self.indicator.stopAnimating()
-            }
+                if orders.count == 0 {
+                    self.notificationsTableView.isHidden = true
+                } else {
+                    self.notificationsTableView.isHidden = false
+                    self.refreshControl.endRefreshing()
+                    self.indicator.stopAnimating()
+                }
             }.disposed(by: bag)
         
         viewModel.output

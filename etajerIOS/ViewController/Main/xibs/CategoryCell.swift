@@ -45,9 +45,10 @@ class CategoryCell: UITableViewCell {
     }
     
     func subscribeOnData(){
-        categoryItems.subscribe { (event) in
+        categoryItems.subscribe { [unowned self] (event) in
             guard let products = event.element else { return }
             self.products = products
+            
         }.disposed(by: bag)
         
         moreBtn.rx
@@ -68,16 +69,25 @@ class CategoryCell: UITableViewCell {
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 0
         categoryCollectionView.setCollectionViewLayout(flowLayout, animated: true)
-        categoryCollectionView.scrollsToTop = true
+        if AppUtility.shared.currentLang == .ar {
+            categoryCollectionView.semanticContentAttribute = .forceRightToLeft
+        } else {
+            categoryCollectionView.semanticContentAttribute = .forceLeftToRight
+        }
         categoryItems.bind(to: categoryCollectionView.rx.items){[unowned self] collectionView, item, element in
             self.stopSkeleton()
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
             cell.bindOn(item: element)
-            //cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            
+            if item == self.products.count - 1 && self.products.count > 2 {
+                self.categoryCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .right, animated: true)
+            }
+            
+//            if AppUtility.shared.currentLang == .ar {
+//                cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//            }
             return cell
         }.disposed(by: bag)
-        
-        //categoryCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
         categoryCollectionView.rx
             .itemSelected

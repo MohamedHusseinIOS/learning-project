@@ -18,12 +18,16 @@ class FavoritesViewController: BaseViewController {
     
     let viewModel = FavoritesViewModel()
     var isAuction: Bool?
-    var items: [Item]?
+    var items: [Product]?
+    
+    let refreshControl = UIRefreshControl()
+    let indicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        itemsCollectionView.addSubview(refreshControl)
+        callFavoritesAPI()
     }
     
     override func configureUI() {
@@ -54,17 +58,34 @@ class FavoritesViewController: BaseViewController {
         itemsCollectionView.rx.itemSelected.subscribe {[unowned self] (event) in
             guard let indexPath = event.element else { return }
             self.didSelectItemIn(indexPath: indexPath)
-            }.disposed(by: bag)
+        }.disposed(by: bag)
         
         productAndShopSegment.rx
             .controlEvent(.valueChanged)
             .subscribe {[unowned self] (_) in
-                if self.productAndShopSegment.selectedSegmentIndex == 0 {
-                    //self.viewModel.input.items.onNext(self.items2 ?? [])
-                } else {
-                    //self.viewModel.input.items.onNext(self.items3 ?? [])
-                }
+                self.callFavoritesAPI()
         }.disposed(by: bag)
+    }
+    
+    func callFavoritesAPI(){
+        if self.productAndShopSegment.selectedSegmentIndex == 0 {
+            self.viewModel.getFavoriteProducts()
+        } else {
+            self.viewModel.getFavoriteStores()
+        }
+    }
+    
+    override func configureData() {
+        super.configureData()
+        viewModel.output.items.bind(onNext: { (items) in
+            if items.count == 0 {
+                self.itemsCollectionView.isHidden = true
+            } else {
+                self.itemsCollectionView.isHidden = false
+                self.refreshControl.endRefreshing()
+                self.indicator.stopAnimating()
+            }
+        }).disposed(by: bag)
     }
     
     func registerCell(){
@@ -105,6 +126,15 @@ class FavoritesViewController: BaseViewController {
                 return cell
             }.disposed(by: bag)
         
+        viewModel.output
+            .stores
+            .bind(to: itemsCollectionView.rx.items){ collectionView, item, element in
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCell", for: IndexPath(item: item, section: 0)) as? ItemsCell else { return ItemsCell() }
+                //cell.bindOn(item: element)
+                cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                return cell
+            }.disposed(by: bag)
+        
         itemsCollectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
     }
     
@@ -114,6 +144,18 @@ class FavoritesViewController: BaseViewController {
             return
         }
         NavigationCoordinator.shared.mainNavigator.navigate(To: .itemDetailsViewController(0))
+    }
+    
+    
+    @objc func refreshTableView(){
+        viewModel.pageNum = 1
+        callFavoritesAPI()
+    }
+    
+    func loadNewPage(){
+        indicator.startAnimating()
+        callFavoritesAPI()
+        itemsCollectionView.scrollToItem(at: IndexPath(row: viewModel.pastLastIndex, section: 0), at: .bottom, animated: false)
     }
 
 }

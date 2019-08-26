@@ -31,6 +31,8 @@ enum URLs: String {
     case getMyOrders                = "/api/v1/my-orders/index"
     case getOrderDetails            = "/api/v1/my-orders/details"
     case getNotifications           = "/api/v1/notifications/index"
+    case getFavoritesProduct        = "/api/v1/fav/index"
+    case getFavoritesStores         = "/api/v1/fav/stores"
     
     
     var URL: String{

@@ -22,4 +22,16 @@ extension DataManager {
         }
     }
     
+    func getFavoritesProducts(page: Int, completion: @escaping NetworkManager.responseCallback){
+        NetworkManager.shared.get(url: URLs.getFavoritesProduct.URL + "?page=\(page)") { (response) in
+            self.handelResponseData(response: response, model: FavoriteProductsResponse.self, completion: completion)
+        }
+    }
+    
+    func getFavoritesStores(page: Int, completion: @escaping NetworkManager.responseCallback){
+        NetworkManager.shared.get(url: URLs.getFavoritesStores.URL + "?page=\(page)") { (response) in
+            self.handelResponseData(response: response, model: NotificationResponse.self, completion: completion)
+        }
+    }
+    
 }
