@@ -6,6 +6,10 @@
   Copyright © 2019 mohamed ismail. All rights reserved.
 */
 
+
+"OK" = "موافق";
+"CANCEL" = "إلغاء";
+
 //MARK:- SignIn
 "SIGNIN" = "تسجيل دخول";
 "EMAIL" = "بريدك الالكتروني او رقم الجوال ";
@@ -54,6 +58,10 @@
 "JEWELERY_AND_ACCESSORIES" = "مجوهرات واكسسواراتها";
 "OFFICE_EQUIPMENTS" = "معدات وتجهيزات المكاتب";
 
+"LOGOUT" = "تسجيل خروج";
+"DO_YOU_WANT_TO_LOGOUT" = "هل انت متأكد، انك تريد تسجيل خروج؟";
+
+
 //MARK:- Home
 "CHANGE_LANG" = "English";
 "CATEGORY_TITLE_1" = "احدث المنتجات";
@@ -99,6 +107,12 @@
 "ADDRESSES" = "العنواين";
 "PAYMENT_INFO" = "معلومات الدفع";
 "MY_INFO" = "معلوماتي";
+"PASSWORD_CHANED" = "تم تغيير كلمة المرور بنجاح";
+"CHANGE_PASSWORD" = "غير كلمة المرور";
+"SAVE" = "حفظ";
+"NEW_PASSWORD" = "كلمة المرور الجديدة";
+"CONFIRM_PASSWORD" = "تأكيد كلمة المرور";
+"PASSWORD_NOT_MATCHED" = "كلمة السر غير مطابقة";
 
 //MARK:- Favorites
 "FAVORITES" = "مفضلتي";
@@ -106,6 +120,8 @@
 "SHOPS" = "المتاجر";
 "DONT_HAVE_FAVORITES" = "ليس لديك منتجات في المفضلة";
 "DONT_HAVE_FAVORITES_STORES" = "ليس لديك محلات في المفضلة";
+"LATEST_PRODUCTS" = "احدث المنتجات";
+"LATEST_AUCTIONS" = "احدث المزادات";
 
 //MARK:- Notifications
 "ACCEPT" = "قبول";

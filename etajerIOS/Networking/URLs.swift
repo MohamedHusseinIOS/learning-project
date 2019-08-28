@@ -33,6 +33,9 @@ enum URLs: String {
     case getNotifications           = "/api/v1/notifications/index"
     case getFavoritesProduct        = "/api/v1/fav/index"
     case getFavoritesStores         = "/api/v1/fav/stores"
+    case changeUserData             = "/api/v1/user/change-data"
+    case changePassword             = "/api/v1/user/change-password"
+    case chnageBankInfo             = "/api/v1/user/bank-info"
     
     
     var URL: String{

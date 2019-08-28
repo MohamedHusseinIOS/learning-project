@@ -19,8 +19,8 @@ class HomeViewModel: BaseViewModel, ViewModelType {
         var data: Any?
         
         enum Title: String {
-            case latestProduct
-            case latestAuction
+            case latestProduct = "LATEST_PRODUCTS"
+            case latestAuction = "LATEST_AUCTIONS"
             case adsUnderAuction
             case bottomCategories = "categories"
         }

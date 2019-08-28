@@ -28,13 +28,13 @@ class NavigationCoordinator{
         mainNavigator = MainNavigator(navigationController: nvc)
     }
     
-    func addChildNVC(_ childNVC: UINavigationController, parentViewController: BaseViewController){
+    func addChildNVC(_ childNVC: UINavigationController, parentViewController: BaseViewController) {
         self.parentViewController = parentViewController
         self.childNVC = childNVC
         childNavigator = MainNavigator(navigationController: self.childNVC)
     }
     
-    func sideMenuSetup(){
+    func sideMenuSetup() {
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.panGesturesEnabled = false
         //SlideMenuOptions.rightViewWidth = 95
@@ -47,7 +47,7 @@ class NavigationCoordinator{
             let slideMenuController = SlideMenuController(mainViewController: homeVC,
                                                           leftMenuViewController: slideMenuVC)
             nvc.viewControllers.append(slideMenuController)
-        }else{
+        } else {
             let slideMenuController = SlideMenuController(mainViewController: homeVC,
                                                           rightMenuViewController: slideMenuVC)
             nvc.viewControllers.append(slideMenuController)
@@ -56,7 +56,7 @@ class NavigationCoordinator{
         sharedAppDelegate.window?.makeKeyAndVisible()
     }
     
-    func reloadTheApp(){
+    func reloadTheApp() {
         sideMenuSetup()
         sharedAppDelegate.window?.backgroundColor = Colors.PrimaryColor.value
         UIView.transition( with: (sharedAppDelegate.window)!, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
@@ -66,10 +66,10 @@ class NavigationCoordinator{
         }
     }
     
-    func startApp(){
+    func startApp() {
         sideMenuSetup()
         sharedAppDelegate.window?.rootViewController = nvc
         sharedAppDelegate.window?.makeKeyAndVisible()
-        
     }
+    
 }

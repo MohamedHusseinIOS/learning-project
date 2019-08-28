@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Firebase
 
 class AppUtility {
     
@@ -104,8 +105,16 @@ class AppUtility {
         return user
     }
     
-    func configureGoogleMaps(){
+    func configureGoogle(){
         GMSServices.provideAPIKey(Constants.googleAPIKey.rawValue)
         GMSPlacesClient.provideAPIKey(Constants.googleAPIKey.rawValue)
+        FirebaseApp.configure()
+    }
+    
+    func logout() {
+        UserDefaults.standard.removeObject(forKey: Constants.accessToken.rawValue)
+        UserDefaults.standard.removeObject(forKey: Constants.currentUser.rawValue)
+        UserDefaults.standard.synchronize()
+        NavigationCoordinator.shared.reloadTheApp()
     }
 }

@@ -9,46 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "etajerIOS/ViewModel/Main/ItemDetailsViewModel.swift"
-            timestampString = "588509468.118543"
+            filePath = "etajerIOS/ViewController/MyAccount/MyInfoViewController.swift"
+            timestampString = "588599887.307297"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "addToCart(productId:quantity:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (etajerIOS.ResponseEnum) -&gt; () in etajerIOS.ItemDetailsViewModel.addToCart(productId: Swift.Int, quantity: Swift.Int) -&gt; ()"
-                  moduleName = "etajerIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mohamed/Desktop/Maxsys/etajerIOS/etajerIOS/ViewModel/Main/ItemDetailsViewModel.swift"
-                  timestampString = "588513998.852306"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "132">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (etajerIOS.ResponseEnum) -&gt; () in etajerIOS.ItemDetailsViewModel.addToCart(productId: Swift.Int, quantity: Swift.Int) -&gt; ()"
-                  moduleName = "etajerIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mohamed/Desktop/Maxsys/etajerIOS/etajerIOS/ViewModel/Main/ItemDetailsViewModel.swift"
-                  timestampString = "588513998.855329"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "152">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

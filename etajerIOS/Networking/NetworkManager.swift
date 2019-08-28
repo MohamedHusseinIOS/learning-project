@@ -41,7 +41,7 @@ class NetworkManager {
     typealias responseCallback = ((ResponseEnum) -> Void)
     
     private var headers: HTTPHeaders {
-        guard let token = UserDefaults.standard.value(forKey: Constants.accessToken.rawValue) as? String else { return [:] }
+        guard let token = UserDefaults.standard.value(forKey: Constants.accessToken.rawValue) as? String else { return ["Accept-Language": AppUtility.shared.currentLang.rawValue] }
         let headerDict = [
             "Authorization":"Bearer \(token)",
             "Accept-Language": AppUtility.shared.currentLang.rawValue

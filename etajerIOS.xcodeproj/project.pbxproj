@@ -41,6 +41,7 @@
 		D929C0DD22D228C30000B1A6 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D929C0DC22D228C30000B1A6 /* MenuCell.swift */; };
 		D929C0E022D232290000B1A6 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D929C0DF22D232290000B1A6 /* MenuViewModel.swift */; };
 		D929C0E322D242A20000B1A6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D929C0E222D242A20000B1A6 /* Category.swift */; };
+		D92A3CD223166A0A005E331E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D92A3CD123166A0A005E331E /* GoogleService-Info.plist */; };
 		D930FF512309790A00A3ABF4 /* MyAccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D930FF502309790A00A3ABF4 /* MyAccountDataManager.swift */; };
 		D930FF5323097EC900A3ABF4 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D930FF5223097EC900A3ABF4 /* Notification.swift */; };
 		D941048E22F19EFF00A809AB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D941048D22F19EFE00A809AB /* Product.swift */; };
@@ -106,6 +107,8 @@
 		D9CED70B22D4C08900D8026E /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CED70A22D4C08900D8026E /* BannerCell.swift */; };
 		D9CED70D22D4C37900D8026E /* Decoderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CED70C22D4C37900D8026E /* Decoderable.swift */; };
 		D9CED70F22D4CE1900D8026E /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CED70E22D4CE1900D8026E /* Data+Extension.swift */; };
+		D9CF5F5523151D5C00CDB352 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF5F5423151D5C00CDB352 /* MyInfoViewController.swift */; };
+		D9CF5F5723151DA100CDB352 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF5F5623151DA100CDB352 /* MyInfoViewModel.swift */; };
 		D9D5FCA822DF50220005AB78 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5FCA722DF50220005AB78 /* MyAccountViewController.swift */; };
 		D9D5FCAB22DF504E0005AB78 /* MyAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5FCAA22DF504E0005AB78 /* MyAccountViewModel.swift */; };
 		D9D5FCAD22DF549C0005AB78 /* MyAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D5FCAC22DF549C0005AB78 /* MyAccountCell.swift */; };
@@ -182,6 +185,7 @@
 		D929C0DC22D228C30000B1A6 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		D929C0DF22D232290000B1A6 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		D929C0E222D242A20000B1A6 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		D92A3CD123166A0A005E331E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D930FF502309790A00A3ABF4 /* MyAccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountDataManager.swift; sourceTree = "<group>"; };
 		D930FF5223097EC900A3ABF4 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D941048D22F19EFE00A809AB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 		D9CED70A22D4C08900D8026E /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		D9CED70C22D4C37900D8026E /* Decoderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoderable.swift; sourceTree = "<group>"; };
 		D9CED70E22D4CE1900D8026E /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		D9CF5F5423151D5C00CDB352 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		D9CF5F5623151DA100CDB352 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
 		D9D5FCA722DF50220005AB78 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		D9D5FCAA22DF504E0005AB78 /* MyAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewModel.swift; sourceTree = "<group>"; };
 		D9D5FCAC22DF549C0005AB78 /* MyAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCell.swift; sourceTree = "<group>"; };
@@ -342,10 +348,11 @@
 				D91947F122CDFFBB00302A75 /* ViewModel */,
 				D91947F022CDFFAA00302A75 /* ViewController */,
 				D91947EF22CDFF8E00302A75 /* View */,
-				D91947E822CDFF4000302A75 /* Info.plist */,
 				D941B93D22EF34AC00C847D0 /* Networking */,
 				D91947EE22CDFF6300302A75 /* Assets */,
 				D91947DC22CDFF3F00302A75 /* AppDelegate.swift */,
+				D91947E822CDFF4000302A75 /* Info.plist */,
+				D92A3CD123166A0A005E331E /* GoogleService-Info.plist */,
 			);
 			path = etajerIOS;
 			sourceTree = "<group>";
@@ -632,6 +639,7 @@
 				D9C2DC6222E0745300E4385D /* FavoritesViewController.swift */,
 				D99D2A1222E5958400A430A7 /* AddressesViewController.swift */,
 				D9C2DC9F230A955800CC8C1C /* SelectAddressViewController.swift */,
+				D9CF5F5423151D5C00CDB352 /* MyInfoViewController.swift */,
 			);
 			path = MyAccount;
 			sourceTree = "<group>";
@@ -644,6 +652,7 @@
 				D9DE930922E461ED00144B8B /* NotificationViewModel.swift */,
 				D9C2DC6422E0746F00E4385D /* FavoritesViewModel.swift */,
 				D99D2A1422E5964100A430A7 /* AddressesViewModel.swift */,
+				D9CF5F5623151DA100CDB352 /* MyInfoViewModel.swift */,
 			);
 			path = MyAccount;
 			sourceTree = "<group>";
@@ -695,6 +704,7 @@
 				D91947D722CDFF3F00302A75 /* Resources */,
 				FE5C961C9C5AEC239BA1FD18 /* [CP] Embed Pods Frameworks */,
 				43FF9802F2610A584ECC6DF8 /* [CP] Copy Pods Resources */,
+				D92A3CD323166E61005E331E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -759,6 +769,7 @@
 				D919480822CE07D400302A75 /* din-next-lt-w23-regular.ttf in Resources */,
 				D91B65D222E88FC300EDFDCE /* AddAddressCell.xib in Resources */,
 				D919480B22CE0AA700302A75 /* SignIn.storyboard in Resources */,
+				D92A3CD223166A0A005E331E /* GoogleService-Info.plist in Resources */,
 				D99D2A2322E5F01A00A430A7 /* CartHeaderView.xib in Resources */,
 				D94767C922E9E00C00852782 /* OrderSummeryCell.xib in Resources */,
 				D9FEB6DA22E87AAC00D63708 /* CartAddressCell.xib in Resources */,
@@ -826,6 +837,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D92A3CD323166E61005E331E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 		FE5C961C9C5AEC239BA1FD18 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -838,6 +867,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -846,6 +876,7 @@
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -854,6 +885,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -862,6 +894,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -950,8 +983,10 @@
 				D91947FE22CE038900302A75 /* MainNavigator.swift in Sources */,
 				D94767C722E9B34000852782 /* SectionCell.swift in Sources */,
 				D9F8B44422D20F0700DCD15C /* ForgetPasswordViewModel.swift in Sources */,
+				D9CF5F5523151D5C00CDB352 /* MyInfoViewController.swift in Sources */,
 				D9FEB6D222E8462F00D63708 /* CartPageViewModel.swift in Sources */,
 				D9C3B0D822D36B070010F45C /* UIButton+Extension.swift in Sources */,
+				D9CF5F5723151DA100CDB352 /* MyInfoViewModel.swift in Sources */,
 				D90FA07D22E999EC00316BE4 /* CartPaymentViewController.swift in Sources */,
 				D99D2A1A22E5CF2700A430A7 /* CartViewModel.swift in Sources */,
 				D91C4A7E230D31A9002D3C52 /* MyOrdersViewController.swift in Sources */,

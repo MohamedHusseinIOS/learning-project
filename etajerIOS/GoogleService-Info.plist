@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>278126276838-dlpipp4v4q9csjti80fle976am29ltio.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.278126276838-dlpipp4v4q9csjti80fle976am29ltio</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDseYw9Z2d4u84p2OPsRCwuNKGll6BANkE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>278126276838</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.maxsys.etajerIOS</string>
+	<key>PROJECT_ID</key>
+	<string>e-tajer-1566198073414</string>
+	<key>STORAGE_BUCKET</key>
+	<string>e-tajer-1566198073414.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:278126276838:ios:0dd429423b37be1a</string>
+	<key>DATABASE_URL</key>
+	<string>https://e-tajer-1566198073414.firebaseio.com</string>
+</dict>
+</plist>

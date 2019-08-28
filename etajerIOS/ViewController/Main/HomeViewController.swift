@@ -32,7 +32,6 @@ class HomeViewController: BaseViewController {
         // Do any additional setup after loading the view.
         viewModel.getHome(parent: self)
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +66,14 @@ class HomeViewController: BaseViewController {
         cartBtn.rx
             .tap
             .subscribe { (_) in
-                NavigationCoordinator.shared.mainNavigator.navigate(To: .cartViewController)
+                if AppUtility.shared.currentAccessToken != nil {
+                    NavigationCoordinator.shared.mainNavigator.navigate(To: .cartViewController)
+                } else {
+                    self.alertWithCancel(title: "", message: NOT_SIGNIN.localized(), actionTitle: SIGNIN.localized(), completion: { (isLogin) in
+                        guard isLogin else { return }
+                        NavigationCoordinator.shared.mainNavigator.present(.signInViewController, completion: nil)
+                    })
+                }
         }.disposed(by: bag)
         
         didSelectRow()
@@ -100,7 +106,7 @@ class HomeViewController: BaseViewController {
             .cartProductsCount
             .bind {[unowned self] (productCount) in
                 if productCount > 0 {
-                    self.cartProductsCountLbl.text = " \(productCount) "
+                    self.cartProductsCountLbl.text = "\(productCount) "
                     self.cartProductsCountView.isHidden = false
                 } else {
                     self.cartProductsCountView.isHidden = true
@@ -148,7 +154,7 @@ class HomeViewController: BaseViewController {
             return cell
         }
         cell.parent = self
-        cell.categoryNameLbl.text = element.title?.rawValue
+        cell.categoryNameLbl.text = element.title?.rawValue.localized()
         cell.moreItemsLbl.text = MORE_ITEMS.localized()
         cell.subscribeOnData()
         cell.configureCategoryCollection()

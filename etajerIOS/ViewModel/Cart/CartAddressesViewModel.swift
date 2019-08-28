@@ -40,7 +40,8 @@ class CartAddressesViewModel: BaseViewModel, ViewModelType {
     }
     
     func getAddresses(){
-        DataManager.shared.getAddresses { [unowned self] (response) in
+        DataManager.shared.getAddresses { [weak self] (response) in
+            guard let self = self else { return }
             switch response {
             case .success(let value):
                 guard let addresses = value as? Addresses else { return }

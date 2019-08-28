@@ -89,6 +89,8 @@ class MyAccountViewController: BaseViewController {
             NavigationCoordinator.shared.mainNavigator.navigate(To: .notificationViewController)
         case .ADDRESSES:
             NavigationCoordinator.shared.mainNavigator.navigate(To: .addressesViewController)
+        case .MY_INFO:
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .myInfoViewController)
         default:
             break
         }

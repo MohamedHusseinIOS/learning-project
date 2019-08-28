@@ -126,6 +126,9 @@ class FavoritesViewController: BaseViewController {
                 return cell
             }.disposed(by: bag)
         
+        itemsCollectionView.delegate = nil
+        itemsCollectionView.dataSource = nil
+        
         viewModel.output
             .stores
             .bind(to: itemsCollectionView.rx.items){ collectionView, item, element in

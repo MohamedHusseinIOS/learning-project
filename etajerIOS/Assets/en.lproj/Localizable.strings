@@ -6,6 +6,9 @@
   Copyright © 2019 mohamed ismail. All rights reserved.
 */
 
+"OK" = "Ok";
+"CANCEL" = "Cancel";
+
 //MARK:- SignIn
 "SIGNIN" = "sign in";
 "EMAIL" = "your email or mobile number";
@@ -55,12 +58,16 @@
 "JEWELERY_AND_ACCESSORIES" = "jewelery and accessories";
 "OFFICE_EQUIPMENTS" = "office equipments";
 
+"LOGOUT" = "logout";
+"DO_YOU_WANT_TO_LOGOUT" = "are you sure, you want to logout?";
+
 //MARK:- Home
 "CHANGE_LANG" = "عربي";
 "CATEGORY_TITLE_1" = "Newest Products";
 "CATEGORY_TITLE_2" = "Auctions";
 "MORE_ITEMS" = "more items";
-
+"LATEST_PRODUCTS" = "latest products";
+"LATEST_AUCTIONS" = "latest Auctions";
 //MARK:- Item Details
 
 "LAST_OVERBID" = "last overbid";
@@ -99,6 +106,12 @@
 "ADDRESSES" = "Addresses";
 "PAYMENT_INFO" = "payment info";
 "MY_INFO" = "my info";
+"PASSWORD_CHANED" = "password changed successully";
+"CHANGE_PASSWORD" = "change password";
+"SAVE" = "save";
+"NEW_PASSWORD" = "new password";
+"CONFIRM_PASSWORD" = "confirm password";
+"PASSWORD_NOT_MATCHED" = "password did not matched confirm";
 
 //MARK:- Favorites
 "FAVORITES" = "Favorites";

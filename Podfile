@@ -20,6 +20,9 @@ target 'etajerIOS' do
   
   pod 'GooglePlaces'
   pod 'GoogleMaps'
+  pod 'Firebase/Analytics'
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.13.4'
   
   post_install do |installer|
     installer.pods_project.targets.each do |target|

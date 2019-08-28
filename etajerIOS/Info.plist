@@ -22,10 +22,14 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>if you want to take a picture </string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>if you want to add your location address</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>if you want to add your location address</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>if you want to set image form photo liberary</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>din-next-lt-w23-regular.ttf</string>

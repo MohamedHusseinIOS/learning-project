@@ -33,7 +33,6 @@ class MenuViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        viewModel.getCategories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,8 +42,8 @@ class MenuViewController: BaseViewController {
         } else {
             notSignin(true)
         }
-        
         setUserData()
+        viewModel.getCategories()
     }
     
     override func configureUI() {
@@ -153,6 +152,31 @@ class MenuViewController: BaseViewController {
     }
     
     func menuTableViewDidSelectItem(in indexPath: IndexPath){
+        if AppUtility.shared.currentAccessToken != nil {
+            navigateToItemsWithLogout(indexPath: indexPath)
+        } else {
+            navigateToItemsWithoutLogout(indexPath: indexPath)
+        }
+        flashCellAt(indexPath: indexPath)
+        closeMenu()
+    }
+    
+    func navigateToItemsWithLogout(indexPath: IndexPath){
+        let category = viewModel.categories[indexPath.row]
+        if indexPath.row == viewModel.categories.count - 1 {
+            self.alertWithCancel(title: "", message: DO_YOU_WANT_TO_LOGOUT.localized(), actionTitle: LOGOUT.localized()) { (isLogout) in
+                guard isLogout else { return }
+                AppUtility.shared.logout()
+            }
+        } else if indexPath.row == viewModel.categories.count - 2 {
+            AppUtility.shared.changeLanguage()
+        } else {
+            guard let title = category.name, let id = category.id else { return }
+            NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, nil, category))
+        }
+    }
+    
+    func navigateToItemsWithoutLogout(indexPath: IndexPath){
         let category = viewModel.categories[indexPath.row]
         if indexPath.row == viewModel.categories.count - 1 {
             AppUtility.shared.changeLanguage()
@@ -160,8 +184,6 @@ class MenuViewController: BaseViewController {
             guard let title = category.name, let id = category.id else { return }
             NavigationCoordinator.shared.mainNavigator.navigate(To: .categoryItemsViewController(title, nil, category))
         }
-        flashCellAt(indexPath: indexPath)
-        closeMenu()
     }
     
     func flashCellAt(indexPath: IndexPath){

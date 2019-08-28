@@ -53,7 +53,11 @@ class MenuViewModel: BaseViewModel, ViewModelType{
                       var categories = categoriesRes.categories else { return }
                 AppUtility.shared.saveAppCategories(categoriesRes)
                 let changeLang = Category(id: nil, name: CHANGE_LANG.localized(), isShipAble: nil, acceptAuction: nil, theIcon: nil, theBanner: nil, childs: nil, products: nil, productsArray: nil)
+                let logout = Category(id: nil, name: LOGOUT.localized(), isShipAble: nil, acceptAuction: nil, theIcon: nil, theBanner: nil, childs: nil, products: nil, productsArray: nil)
                 categories.append(changeLang)
+                if AppUtility.shared.currentAccessToken != nil {
+                    categories.append(logout)
+                }
                 self.menuElements.onNext(categories)
             case .failure(_, let data):
                 self.handelApiError(data: data, failer: self.faliure)

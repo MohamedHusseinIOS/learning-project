@@ -60,6 +60,7 @@ extension MainNavigator: Navigator{
         case notificationViewController
         case addressesViewController
         case selectAddressViewController(_ address: String?)
+        case myInfoViewController
         
         //Cart VC
         case cartViewController
@@ -71,13 +72,13 @@ extension MainNavigator: Navigator{
     }
     
     func navigate(To destination: Destination) {
-        guard let vc = makeViewController(for: destination) else{return}
+        guard let vc = makeViewController(for: destination) else{ return }
         currentVC = destination
         navigationController.pushViewController(vc, animated: true)
     }
     
     func present(_ destination: Destination, completion: (() -> Void)?) {
-        guard let vc = makeViewController(for: destination) else{return}
+        guard let vc = makeViewController(for: destination) else { return }
         presentNVC.viewControllers.append(vc)
         //currentVC = destination
         navigationController.present(presentNVC, animated: true) {
@@ -86,7 +87,7 @@ extension MainNavigator: Navigator{
     }
     
     func presentNavigateTo(_ destination: Destination) {
-        guard let vc = makeViewController(for: destination) else{return}
+        guard let vc = makeViewController(for: destination) else{ return }
         currentVC = destination
         presentNVC.pushViewController(vc, animated: true)
     }
@@ -159,6 +160,9 @@ extension MainNavigator: Navigator{
         case .selectAddressViewController(let address):
             let vc = SelectAddressViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: SelectAddressViewController())
             vc?.address = address
+            return vc
+        case .myInfoViewController:
+            let vc = MyInfoViewController.InstantiateFormStoryBoard(storyboards.main.instanse, vc: MyInfoViewController())
             return vc
             
         //MARK:- Cart

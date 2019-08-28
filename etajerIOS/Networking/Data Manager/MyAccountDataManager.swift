@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SVProgressHUD
 
 extension DataManager {
     
@@ -34,4 +35,34 @@ extension DataManager {
         }
     }
     
+    func changeUserData(firstName: String, lastName: String, email: String, mobile: String, completion: @escaping NetworkManager.responseCallback){
+        SVProgressHUD.show()
+        let params: [String: Any] = ["first_name": firstName,
+                                     "last_name": lastName,
+                                     "email": email,
+                                     "mobile": mobile]
+        NetworkManager.shared.post(url: URLs.changeUserData.URL, paramters: params) { (response) in
+            SVProgressHUD.dismiss()
+            self.handelResponseData(response: response, model: SignInUpResponse.self, completion: completion)
+        }
+    }
+    
+    func changePassword(newPassword: String, confirmPassword: String, completion: @escaping NetworkManager.responseCallback) {
+        SVProgressHUD.show()
+        let params: [String: Any] = ["password": newPassword,
+                                     "password_confirm": confirmPassword]
+        NetworkManager.shared.post(url: URLs.changePassword.URL, paramters: params) { (response) in
+            SVProgressHUD.dismiss()
+            self.handelResponseData(response: response, model: SignInUpResponse.self, completion: completion)
+        }
+    }
+    
+    func changeUserBankInfo(holderName: String, iban: String, bankName: String, completion: @escaping NetworkManager.responseCallback){
+        let params: [String: Any] = ["bank_holdername": holderName,
+                                     "bank_iban": iban,
+                                     "bank_name": bankName]
+        NetworkManager.shared.post(url: URLs.changeUserData.URL, paramters: params) { (response) in
+            self.handelResponseData(response: response, model: SignInUpResponse.self, completion: completion)
+        }
+    }
 }
